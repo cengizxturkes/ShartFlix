@@ -4,6 +4,7 @@ import 'package:my_app/common/app_colors/app_colors.dart';
 import 'package:my_app/common/app_images/app_svg.dart';
 import 'package:my_app/common/app_text/app_text_style.dart';
 import 'package:my_app/widgets/icon/app_svg_widget.dart';
+import 'package:retrofit/retrofit.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
   final int currentIndex;
@@ -28,7 +29,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
             _NavItem(
               icon: AppSvgWidget(
                 path: AppSvg.home,
-                color: AppColors.white,
+                color:
+                    currentIndex == 0 ? AppColors.buttonColor : AppColors.white,
                 height: 28.h,
                 width: 28.w,
               ),
@@ -39,8 +41,9 @@ class CustomBottomNavigationBar extends StatelessWidget {
             SizedBox(width: 16.w),
             _NavItem(
               icon: AppSvgWidget(
-                path: AppSvg.search,
-                color: AppColors.white,
+                path: AppSvg.profile,
+                color:
+                    currentIndex == 1 ? AppColors.buttonColor : AppColors.white,
                 height: 28.h,
                 width: 28.w,
               ),
@@ -78,21 +81,36 @@ class _NavItem extends StatelessWidget {
       hoverColor: AppColors.background.withValues(alpha: 0.2),
       child: Container(
         width: 125.w,
-        padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 16.w),
+        padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 14.w),
         decoration: BoxDecoration(
-          color: AppColors.background,
+          color:
+              selected
+                  ? AppColors.buttonColor.withValues(alpha: 0.1)
+                  : AppColors.background,
           borderRadius: BorderRadius.circular(20.r),
           border: Border.all(
-            color: AppColors.white.withValues(alpha: 0.2),
+            color:
+                selected
+                    ? AppColors.buttonColor
+                    : AppColors.white.withValues(alpha: 0.2),
             width: 1.w,
           ),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             icon,
-            const SizedBox(width: 8),
-            Text(label, style: AppTextStyle.whiteS12Medium),
+            SizedBox(width: 8.w),
+            Text(
+              label,
+              style:
+                  selected
+                      ? AppTextStyle.whiteS12Medium.copyWith(
+                        color: AppColors.buttonColor,
+                      )
+                      : AppTextStyle.whiteS12Medium,
+            ),
           ],
         ),
       ),

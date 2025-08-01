@@ -11,7 +11,13 @@ class AppShadow {
       offset: Offset(0, 4),
     ),
   ];
-
+  static final homePageFeaturedMovieShadow = [
+    const BoxShadow(
+      color: AppColors.shadow,
+      blurRadius: 10,
+      offset: Offset(0, 10),
+    ),
+  ];
   static final appBarShadow = [
     const BoxShadow(
       color: AppColors.shadow,

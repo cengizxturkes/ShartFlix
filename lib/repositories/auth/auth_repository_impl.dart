@@ -1,6 +1,7 @@
 import 'package:my_app/database/secure_storage_helper.dart';
 import 'package:my_app/models/request/user/login/login_body.dart';
 import 'package:my_app/models/response/user/login/login_response.dart';
+import 'package:my_app/models/response/user/profile/profile_response.dart';
 import 'package:my_app/models/token/token_entity.dart';
 import 'package:my_app/network/api_client/api_client.dart';
 import 'package:my_app/repositories/auth/auth_repository.dart';
@@ -41,5 +42,11 @@ class AuthRepositoryImpl extends AuthRepository {
   }) async {
     await Future.delayed(const Duration(seconds: 2));
     return true;
+  }
+
+  @override
+  Future<ProfileResponse?> getUser() async {
+    final response = await apiClient.getProfile();
+    return response;
   }
 }

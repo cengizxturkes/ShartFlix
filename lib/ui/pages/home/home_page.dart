@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_app/common/app_dimens/app_dimens.dart';
+import 'package:my_app/common/app_colors/app_colors.dart';
 import 'package:my_app/common/app_navbar/app_navigation_bar.dart';
-import 'package:my_app/common/app_text/app_text_style.dart';
-import 'package:my_app/models/enums/load_status.dart';
 import 'package:my_app/repositories/auth/auth_repository.dart';
 import 'package:my_app/repositories/movie/movie_repository.dart';
 import 'package:my_app/ui/pages/home/home_cubit.dart';
 import 'package:my_app/ui/pages/home/home_navigator.dart';
 import 'package:my_app/ui/pages/home/home_state.dart';
+import 'package:my_app/ui/pages/home/widget/widgets.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -53,38 +51,32 @@ class _HomeChildPageState extends State<HomeChildPage> {
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
         return Scaffold(
+          backgroundColor: AppColors.background,
+          extendBody: true,
           bottomNavigationBar: CustomBottomNavigationBar(
-            currentIndex: 0,
-            onTap: (int value) {},
+            currentIndex: state.currentNavigationIndex,
+            onTap: (int value) => _cubit.onNavigationChanged(value),
           ),
           body: SafeArea(
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: AppDimens.loginPagePadding,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  state.fetchMovieStatus == LoadStatus.loading
-                      ? const Center(child: CircularProgressIndicator())
-                      : Column(
-                        children: [
-                          Text('Shartflix', style: AppTextStyle.whiteS14Bold),
-                          ListView.builder(
-                            shrinkWrap: true,
-                            padding: EdgeInsets.symmetric(horizontal: 16.w),
-                            itemCount: state.movies?.data.movies.length ?? 0,
-                            itemBuilder: (context, index) {
-                              return Text(
-                                state.movies?.data.movies[index].title ?? '',
-                                style: AppTextStyle.whiteS14Bold,
-                              );
-                            },
-                          ),
-                        ],
+            child: SingleChildScrollView(
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height,
+                child: Column(
+                  children: [
+                    const HomeHeader(),
+                    Expanded(
+                      child: MovieListWidget(
+                        moviesResponse: state.movies,
+                        onMovieTap: () {
+                          // TODO: Navigate to movie detail
+                        },
+                        onFavoriteToggle: (String movieId) {
+                          _cubit.setMovieFavorite(movieId);
+                        },
                       ),
-                ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

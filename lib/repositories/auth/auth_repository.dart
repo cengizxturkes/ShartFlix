@@ -1,4 +1,5 @@
 import 'package:my_app/models/response/user/login/login_response.dart';
+import 'package:my_app/models/response/user/profile/profile_response.dart';
 import 'package:my_app/models/token/token_entity.dart';
 
 abstract class AuthRepository {
@@ -15,4 +16,6 @@ abstract class AuthRepository {
     required String newPassword,
     required String confirmPassword,
   });
+
+  Future<ProfileResponse?> getUser();
 }

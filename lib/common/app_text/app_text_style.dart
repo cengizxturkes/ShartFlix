@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_app/common/app_colors/app_colors.dart';
 
 class AppTextStyle {
@@ -18,16 +19,16 @@ class AppTextStyle {
   static const _bold = FontWeight.w700;
 
   // Font sizes
-  static const _s10 = 10.0;
-  static const _s12 = 12.0;
-  static const _s14 = 14.0;
-  static const _s15 = 15.0;
-  static const _s16 = 16.0;
-  static const _s18 = 18.0;
-  static const _s20 = 20.0;
-  static const _s24 = 24.0;
-  static const _s28 = 28.0;
-  static const _s32 = 32.0;
+  static double _s10 = 10.0.sp;
+  static double _s12 = 12.0.sp;
+  static double _s14 = 14.0.sp;
+  static double _s15 = 15.0.sp;
+  static double _s16 = 16.0.sp;
+  static double _s18 = 18.0.sp;
+  static double _s20 = 20.0.sp;
+  static double _s24 = 24.0.sp;
+  static double _s28 = 28.0.sp;
+  static double _s32 = 32.0.sp;
 
   // Helper method to create text styles
   static TextStyle _createStyle({

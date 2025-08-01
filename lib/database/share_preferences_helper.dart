@@ -5,6 +5,18 @@ class SharedPreferencesHelper {
   static const _firstRunKey = 'first_run';
   static const _isOnboardedKey = 'is_onboarded';
   static const _currentLanguageKey = 'current_language';
+  static const _isDarkModeKey = 'is_dark_mode';
+  static const _isThemeManuallySetKey = 'is_theme_manually_set';
+
+  static Future<void> setThemeManually(bool isManual) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_isThemeManuallySetKey, isManual);
+  }
+
+  static Future<bool> isThemeManuallySet() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(_isThemeManuallySetKey) ?? false;
+  }
 
   static Future<bool> isFirstRun() async {
     try {
@@ -47,5 +59,15 @@ class SharedPreferencesHelper {
   static Future<void> setCurrentLanguage(Language language) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString(_currentLanguageKey, language.code);
+  }
+
+  static Future<bool> getThemePreference() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(_isDarkModeKey) ?? false;
+  }
+
+  static Future<void> setThemePreference(bool isDarkMode) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_isDarkModeKey, isDarkMode);
   }
 }

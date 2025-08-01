@@ -22,4 +22,15 @@ class AppDimens {
   static const double marginSmall = 8;
 
   static const double loginPagePadding = 39;
+  static const double homePageFeaturedMovieHeight = 400;
+  //logo Dimensions
+  static const double logoWidth = 100;
+  static const double logoHeight = 80;
+  //featured movie Dimensions
+  static const double featuredMovieHeight = 400;
+  static const double featuredMovieBottomPadding = 24;
+  //positioned Dimensions
+  static const double featuredMovieBottomPositioned = 20;
+  static const double featuredMovieLeftPositioned = 20;
+  static const double featuredMovieRightPositioned = 20;
 }

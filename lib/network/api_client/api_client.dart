@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:my_app/models/request/user/login/login_body.dart';
+import 'package:my_app/models/response/movies/favorites/favorite_movies.dart';
 import 'package:my_app/models/response/movies/list/list_movies_response.dart';
 import 'package:my_app/models/response/user/login/login_response.dart';
+import 'package:my_app/models/response/user/profile/profile_response.dart';
 import 'package:retrofit/retrofit.dart';
 part 'api_client.g.dart';
 
@@ -12,4 +14,10 @@ abstract class ApiClient {
   Future<LoginResponse> authLogin(@Body() LoginBody body);
   @GET("movie/list")
   Future<ListMoviesResponse> getMovies(@Query("page") int page);
+  @POST("movie/favorite/{favoriteId}")
+  Future<FavoriteMovies> setMovieFavorite(
+    @Path("favoriteId") String favoriteId,
+  );
+  @GET("user/profile")
+  Future<ProfileResponse> getProfile();
 }

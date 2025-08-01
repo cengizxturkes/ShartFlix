@@ -1,7 +1,13 @@
 import 'dart:ui';
 
+import 'package:my_app/database/share_preferences_helper.dart';
+
 class AppColors {
-  AppColors._();
+  static bool isDarkMode = false;
+  static Future<void> initialize() async {
+    isDarkMode = await SharedPreferencesHelper.getThemePreference();
+    print('isDarkMode: $isDarkMode');
+  }
 
   ///Common
   static const Color primary = Color(0xFF173d7e);
@@ -10,7 +16,8 @@ class AppColors {
   static const Color white = Color(0xFFFFFFFF);
 
   ///Background
-  static const Color background = Color(0xFF090909);
+  static Color get background =>
+      isDarkMode ? Color(0xFF090909) : Color(0xFFF5F5F5);
 
   ///Gray
   static const Color gray1 = Color(0xFFC9C8C8);
@@ -57,4 +64,7 @@ class AppColors {
 
   ///Shadow
   static const Color boxShadowColor = Color(0x3D40BFFF);
+
+  ///Profile
+  static const Color profileCardBackground = Color(0xFF8E8E93);
 }

@@ -1,10 +1,9 @@
 import 'package:equatable/equatable.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_app/database/secure_storage_helper.dart';
 import 'package:my_app/global_bloc/user/user_cubit.dart';
 import 'package:my_app/logger/logger.dart';
 import 'package:my_app/models/enums/load_status.dart';
-import 'package:my_app/models/response/user/profile/profile_response.dart';
 import 'package:my_app/models/token/token_entity.dart';
 import 'package:my_app/repositories/auth/auth_repository.dart';
 import 'package:my_app/repositories/user/user_repository.dart';
@@ -56,7 +55,10 @@ class SignInCubit extends Cubit<SignInState> {
             refreshToken: result.data.token,
           ),
         );
-
+        final userResponse = await authRepo.getUser();
+        if (userResponse != null) {
+          SecureStorageHelper.instance.saveUser(userResponse);
+        }
         emit(state.copyWith(signInStatus: LoadStatus.success));
         navigator.openHomePage();
       } else {

@@ -5,6 +5,7 @@ import 'package:my_app/ui/pages/app_start/splash/splash_page.dart';
 import 'package:my_app/ui/pages/auth/sign_in/sign_in_page.dart';
 import 'package:my_app/ui/pages/home/home_page.dart';
 import 'package:my_app/ui/pages/photo_view/photo_view_page.dart';
+import 'package:my_app/ui/pages/profile/profile_page.dart';
 
 class AppRouter {
   AppRouter._();
@@ -22,6 +23,7 @@ class AppRouter {
   static const String home = "/home";
   static const String signIn = "/sign_in";
   static const String photoView = 'photo_view';
+  static const String profile = 'profile';
   // GoRouter configuration
   static final _routes = <RouteBase>[
     GoRoute(
@@ -52,6 +54,11 @@ class AppRouter {
           name: home,
           path: home,
           builder: (context, state) => const HomePage(),
+        ),
+        GoRoute(
+          name: profile,
+          path: profile,
+          builder: (context, state) => const ProfilePage(),
         ),
       ],
     ),

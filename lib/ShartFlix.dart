@@ -10,6 +10,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:my_app/common/app_colors/app_colors.dart';
 import 'package:my_app/common/app_theme/app_themes.dart';
 import 'package:my_app/configs/app_configs.dart';
 import 'package:my_app/global_bloc/auth/auth_cubit.dart';
@@ -44,6 +45,9 @@ class _ShartflixState extends State<Shartflix> {
   @override
   void initState() {
     _apiClient = ApiUtil.apiClient;
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await AppColors.initialize();
+    });
     super.initState();
   }
 
@@ -68,6 +72,11 @@ class _ShartflixState extends State<Shartflix> {
             return MovieRepositoryImpl(apiClient: _apiClient);
           },
         ),
+        RepositoryProvider<UserRepository>(
+          create: (context) {
+            return UserRepositoryImpl(apiClient: _apiClient);
+          },
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -88,34 +97,36 @@ class _ShartflixState extends State<Shartflix> {
           BlocProvider<AppSettingCubit>(
             create: (_) {
               final deviceLocale = ui.PlatformDispatcher.instance.locale;
-              return AppSettingCubit(initialLocale: deviceLocale);
+              final cubit = AppSettingCubit(initialLocale: deviceLocale);
+              cubit.getInitialSetting();
+              cubit.updateTheme(true);
+              return cubit;
             },
           ),
         ],
         child: BlocBuilder<AppSettingCubit, AppSettingState>(
           buildWhen: (prev, current) {
-            return prev.language != prev.language;
+            return prev.language != current.language ||
+                prev.isDarkMode != current.isDarkMode;
           },
           builder: (context, state) {
-            return BlocBuilder<AppSettingCubit, AppSettingState>(
-              buildWhen: (prev, current) => prev.language != current.language,
-              builder: (context, state) {
-                return GestureDetector(
-                  onTap: () => _hideKeyboard(context),
-                  child: GlobalLoaderOverlay(
-                    useDefaultLoading: false,
-                    overlayWidgetBuilder:
-                        (_) => const Center(
-                          child: SizedBox(
-                            width: 40,
-                            height: 40,
-                            child: AppCircularProgressIndicator(),
-                          ),
-                        ),
-                    child: _buildMaterialApp(locale: state.language.locale),
-                  ),
-                );
-              },
+            return GestureDetector(
+              onTap: () => _hideKeyboard(context),
+              child: GlobalLoaderOverlay(
+                useDefaultLoading: false,
+                overlayWidgetBuilder:
+                    (_) => const Center(
+                      child: SizedBox(
+                        width: 40,
+                        height: 40,
+                        child: AppCircularProgressIndicator(),
+                      ),
+                    ),
+                child: _buildMaterialApp(
+                  locale: state.language.locale,
+                  isDarkMode: state.isDarkMode,
+                ),
+              ),
             );
           },
         ),
@@ -123,15 +134,16 @@ class _ShartflixState extends State<Shartflix> {
     );
   }
 
-  Widget _buildMaterialApp({required Locale locale}) {
+  Widget _buildMaterialApp({required Locale locale, required bool isDarkMode}) {
     return ScreenUtilInit(
       designSize: const Size(402, 844),
       builder: (context, child) {
         return MaterialApp.router(
           debugShowCheckedModeBanner: false,
           title: AppConfigs.appName,
-          theme: AppThemes().theme,
-          themeMode: ThemeMode.dark,
+          theme: AppThemes(isDarkMode: false).theme, // light
+          darkTheme: AppThemes(isDarkMode: true).theme, // dark
+          themeMode: isDarkMode ? ThemeMode.dark : ThemeMode.light,
           routerConfig: AppRouter.router,
           localizationsDelegates: const [
             GlobalMaterialLocalizations.delegate,

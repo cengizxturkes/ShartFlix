@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class AppSvgWidget extends StatelessWidget {
@@ -34,8 +35,8 @@ class AppSvgWidget extends StatelessWidget {
     } else {
       return SvgPicture.asset(
         path,
-        width: width,
-        height: height,
+        width: width ?? 24.w,
+        height: height ?? 24.h,
         colorFilter:
             color != null ? ColorFilter.mode(color!, BlendMode.srcIn) : null,
         fit: fit,

@@ -1,24 +1,23 @@
 import 'package:my_app/common/app_navigator/app_navigator.dart';
 import 'package:my_app/router/route_config.dart';
 
-class HomeNavigator extends AppNavigator {
-  HomeNavigator({required super.context});
+class ProfileNavigator extends AppNavigator {
+  ProfileNavigator({required super.context});
 
   void openSignUpPage() {
     // pushNamed(AppRouter.signUp);
   }
 
-  void navigateToProfile() {
-    pushNamed(AppRouter.profile);
+  void navigateToLogin() {
+    openSignIn();
   }
 
   void onNavigationChanged(int index) {
     switch (index) {
       case 0:
-        // Already on home page, do nothing or refresh if needed
+        pushNamed(AppRouter.home);
         break;
       case 1:
-        pushNamed(AppRouter.profile);
         break;
     }
   }

@@ -2,13 +2,20 @@ part of 'app_setting_cubit.dart';
 
 class AppSettingState extends Equatable {
   final Language language;
+  final bool isDarkMode;
 
-  const AppSettingState({this.language = AppConfigs.defaultLanguage});
+  const AppSettingState({
+    this.language = AppConfigs.defaultLanguage,
+    this.isDarkMode = false,
+  });
 
   @override
-  List<Object?> get props => [language];
+  List<Object?> get props => [language, isDarkMode];
 
-  AppSettingState copyWith({Language? language}) {
-    return AppSettingState(language: language ?? this.language);
+  AppSettingState copyWith({Language? language, bool? isDarkMode}) {
+    return AppSettingState(
+      language: language ?? this.language,
+      isDarkMode: isDarkMode ?? this.isDarkMode,
+    );
   }
 }

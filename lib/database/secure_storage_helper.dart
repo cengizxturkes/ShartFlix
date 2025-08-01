@@ -3,6 +3,7 @@
 import 'dart:convert';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:my_app/models/response/user/profile/profile_response.dart';
 import 'package:my_app/models/token/token_entity.dart';
 
 class SecureStorageHelper {
@@ -55,6 +56,22 @@ class SecureStorageHelper {
       print('Token getirme hatası: $e');
       return null;
     }
+  }
+
+  Future<ProfileResponse?> getUser() async {
+    final userEncoded = await _storage.read(key: _userKey);
+    if (userEncoded == null) {
+      return null;
+    }
+    return ProfileResponse.fromJson(jsonDecode(userEncoded));
+  }
+
+  Future<void> saveUser(ProfileResponse user) async {
+    await _storage.write(key: _userKey, value: jsonEncode(user.toJson()));
+  }
+
+  Future<void> removeUser() async {
+    await _storage.delete(key: _userKey);
   }
 
   Future<void> logout() async {
