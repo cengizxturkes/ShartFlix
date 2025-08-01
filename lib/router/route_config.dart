@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_app/ui/pages/app_start/splash/splash_page.dart';
 import 'package:my_app/ui/pages/auth/sign_in/sign_in_page.dart';
+import 'package:my_app/ui/pages/home/home_page.dart';
 import 'package:my_app/ui/pages/photo_view/photo_view_page.dart';
 
 class AppRouter {
@@ -46,6 +47,11 @@ class AppRouter {
           name: signIn,
           path: signIn,
           builder: (context, state) => const SignInPage(),
+        ),
+        GoRoute(
+          name: home,
+          path: home,
+          builder: (context, state) => const HomePage(),
         ),
       ],
     ),

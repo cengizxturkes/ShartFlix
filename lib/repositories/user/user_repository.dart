@@ -1,6 +1,5 @@
-import 'package:my_app/models/response/user/profile/profile_response.dart';
-import 'package:my_app/network/api_client/api_client.dart';
+import 'package:my_app/models/response/user/login/login_response.dart';
 
 abstract class UserRepository {
-  Future<ProfileResponse> getProfile();
+  Future<LoginResponse> login(String email, String password);
 }

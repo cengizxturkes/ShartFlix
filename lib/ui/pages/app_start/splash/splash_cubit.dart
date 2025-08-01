@@ -32,11 +32,4 @@ class SplashCubit extends Cubit<SplashState> {
     final isLoggedIn = token != null;
     return isLoggedIn;
   }
-
-  Future<bool> isLoggedIn() async {
-    await Future.delayed(const Duration(seconds: 1));
-    final token = await authRepo.getToken();
-    final isLoggedIn = token != null;
-    return isLoggedIn;
-  }
 }

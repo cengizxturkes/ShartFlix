@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_app/configs/app_configs.dart';
@@ -7,7 +9,15 @@ import 'package:my_app/models/enums/language.dart';
 part 'app_setting_state.dart';
 
 class AppSettingCubit extends Cubit<AppSettingState> {
-  AppSettingCubit() : super(const AppSettingState());
+  AppSettingCubit({required Locale initialLocale})
+    : super(
+        AppSettingState(
+          language:
+              initialLocale.languageCode == 'tr'
+                  ? Language.turkish
+                  : Language.english,
+        ),
+      );
 
   Future<void> getInitialSetting() async {
     final currentLanguage = await SharedPreferencesHelper.getCurrentLanguage();

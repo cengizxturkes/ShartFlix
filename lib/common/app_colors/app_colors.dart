@@ -7,6 +7,7 @@ class AppColors {
   static const Color primary = Color(0xFF173d7e);
   static const Color secondary = Color(0xFF1E8AE7);
   static const Color error = Color(0xFFEE3134);
+  static const Color white = Color(0xFFFFFFFF);
 
   ///Background
   static const Color background = Color(0xFF090909);
@@ -46,6 +47,7 @@ class AppColors {
   static const Color buttonBGBlack = Color(0xFF4A4A4A);
   static const Color buttonBGDisabled = Color(0xFF919191);
   static const Color buttonBorder = Color(0xFFC9C8C8);
+  static const Color buttonColor = Color(0xFFE50914);
 
   /// Tabs
   static const Color imageBG = Color(0xFF919191);

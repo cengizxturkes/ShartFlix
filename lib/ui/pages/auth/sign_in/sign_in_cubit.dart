@@ -5,6 +5,7 @@ import 'package:my_app/global_bloc/user/user_cubit.dart';
 import 'package:my_app/logger/logger.dart';
 import 'package:my_app/models/enums/load_status.dart';
 import 'package:my_app/models/response/user/profile/profile_response.dart';
+import 'package:my_app/models/token/token_entity.dart';
 import 'package:my_app/repositories/auth/auth_repository.dart';
 import 'package:my_app/repositories/user/user_repository.dart';
 
@@ -37,28 +38,36 @@ class SignInCubit extends Cubit<SignInState> {
     final email = state.email ?? '';
     final password = state.password ?? '';
     if (email.isEmpty) {
-      navigator.showErrorFlushbar(message: 'Username is empty');
+      navigator.showErrorFlushbar(message: 'Email boş olamaz');
       return;
     }
     if (password.isEmpty) {
-      navigator.showErrorFlushbar(message: 'Password is empty');
+      navigator.showErrorFlushbar(message: 'Şifre boş olamaz');
       return;
     }
     emit(state.copyWith(signInStatus: LoadStatus.loading));
     try {
       final result = await authRepo.signIn(email, password);
       if (result != null) {
-        ProfileResponse? myProfile = await userRepo.getProfile();
-        userCubit.updateUser(myProfile);
-        authRepo.saveToken(result);
+        userCubit.updateUser(result);
+        authRepo.saveToken(
+          TokenEntity(
+            accessToken: result.data.token,
+            refreshToken: result.data.token,
+          ),
+        );
+
         emit(state.copyWith(signInStatus: LoadStatus.success));
         navigator.openHomePage();
       } else {
-        emit(state.copyWith(signInStatus: LoadStatus.failure));
+        emit(state.copyWith(signInStatus: LoadStatus.initial));
       }
     } catch (error) {
       logger.e(error);
-      emit(state.copyWith(signInStatus: LoadStatus.failure));
+      navigator.showErrorFlushbar(
+        message: 'Giriş yapılamadı, kullanıcı adı veya şifre hatalı',
+      );
+      emit(state.copyWith(signInStatus: LoadStatus.initial));
     }
   }
 }

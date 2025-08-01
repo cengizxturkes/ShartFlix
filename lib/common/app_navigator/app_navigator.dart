@@ -1,5 +1,6 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:loader_overlay/loader_overlay.dart';
@@ -181,11 +182,13 @@ class AppNavigator {
   void showErrorFlushbar({required String message}) {
     Flushbar(
       message: message,
-      flushbarStyle: FlushbarStyle.GROUNDED,
+      flushbarStyle: FlushbarStyle.FLOATING,
+      margin: EdgeInsets.only(top: 100.h, left: 16.w, right: 16.w),
+      borderRadius: BorderRadius.circular(10.r),
       flushbarPosition: FlushbarPosition.TOP,
       icon: const Icon(Icons.error_outline, size: 28.0, color: Colors.white),
       titleColor: Colors.white,
-      duration: const Duration(seconds: 3),
+      duration: const Duration(seconds: 2),
       backgroundColor: Colors.redAccent,
     ).show(context);
   }

@@ -61,6 +61,7 @@ class _SplashChildPageState extends State<SplashChildPage> {
   Future<void> _runOnboardingIfNeed() async {
     final isOnboarded = await SharedPreferencesHelper.isOnboarded();
     if (!isOnboarded) {
+      await SharedPreferencesHelper.setOnboarded(isOnboarded: true);
       await _cubit.navigator.openOnboardingPage();
     }
   }
@@ -71,12 +72,8 @@ class _SplashChildPageState extends State<SplashChildPage> {
       body: Stack(
         children: [
           Positioned.fill(child: Container(color: AppColors.primary)),
-          Center(
-            child: Image.asset(
-              AppImages.sinFlixSplash,
-              width: 200,
-              fit: BoxFit.cover,
-            ),
+          Positioned.fill(
+            child: Image.asset(AppImages.sinFlixSplash, fit: BoxFit.contain),
           ),
         ],
       ),

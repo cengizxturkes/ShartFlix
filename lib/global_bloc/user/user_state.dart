@@ -1,17 +1,23 @@
 part of 'user_cubit.dart';
 
 class UserState extends Equatable {
-  final ProfileResponse? user;
+  final LoginResponse? loginResponse;
   final LoadStatus fetchUserStatus;
 
-  const UserState({this.user, this.fetchUserStatus = LoadStatus.initial});
+  const UserState({
+    this.loginResponse,
+    this.fetchUserStatus = LoadStatus.initial,
+  });
 
   @override
-  List<Object?> get props => [user, fetchUserStatus];
+  List<Object?> get props => [loginResponse, fetchUserStatus];
 
-  UserState copyWith({ProfileResponse? user, LoadStatus? fetchUserStatus}) {
+  UserState copyWith({
+    LoginResponse? loginResponse,
+    LoadStatus? fetchUserStatus,
+  }) {
     return UserState(
-      user: user ?? this.user,
+      loginResponse: loginResponse ?? this.loginResponse,
       fetchUserStatus: fetchUserStatus ?? this.fetchUserStatus,
     );
   }

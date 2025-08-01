@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_app/common/app_colors/app_colors.dart';
 import 'package:my_app/common/app_dimens/app_dimens.dart';
 import 'package:my_app/common/app_text/app_text_style.dart';
@@ -14,7 +15,7 @@ class AppButton extends StatelessWidget {
   final Color? borderColor;
   final Color backgroundColor;
   final Color disableBackgroundColor;
-  final TextStyle textStyle;
+  final TextStyle? textStyle;
 
   //Child widgets
   final Widget? leadingIcon;
@@ -40,9 +41,9 @@ class AppButton extends StatelessWidget {
     this.borderWidth = 0,
     this.cornerRadius = AppDimens.buttonCornerRadius,
     this.borderColor,
-    this.backgroundColor = AppColors.buttonBGPrimary,
+    this.backgroundColor = AppColors.buttonColor,
     this.disableBackgroundColor = AppColors.buttonBGDisabled,
-    this.textStyle = AppTextStyle.white,
+    this.textStyle,
     this.leadingIcon,
     this.trailingIcon,
     this.isLoading = false,
@@ -55,10 +56,10 @@ class AppButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height,
+      height: height.h,
       width: width,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(cornerRadius),
+        borderRadius: BorderRadius.circular(cornerRadius.r),
         border:
             borderColor != null
                 ? Border.all(color: borderColor!, width: borderWidth)
@@ -66,10 +67,10 @@ class AppButton extends StatelessWidget {
         boxShadow: boxShadow,
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(cornerRadius),
+        borderRadius: BorderRadius.circular(cornerRadius.r),
         child: Material(
           color: isEnabled ? backgroundColor : AppColors.gray1,
-          borderRadius: BorderRadius.circular(cornerRadius),
+          borderRadius: BorderRadius.circular(cornerRadius.r),
           child: InkWell(
             onTap: isEnabled ? onPressed : null,
             child: Padding(
@@ -94,7 +95,10 @@ class AppButton extends StatelessWidget {
             child: Center(
               child:
                   title.isNotEmpty
-                      ? Text(title, style: textStyle)
+                      ? Text(
+                        title,
+                        style: textStyle ?? AppTextStyle.whiteS15Regular,
+                      )
                       : Container(),
             ),
           ),

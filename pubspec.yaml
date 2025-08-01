@@ -11,7 +11,6 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  intl: any
   #Store
   flutter_secure_storage:
   shared_preferences:
@@ -30,6 +29,7 @@ dependencies:
   go_router:
     #Utilities
   permission_handler:
+  intl: any
   intl_utils:
   equatable:
   photo_view: ^0.14.0
@@ -42,7 +42,7 @@ dependencies:
   shimmer: ^3.0.0
   flutter_svg: ^2.0.7
   url_launcher: ^6.3.2
-
+  flutter_screenutil: ^5.9.3
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -53,7 +53,36 @@ flutter:
   uses-material-design: true
   generate: true
   assets:
-    - assets/images/png/
+    - assets/images/icon/png/
+    - assets/images/icon/svg/
+  fonts:
+    - family: EuclidCircularA
+      fonts:
+        - asset: assets/fonts/Euclid Circular A Light.ttf
+          weight: 300
+        - asset: assets/fonts/Euclid Circular A Light Italic.ttf
+          weight: 300
+          style: italic
+        - asset: assets/fonts/Euclid Circular A Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Euclid Circular A Italic.ttf
+          weight: 400
+          style: italic
+        - asset: assets/fonts/Euclid Circular A Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Euclid Circular A Medium Italic.ttf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/Euclid Circular A SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Euclid Circular A SemiBold Italic.ttf
+          weight: 600
+          style: italic
+        - asset: assets/fonts/Euclid Circular A Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Euclid Circular A Bold Italic.ttf
+          weight: 700
+          style: italic
 flutter_intl:
   enabled: true
   arb_dir: lib/l10n

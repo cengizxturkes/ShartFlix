@@ -1,8 +1,13 @@
+// ignore_for_file: deprecated_member_use
+
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:my_app/common/app_theme/app_themes.dart';
@@ -14,6 +19,8 @@ import 'package:my_app/network/api_client/api_client.dart';
 import 'package:my_app/network/api_util/api_util.dart';
 import 'package:my_app/repositories/auth/auth_repository.dart';
 import 'package:my_app/repositories/auth/auth_repository_impl.dart';
+import 'package:my_app/repositories/movie/movie_repository.dart';
+import 'package:my_app/repositories/movie/movie_repository_impl.dart';
 import 'package:my_app/repositories/user/user_repositoru_impl.dart';
 import 'package:my_app/repositories/user/user_repository.dart';
 import 'package:my_app/widgets/loading/app_loading_indicator.dart';
@@ -56,9 +63,9 @@ class _ShartflixState extends State<Shartflix> {
             return AuthRepositoryImpl(apiClient: _apiClient);
           },
         ),
-        RepositoryProvider<UserRepository>(
+        RepositoryProvider<MovieRepository>(
           create: (context) {
-            return UserRepositoryImpl(apiClient: _apiClient);
+            return MovieRepositoryImpl(apiClient: _apiClient);
           },
         ),
       ],
@@ -79,8 +86,9 @@ class _ShartflixState extends State<Shartflix> {
             },
           ),
           BlocProvider<AppSettingCubit>(
-            create: (context) {
-              return AppSettingCubit();
+            create: (_) {
+              final deviceLocale = ui.PlatformDispatcher.instance.locale;
+              return AppSettingCubit(initialLocale: deviceLocale);
             },
           ),
         ],
@@ -89,26 +97,25 @@ class _ShartflixState extends State<Shartflix> {
             return prev.language != prev.language;
           },
           builder: (context, state) {
-            return GestureDetector(
-              onTap: () {
-                _hideKeyboard(context);
+            return BlocBuilder<AppSettingCubit, AppSettingState>(
+              buildWhen: (prev, current) => prev.language != current.language,
+              builder: (context, state) {
+                return GestureDetector(
+                  onTap: () => _hideKeyboard(context),
+                  child: GlobalLoaderOverlay(
+                    useDefaultLoading: false,
+                    overlayWidgetBuilder:
+                        (_) => const Center(
+                          child: SizedBox(
+                            width: 40,
+                            height: 40,
+                            child: AppCircularProgressIndicator(),
+                          ),
+                        ),
+                    child: _buildMaterialApp(locale: state.language.locale),
+                  ),
+                );
               },
-              child: GlobalLoaderOverlay(
-                useDefaultLoading: false,
-                overlayWidgetBuilder: (_) {
-                  return Center(
-                    child: Container(
-                      color: Colors.grey,
-                      width: 40,
-                      height: 40,
-                      child: const Center(
-                        child: AppCircularProgressIndicator(),
-                      ),
-                    ),
-                  );
-                },
-                child: _buildMaterialApp(locale: state.language.locale),
-              ),
             );
           },
         ),
@@ -117,20 +124,25 @@ class _ShartflixState extends State<Shartflix> {
   }
 
   Widget _buildMaterialApp({required Locale locale}) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      title: AppConfigs.appName,
-      theme: AppThemes().theme,
-      themeMode: ThemeMode.dark,
-      routerConfig: AppRouter.router,
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        AppLocalizations.delegate,
-      ],
-      locale: locale,
-      supportedLocales: AppLocalizations.supportedLocales,
+    return ScreenUtilInit(
+      designSize: const Size(402, 844),
+      builder: (context, child) {
+        return MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          title: AppConfigs.appName,
+          theme: AppThemes().theme,
+          themeMode: ThemeMode.dark,
+          routerConfig: AppRouter.router,
+          localizationsDelegates: const [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+            AppLocalizations.delegate,
+          ],
+          locale: locale,
+          supportedLocales: AppLocalizations.supportedLocales,
+        );
+      },
     );
   }
 
