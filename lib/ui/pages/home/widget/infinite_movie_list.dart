@@ -8,7 +8,6 @@ import 'package:my_app/models/response/movies/list/list_movies_response.dart';
 import 'package:my_app/ui/pages/home/home_cubit.dart';
 import 'package:my_app/ui/pages/home/home_state.dart';
 import 'package:my_app/ui/pages/home/widget/featured_movie.dart';
-import 'package:my_app/ui/pages/home/image_url_encoded.dart';
 import 'package:my_app/widgets/movie_card/movie_card.dart';
 import 'dart:math';
 

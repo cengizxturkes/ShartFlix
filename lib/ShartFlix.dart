@@ -45,9 +45,6 @@ class _ShartflixState extends State<Shartflix> {
   @override
   void initState() {
     _apiClient = ApiUtil.apiClient;
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await AppColors.initialize();
-    });
     super.initState();
   }
 
@@ -98,8 +95,8 @@ class _ShartflixState extends State<Shartflix> {
             create: (_) {
               final deviceLocale = ui.PlatformDispatcher.instance.locale;
               final cubit = AppSettingCubit(initialLocale: deviceLocale);
+              // Tema ayarlarını başlangıçta yükle
               cubit.getInitialSetting();
-              cubit.updateTheme(true);
               return cubit;
             },
           ),
@@ -110,6 +107,11 @@ class _ShartflixState extends State<Shartflix> {
                 prev.isDarkMode != current.isDarkMode;
           },
           builder: (context, state) {
+            // AppColors'ı tema değişikliğinde güncelle
+            WidgetsBinding.instance.addPostFrameCallback((_) async {
+              await AppColors.initialize();
+            });
+
             return GestureDetector(
               onTap: () => _hideKeyboard(context),
               child: GlobalLoaderOverlay(

@@ -14,12 +14,18 @@ class AuthCubit extends Cubit<AuthState> {
 
   ///Sign Out
   Future<void> signOut() async {
+    if (isClosed) return;
     emit(state.copyWith(signOutStatus: LoadStatus.loading));
     try {
       await Future.delayed(const Duration(seconds: 2));
+      if (isClosed) return;
+
       await authRepo.removeToken();
+      if (isClosed) return;
+
       emit(state.copyWith(signOutStatus: LoadStatus.success));
     } catch (e) {
+      if (isClosed) return;
       logger.e(e);
       emit(state.copyWith(signOutStatus: LoadStatus.failure));
     }

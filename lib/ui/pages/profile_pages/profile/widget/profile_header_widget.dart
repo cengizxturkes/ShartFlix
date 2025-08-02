@@ -4,8 +4,8 @@ import 'package:my_app/common/app_colors/app_colors.dart';
 import 'package:my_app/common/app_dimens/app_dimens.dart';
 import 'package:my_app/common/app_text/app_text_style.dart';
 
-import 'package:my_app/ui/pages/profile/profile_cubit.dart';
-import 'package:my_app/ui/pages/profile/profile_state.dart';
+import 'package:my_app/ui/pages/profile_pages/profile/profile_cubit.dart';
+import 'package:my_app/ui/pages/profile_pages/profile/profile_state.dart';
 
 class ProfileHeaderWidget extends StatelessWidget {
   final VoidCallback? onBackPressed;
@@ -19,29 +19,6 @@ class ProfileHeaderWidget extends StatelessWidget {
         final user = state.profileResponse?.data;
         return Column(
           children: [
-            Row(
-              children: [
-                GestureDetector(
-                  onTap: onBackPressed ?? () => Navigator.of(context).pop(),
-                  child: Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: AppColors.gray3,
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(
-                      Icons.arrow_back,
-                      color: AppColors.white,
-                      size: 20,
-                    ),
-                  ),
-                ),
-                const Spacer(),
-                Text('Profil', style: AppTextStyle.whiteS15Regular),
-                const Spacer(),
-              ],
-            ),
             const SizedBox(height: AppDimens.marginNormal),
             Row(
               children: [

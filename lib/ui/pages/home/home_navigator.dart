@@ -9,7 +9,7 @@ class HomeNavigator extends AppNavigator {
   }
 
   void navigateToProfile() {
-    pushNamed(AppRouter.profile);
+    pushReplacementNamed(AppRouter.profile);
   }
 
   void onNavigationChanged(int index) {
@@ -18,7 +18,7 @@ class HomeNavigator extends AppNavigator {
         // Already on home page, do nothing or refresh if needed
         break;
       case 1:
-        pushNamed(AppRouter.profile);
+        pushReplacementNamed(AppRouter.profile);
         break;
     }
   }

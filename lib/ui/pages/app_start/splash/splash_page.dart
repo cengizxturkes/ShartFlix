@@ -46,9 +46,12 @@ class _SplashChildPageState extends State<SplashChildPage> {
   }
 
   void _setup() async {
+    // Önce tema ayarlarını yükle
+    await _appSettingCubit.getInitialSetting();
+    await AppColors.initialize();
+
     await Future.delayed(const Duration(seconds: 1));
     await _requestPermissions();
-    await _appSettingCubit.getInitialSetting();
     await _runOnboardingIfNeed();
     await _cubit.fetchInitialData();
     await _cubit.checkLogin();

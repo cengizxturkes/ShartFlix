@@ -12,12 +12,19 @@ class ProfileNavigator extends AppNavigator {
     openSignIn();
   }
 
+  void navigateToProfileDetail() {
+    pushNamed(AppRouter.profileDetail);
+  }
+
   void onNavigationChanged(int index) {
     switch (index) {
       case 0:
-        pushNamed(AppRouter.home);
+        pushReplacementNamed(AppRouter.home);
         break;
       case 1:
+        // Already on profile page, do nothing
+        break;
+      default:
         break;
     }
   }

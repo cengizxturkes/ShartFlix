@@ -20,4 +20,6 @@ abstract class ApiClient {
   );
   @GET("user/profile")
   Future<ProfileResponse> getProfile();
+  @GET("movie/favorites")
+  Future<FavoriteMovies> getFavoriteMovies();
 }

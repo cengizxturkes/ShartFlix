@@ -12,14 +12,20 @@ class SplashCubit extends Cubit<SplashState> {
     : super(const SplashState());
 
   Future<void> fetchInitialData() async {
+    if (isClosed) return;
     final isLoggedIn = await _isLoggedIn();
+    if (isClosed) return;
+
     if (isLoggedIn) {
       // Handle user logged in
     }
   }
 
   Future<void> checkLogin() async {
+    if (isClosed) return;
     final isLoggedIn = await _isLoggedIn();
+    if (isClosed) return;
+
     if (isLoggedIn) {
       await navigator.openHomePage();
     } else {

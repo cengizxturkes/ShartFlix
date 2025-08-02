@@ -6,7 +6,7 @@ class AppSettingState extends Equatable {
 
   const AppSettingState({
     this.language = AppConfigs.defaultLanguage,
-    this.isDarkMode = false,
+    this.isDarkMode = true, // Varsayılan olarak dark mode
   });
 
   @override

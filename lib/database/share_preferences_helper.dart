@@ -63,7 +63,7 @@ class SharedPreferencesHelper {
 
   static Future<bool> getThemePreference() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getBool(_isDarkModeKey) ?? false;
+    return prefs.getBool(_isDarkModeKey) ?? true; // Varsayılan olarak dark mode
   }
 
   static Future<void> setThemePreference(bool isDarkMode) async {

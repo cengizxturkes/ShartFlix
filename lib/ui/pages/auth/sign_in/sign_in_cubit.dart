@@ -26,10 +26,12 @@ class SignInCubit extends Cubit<SignInState> {
   }) : super(const SignInState());
 
   void changeEmail({required String email}) {
+    if (isClosed) return;
     emit(state.copyWith(email: email));
   }
 
   void changePassword({required String password}) {
+    if (isClosed) return;
     emit(state.copyWith(password: password));
   }
 
@@ -44,9 +46,14 @@ class SignInCubit extends Cubit<SignInState> {
       navigator.showErrorFlushbar(message: 'Şifre boş olamaz');
       return;
     }
+
+    if (isClosed) return;
     emit(state.copyWith(signInStatus: LoadStatus.loading));
+
     try {
       final result = await authRepo.signIn(email, password);
+      if (isClosed) return;
+
       if (result != null) {
         userCubit.updateUser(result);
         authRepo.saveToken(
@@ -56,6 +63,8 @@ class SignInCubit extends Cubit<SignInState> {
           ),
         );
         final userResponse = await authRepo.getUser();
+        if (isClosed) return;
+
         if (userResponse != null) {
           SecureStorageHelper.instance.saveUser(userResponse);
         }
@@ -64,12 +73,11 @@ class SignInCubit extends Cubit<SignInState> {
       } else {
         emit(state.copyWith(signInStatus: LoadStatus.initial));
       }
-    } catch (error) {
-      logger.e(error);
-      navigator.showErrorFlushbar(
-        message: 'Giriş yapılamadı, kullanıcı adı veya şifre hatalı',
-      );
-      emit(state.copyWith(signInStatus: LoadStatus.initial));
+    } catch (e) {
+      if (isClosed) return;
+      logger.e(e);
+      emit(state.copyWith(signInStatus: LoadStatus.failure));
+      navigator.showErrorFlushbar(message: 'Giriş başarısız');
     }
   }
 }

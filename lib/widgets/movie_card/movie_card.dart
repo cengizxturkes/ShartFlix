@@ -14,6 +14,7 @@ class MovieCard extends StatelessWidget {
   final double? height;
   final double? width;
   final bool showRating;
+  final bool showFavoriteIcon;
   const MovieCard({
     super.key,
     required this.movie,
@@ -22,6 +23,7 @@ class MovieCard extends StatelessWidget {
     this.height,
     this.width,
     this.showRating = false,
+    this.showFavoriteIcon = true,
   });
 
   @override
@@ -55,26 +57,27 @@ class MovieCard extends StatelessWidget {
                       height: double.infinity,
                     ),
                   ),
-                  Positioned(
-                    top: 8.h,
-                    right: 8.w,
-                    child: GestureDetector(
-                      onTap: onFavoriteToggle,
-                      child: Container(
-                        padding: EdgeInsets.all(4.w),
-                        child: Icon(
-                          movie.isFavorite
-                              ? Icons.favorite
-                              : Icons.favorite_border,
-                          color:
-                              movie.isFavorite
-                                  ? AppColors.buttonColor
-                                  : AppColors.white,
-                          size: 24.sp,
+                  if (showFavoriteIcon)
+                    Positioned(
+                      top: 8.h,
+                      right: 8.w,
+                      child: GestureDetector(
+                        onTap: onFavoriteToggle,
+                        child: Container(
+                          padding: EdgeInsets.all(4.w),
+                          child: Icon(
+                            movie.isFavorite
+                                ? Icons.favorite
+                                : Icons.favorite_border,
+                            color:
+                                movie.isFavorite
+                                    ? AppColors.buttonColor
+                                    : AppColors.white,
+                            size: 24.sp,
+                          ),
                         ),
                       ),
                     ),
-                  ),
                   // Rating Badge
                   if (movie.imdbRating.isNotEmpty && showRating)
                     Positioned(

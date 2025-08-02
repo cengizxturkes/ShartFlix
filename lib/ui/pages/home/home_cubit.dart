@@ -17,9 +17,12 @@ class HomeCubit extends Cubit<HomeState> {
   }) : super(const HomeState());
 
   void fetchMovies() async {
+    if (isClosed) return;
     emit(state.copyWith(fetchMovieStatus: LoadStatus.loading));
     try {
       final movies = await movieRepo.getMovies(1);
+      if (isClosed) return;
+
       final hasMoreData =
           movies.data.pagination.currentPage < movies.data.pagination.maxPage;
 
@@ -32,6 +35,7 @@ class HomeCubit extends Cubit<HomeState> {
         ),
       );
     } catch (e) {
+      if (isClosed) return;
       emit(state.copyWith(fetchMovieStatus: LoadStatus.failure));
     }
   }
@@ -41,10 +45,12 @@ class HomeCubit extends Cubit<HomeState> {
       return;
     }
 
+    if (isClosed) return;
     emit(state.copyWith(loadMoreStatus: LoadStatus.loading));
     try {
       final nextPage = state.currentPage + 1;
       final newMovies = await movieRepo.getMovies(nextPage);
+      if (isClosed) return;
 
       if (newMovies.data.movies.isNotEmpty) {
         // Merge new movies with existing ones
@@ -76,14 +82,18 @@ class HomeCubit extends Cubit<HomeState> {
         );
       }
     } catch (e) {
+      if (isClosed) return;
       emit(state.copyWith(loadMoreStatus: LoadStatus.failure));
     }
   }
 
   void refreshMovies() async {
+    if (isClosed) return;
     emit(state.copyWith(refreshStatus: LoadStatus.loading));
     try {
       final movies = await movieRepo.getMovies(1);
+      if (isClosed) return;
+
       final hasMoreData =
           movies.data.pagination.currentPage < movies.data.pagination.maxPage;
 
@@ -96,11 +106,13 @@ class HomeCubit extends Cubit<HomeState> {
         ),
       );
     } catch (e) {
+      if (isClosed) return;
       emit(state.copyWith(refreshStatus: LoadStatus.failure));
     }
   }
 
   void setMovieFavorite(String favoriteId) async {
+    if (isClosed) return;
     final tempMovies = state.movies?.copyWith(
       data: state.movies!.data.copyWith(
         movies:
@@ -116,17 +128,21 @@ class HomeCubit extends Cubit<HomeState> {
 
     try {
       final response = await movieRepo.setMovieFavorite(favoriteId);
+      if (isClosed) return;
+
       if (response.response.code != 200) {
         // API hata verirse geri al
         emit(state.copyWith(movies: state.movies));
       }
     } catch (e) {
+      if (isClosed) return;
       // API hata verirse geri al
       emit(state.copyWith(movies: state.movies));
     }
   }
 
   void onNavigationChanged(int index) {
+    if (isClosed) return;
     emit(state.copyWith(currentNavigationIndex: index));
 
     // Handle navigation based on index

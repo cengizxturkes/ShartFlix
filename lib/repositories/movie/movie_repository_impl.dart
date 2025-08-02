@@ -19,4 +19,10 @@ class MovieRepositoryImpl extends MovieRepository {
     final response = await apiClient.setMovieFavorite(favoriteId);
     return response;
   }
+
+  @override
+  Future<FavoriteMovies> getFavoriteMovies() async {
+    final response = await apiClient.getFavoriteMovies();
+    return response;
+  }
 }

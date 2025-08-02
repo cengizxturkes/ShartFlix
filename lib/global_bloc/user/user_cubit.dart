@@ -14,6 +14,7 @@ class UserCubit extends Cubit<UserState> {
   UserCubit({required this.userRepository}) : super(const UserState());
 
   void updateUser(LoginResponse loginResponse) {
+    if (isClosed) return;
     emit(state.copyWith(loginResponse: loginResponse));
   }
 }

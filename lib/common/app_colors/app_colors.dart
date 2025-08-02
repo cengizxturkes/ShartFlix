@@ -3,21 +3,23 @@ import 'dart:ui';
 import 'package:my_app/database/share_preferences_helper.dart';
 
 class AppColors {
-  static bool isDarkMode = false;
+  static bool isDarkMode = true; // Varsayılan olarak dark mode
+
   static Future<void> initialize() async {
     isDarkMode = await SharedPreferencesHelper.getThemePreference();
-    print('isDarkMode: $isDarkMode');
+    print('AppColors initialized - isDarkMode: $isDarkMode');
   }
 
   ///Common
   static const Color primary = Color(0xFF173d7e);
   static const Color secondary = Color(0xFF1E8AE7);
+  static const Color red = Color(0xFFE50914);
   static const Color error = Color(0xFFEE3134);
   static const Color white = Color(0xFFFFFFFF);
 
   ///Background
   static Color get background =>
-      isDarkMode ? Color(0xFF090909) : Color(0xFFF5F5F5);
+      isDarkMode ? const Color(0xFF090909) : const Color(0xFFF5F5F5);
 
   ///Gray
   static const Color gray1 = Color(0xFFC9C8C8);

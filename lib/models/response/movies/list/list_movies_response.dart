@@ -160,6 +160,7 @@ class Movie {
     bool? isFavorite,
   }) => Movie(
     id: id ?? this.id,
+
     title: title ?? this.title,
     year: year ?? this.year,
     rated: rated ?? this.rated,
