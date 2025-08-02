@@ -144,19 +144,6 @@ class HomeCubit extends Cubit<HomeState> {
   void onNavigationChanged(int index) {
     if (isClosed) return;
     emit(state.copyWith(currentNavigationIndex: index));
-
-    // Handle navigation based on index
-    switch (index) {
-      case 0:
-        // Home - already here, do nothing
-        break;
-      case 1:
-        // Profile - navigate to profile page
-        navigator.navigateToProfile();
-        break;
-      default:
-        break;
-    }
   }
 
   void searchMovies(String query) {

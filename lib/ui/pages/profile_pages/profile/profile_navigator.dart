@@ -3,11 +3,6 @@ import 'package:my_app/router/route_config.dart';
 
 class ProfileNavigator extends AppNavigator {
   ProfileNavigator({required super.context});
-
-  void openSignUpPage() {
-    // pushNamed(AppRouter.signUp);
-  }
-
   void navigateToLogin() {
     openSignIn();
   }
@@ -22,18 +17,5 @@ class ProfileNavigator extends AppNavigator {
 
   Future<void> navigateToHelpAndSupport() async {
     await pushNamed(AppRouter.helpAndSupport);
-  }
-
-  void onNavigationChanged(int index) {
-    switch (index) {
-      case 0:
-        pushReplacementNamed(AppRouter.home);
-        break;
-      case 1:
-        // Already on profile page, do nothing
-        break;
-      default:
-        break;
-    }
   }
 }

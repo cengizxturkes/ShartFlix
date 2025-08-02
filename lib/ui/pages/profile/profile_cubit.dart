@@ -19,19 +19,10 @@ class ProfileCubit extends Cubit<ProfileState> {
     getUser();
   }
 
-  void onNavigationChanged(int index) {
-    if (isClosed) return;
-    emit(state.copyWith(currentNavigationIndex: index));
-    navigator.onNavigationChanged(index);
-  }
-
   void toggleDarkMode() {
     if (isClosed) return;
-    // AppSettingCubit'i kullanarak tema değişikliğini yap
     final appSettingCubit = navigator.context.read<AppSettingCubit>();
     appSettingCubit.toggleDarkMode();
-
-    // Local state'i güncelle
     emit(state.copyWith(isDarkMode: !state.isDarkMode));
   }
 

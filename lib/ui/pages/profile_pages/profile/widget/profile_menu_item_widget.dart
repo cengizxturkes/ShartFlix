@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_app/common/app_colors/app_colors.dart';
 import 'package:my_app/common/app_dimens/app_dimens.dart';
 import 'package:my_app/common/app_text/app_text_style.dart';
+import 'package:my_app/common/card/card_decoration.dart';
 
 class ProfileMenuItemWidget extends StatelessWidget {
   final IconData icon;
@@ -25,7 +26,9 @@ class ProfileMenuItemWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(
+        decoration: context.cardDecorationWithoutBorder,
+        margin: EdgeInsets.symmetric(vertical: AppDimens.marginSmall / 4),
+        padding: EdgeInsets.symmetric(
           horizontal: AppDimens.paddingNormal,
           vertical: AppDimens.paddingSmall,
         ),

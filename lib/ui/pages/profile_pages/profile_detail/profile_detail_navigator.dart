@@ -8,10 +8,6 @@ class ProfileDetailNavigator extends AppNavigator {
     pushReplacementNamed(AppRouter.home);
   }
 
-  void navigateToProfile() {
-    pushReplacementNamed(AppRouter.profile);
-  }
-
   Future<void> navigateToAddPhoto() async {
     await pushNamed(AppRouter.addPhoto);
   }

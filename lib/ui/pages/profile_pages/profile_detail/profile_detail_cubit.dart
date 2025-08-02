@@ -46,25 +46,6 @@ class ProfileDetailCubit extends Cubit<ProfileDetailState> {
     } else {}
   }
 
-  void setCurrentNavigationIndex(int index) {
-    final newState = state.copyWith(currentNavigationIndex: index);
-    emit(newState);
-
-    // Handle navigation based on index
-    switch (index) {
-      case 0:
-        // Navigate to home page
-        navigator.navigateToHome();
-        break;
-      case 1:
-        // Navigate to profile page
-        navigator.navigateToProfile();
-        break;
-      default:
-        break;
-    }
-  }
-
   void onPressedGetPro() {
     showModalBottomSheet(
       context: navigator.context,

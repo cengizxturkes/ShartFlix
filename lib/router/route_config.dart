@@ -25,77 +25,70 @@ class AppRouter {
   static const String splash = "/";
   static const String home = "/home";
   static const String signIn = "/sign_in";
-  static const String photoView = 'photo_view';
-  static const String profile = 'profile';
-  static const String profileDetail = 'profile_detail';
-  static const String addPhoto = 'add_photo';
-  static const String legalAndPolicies = 'legal_and_policies';
-  static const String helpAndSupport = 'help_and_support';
+  static const String photoView = '/photo_view';
+  static const String profile = '/profile';
+  static const String profileDetail = '/profile_detail';
+  static const String addPhoto = '/add_photo';
+  static const String legalAndPolicies = '/legal_and_policies';
+  static const String helpAndSupport = '/help_and_support';
+
   // GoRouter configuration
   static final _routes = <RouteBase>[
     GoRoute(
       path: splash,
+      name: splash,
       builder: (context, state) => const SplashPage(),
-      routes: <RouteBase>[
-        //  GoRoute(
-        //  name: onBoarding,
-        // path: onBoarding,
-        // builder: (context, state) => const OnboardingPage(),
-        //),
-        GoRoute(
-          name: photoView,
-          path: photoView,
-          builder:
-              (context, state) => PhotoViewPage(
-                arguments: PhotoViewArguments(
-                  images: state.extra as List<String>,
-                ),
-              ),
-        ),
-        GoRoute(
-          name: signIn,
-          path: signIn,
-          builder: (context, state) => const SignInPage(),
-        ),
-        GoRoute(
-          name: home,
-          path: home,
-          builder: (context, state) => const HomePage(),
-        ),
-        GoRoute(
-          name: profile,
-          path: profile,
-          builder: (context, state) => const ProfilePage(),
-        ),
-        GoRoute(
-          name: profileDetail,
-          path: profileDetail,
-          builder: (context, state) => const ProfileDetailPage(),
-        ),
-        GoRoute(
-          name: addPhoto,
-          path: addPhoto,
-          builder: (context, state) => const AddPhotoPage(),
-        ),
-        GoRoute(
-          name: legalAndPolicies,
-          path: legalAndPolicies,
-          builder:
-              (context, state) => const HtmlViewerAlternativePage(
-                title: 'Yasal ve Gizlilik Politikası',
-                htmlAssetPath: 'assets/html/legal.html',
-              ),
-        ),
-        GoRoute(
-          name: helpAndSupport,
-          path: helpAndSupport,
-          builder:
-              (context, state) => const HtmlViewerAlternativePage(
-                title: 'Yardım ve Destek',
-                htmlAssetPath: 'assets/html/help.html',
-              ),
-        ),
-      ],
+    ),
+    GoRoute(
+      path: signIn,
+      name: signIn,
+      builder: (context, state) => const SignInPage(),
+    ),
+    GoRoute(
+      path: home,
+      name: home,
+      builder: (context, state) => const HomePage(),
+    ),
+    GoRoute(
+      name: photoView,
+      path: photoView,
+      builder:
+          (context, state) => PhotoViewPage(
+            arguments: PhotoViewArguments(images: state.extra as List<String>),
+          ),
+    ),
+    GoRoute(
+      name: profile,
+      path: profile,
+      builder: (context, state) => const ProfilePage(),
+    ),
+    GoRoute(
+      name: profileDetail,
+      path: profileDetail,
+      builder: (context, state) => const ProfileDetailPage(),
+    ),
+    GoRoute(
+      name: addPhoto,
+      path: addPhoto,
+      builder: (context, state) => const AddPhotoPage(),
+    ),
+    GoRoute(
+      name: legalAndPolicies,
+      path: legalAndPolicies,
+      builder:
+          (context, state) => const HtmlViewerAlternativePage(
+            title: 'Yasal ve Gizlilik Politikası',
+            htmlAssetPath: 'assets/html/legal.html',
+          ),
+    ),
+    GoRoute(
+      name: helpAndSupport,
+      path: helpAndSupport,
+      builder:
+          (context, state) => const HtmlViewerAlternativePage(
+            title: 'Yardım ve Destek',
+            htmlAssetPath: 'assets/html/help.html',
+          ),
     ),
   ];
 }

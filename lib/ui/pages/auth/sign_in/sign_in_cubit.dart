@@ -72,7 +72,9 @@ class SignInCubit extends Cubit<SignInState> {
       if (isClosed) return;
       logger.e(e);
       emit(state.copyWith(signInStatus: LoadStatus.failure));
-      navigator.showErrorFlushbar(message: 'Giriş başarısız');
+      navigator.showErrorFlushbar(
+        message: 'Giriş başarısız,Kullanıcı adı veya şifre yanlış',
+      );
     }
   }
 }

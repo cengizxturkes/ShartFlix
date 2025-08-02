@@ -58,17 +58,11 @@ class AppNavigator {
   }
 
   Future<void> openSignIn() {
-    while (GoRouter.of(context).canPop()) {
-      GoRouter.of(context).pop();
-    }
-    return GoRouter.of(context).pushNamed(AppRouter.signIn);
+    return GoRouter.of(context).pushReplacementNamed(AppRouter.signIn);
   }
 
   Future<void> openHomePage() {
-    while (GoRouter.of(context).canPop()) {
-      GoRouter.of(context).pop();
-    }
-    return GoRouter.of(context).pushNamed(AppRouter.home);
+    return GoRouter.of(context).pushReplacementNamed(AppRouter.home);
   }
 
   void openPhotoView({required List<String> photoUrls}) {

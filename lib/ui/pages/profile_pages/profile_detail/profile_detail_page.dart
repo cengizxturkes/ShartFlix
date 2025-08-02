@@ -95,19 +95,7 @@ class _ProfileDetailChildPageState extends State<ProfileDetailChildPage> {
             }
             final user = state.profileResponse?.data;
             return Scaffold(
-              bottomNavigationBar: CustomBottomNavigationBar(
-                currentIndex: state.currentNavigationIndex,
-                onTap: (index) {
-                  _cubit.setCurrentNavigationIndex(index);
-                },
-              ),
               appBar: AppBar(
-                leading: IconButton(
-                  icon: const Icon(Icons.arrow_back_ios),
-                  onPressed: () {
-                    _cubit.navigator.navigateToProfile();
-                  },
-                ),
                 title: Text(
                   "profileDetail".tr(),
                   style: AppTextStyle.whiteS15Regular,

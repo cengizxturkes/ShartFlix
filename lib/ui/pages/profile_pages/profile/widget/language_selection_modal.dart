@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,6 +8,7 @@ import 'package:my_app/common/app_colors/app_colors.dart';
 import 'package:my_app/common/app_dimens/app_dimens.dart';
 import 'package:my_app/common/app_images/app_svg.dart';
 import 'package:my_app/common/app_text/app_text_style.dart';
+import 'package:my_app/common/card/card_decoration.dart';
 import 'package:my_app/global_bloc/setting/app_setting_cubit.dart';
 import 'package:my_app/models/enums/language.dart';
 import 'package:my_app/widgets/icon/app_svg_widget.dart';
@@ -28,7 +31,6 @@ class LanguageSelectionModal extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              // Handle bar
               Container(
                 margin: EdgeInsets.only(top: 12.h),
                 width: 40.w,
@@ -38,14 +40,10 @@ class LanguageSelectionModal extends StatelessWidget {
                   borderRadius: BorderRadius.circular(2.r),
                 ),
               ),
-
-              // Title
               Padding(
                 padding: EdgeInsets.all(AppDimens.paddingNormal),
                 child: Text('language'.tr(), style: AppTextStyle.whiteS18Bold),
               ),
-
-              // Language options
               _buildLanguageOption(
                 context: context,
                 language: Language.turkish,
@@ -53,7 +51,6 @@ class LanguageSelectionModal extends StatelessWidget {
                 languageName: 'Türkçe',
                 isSelected: state.language == Language.turkish,
               ),
-
               _buildLanguageOption(
                 context: context,
                 language: Language.english,
@@ -61,7 +58,6 @@ class LanguageSelectionModal extends StatelessWidget {
                 languageName: 'English',
                 isSelected: state.language == Language.english,
               ),
-
               SizedBox(height: 20.h),
             ],
           ),
@@ -86,7 +82,6 @@ class LanguageSelectionModal extends StatelessWidget {
         } else {
           context.locale = const Locale('en');
         }
-        Navigator.of(context).pop();
       },
       child: Container(
         margin: EdgeInsets.symmetric(
@@ -94,30 +89,17 @@ class LanguageSelectionModal extends StatelessWidget {
           vertical: AppDimens.paddingSmall,
         ),
         padding: EdgeInsets.all(AppDimens.paddingNormal),
-        decoration: BoxDecoration(
-          color:
-              isSelected
-                  ? AppColors.primary.withOpacity(0.2)
-                  : AppColors.profileCardBackground,
-          borderRadius: BorderRadius.circular(12.r),
-          border:
-              isSelected
-                  ? Border.all(color: AppColors.primary, width: 2)
-                  : null,
-        ),
+        decoration:
+            isSelected
+                ? context.cardDecorationWithoutBorderWithSelected
+                : context.cardDecorationWithoutBorder,
         child: Row(
           children: [
-            // Flag
             AppSvgWidget(path: flagPath, width: 32.w, height: 24.h),
-
             SizedBox(width: AppDimens.marginNormal),
-
-            // Language name
             Expanded(
               child: Text(languageName, style: AppTextStyle.whiteS16Medium),
             ),
-
-            // Check icon if selected
             if (isSelected)
               Icon(Icons.check_circle, color: AppColors.primary, size: 24),
           ],

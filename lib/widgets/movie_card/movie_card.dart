@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_app/common/app_colors/app_colors.dart';
-
-import 'package:my_app/common/app_shadow/app_shadows.dart';
 import 'package:my_app/common/app_text/app_text_style.dart';
+import 'package:my_app/common/card/card_decoration.dart';
 import 'package:my_app/models/response/movies/list/list_movies_response.dart';
 import 'package:my_app/ui/pages/home/image_url_encoded.dart';
 
@@ -33,14 +32,10 @@ class MovieCard extends StatelessWidget {
       child: Container(
         height: height,
         width: width,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8.r),
-          boxShadow: AppShadow.defaultShadow,
-        ),
+        decoration: context.cardDecorationWithoutBorder,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Movie Poster
             Expanded(
               flex: 3,
               child: Stack(
@@ -78,7 +73,6 @@ class MovieCard extends StatelessWidget {
                         ),
                       ),
                     ),
-                  // Rating Badge
                   if (movie.imdbRating.isNotEmpty && showRating)
                     Positioned(
                       bottom: 8.h,
@@ -104,7 +98,6 @@ class MovieCard extends StatelessWidget {
                 ],
               ),
             ),
-            // Movie Info
             Expanded(
               flex: 1,
               child: Padding(

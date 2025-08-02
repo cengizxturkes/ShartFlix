@@ -15,13 +15,15 @@ class AppTextField extends StatelessWidget {
   final Widget? suffixIcon;
   final TextStyle? hintStyle;
   final TextStyle? style;
-  final Color? focusedColor;
+  final Color focusedColor;
   final EdgeInsets? padding;
   final TextStyle? errorStyle;
   final String? Function(String?)? validator;
   final TextInputType? keyboardType;
   final List<TextInputFormatter> inputFormatters;
   final bool enable;
+  final bool obscureText;
+  final VoidCallback? onSuffixIconTap;
 
   const AppTextField({
     super.key,
@@ -34,13 +36,15 @@ class AppTextField extends StatelessWidget {
     this.suffixIcon,
     this.hintStyle,
     this.style,
-    this.focusedColor,
+    this.focusedColor = AppColors.secondary,
     this.padding,
     this.errorStyle,
     this.validator,
     this.keyboardType,
     this.inputFormatters = const [],
     this.enable = true,
+    this.obscureText = false,
+    this.onSuffixIconTap,
   });
 
   @override
@@ -57,6 +61,18 @@ class AppTextField extends StatelessWidget {
           ),
       inputFormatters: inputFormatters,
       decoration: InputDecoration(
+        prefixIconConstraints: BoxConstraints(
+          minWidth: 17.67.w,
+          minHeight: 15.73.h,
+          maxHeight: 35.h,
+          maxWidth: 35.w,
+        ),
+        suffixIconConstraints: BoxConstraints(
+          minWidth: 17.67.w,
+          minHeight: 15.73.h,
+          maxHeight: 35.h,
+          maxWidth: 35.w,
+        ),
         filled: true,
         fillColor: enable ? Colors.transparent : AppColors.inputDisabled,
         contentPadding: EdgeInsets.symmetric(vertical: 18.h, horizontal: 12.w),
@@ -64,7 +80,7 @@ class AppTextField extends StatelessWidget {
         hintStyle: hintStyle ?? AppTextStyle.grayS12.copyWith(height: 1.5),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(18)),
-          borderSide: BorderSide(color: AppColors.secondary, width: 1.w),
+          borderSide: BorderSide(color: focusedColor, width: 1.w),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(18)),
@@ -86,12 +102,16 @@ class AppTextField extends StatelessWidget {
             errorStyle ??
             AppTextStyle.blackS12.copyWith(color: AppColors.error),
         prefixIcon: prefixIcon,
-        suffixIcon: suffixIcon,
+        suffixIcon:
+            suffixIcon != null
+                ? GestureDetector(onTap: onSuffixIconTap, child: suffixIcon)
+                : null,
       ),
       keyboardType: keyboardType,
       onFieldSubmitted: onFieldSubmitted,
       validator: validator,
       enabled: enable,
+      obscureText: obscureText,
     );
   }
 }

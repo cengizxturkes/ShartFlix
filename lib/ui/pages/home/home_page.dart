@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +12,7 @@ import 'package:my_app/ui/pages/home/home_cubit.dart';
 import 'package:my_app/ui/pages/home/home_navigator.dart';
 import 'package:my_app/ui/pages/home/home_state.dart';
 import 'package:my_app/ui/pages/home/widget/widgets.dart';
+import 'package:my_app/ui/pages/profile_pages/profile/profile_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -51,35 +54,42 @@ class _HomeChildPageState extends State<HomeChildPage> {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
-        return Scaffold(
-          backgroundColor: AppColors.background,
-          extendBody: true,
-          bottomNavigationBar: CustomBottomNavigationBar(
-            currentIndex: state.currentNavigationIndex,
-            onTap: (int value) => _cubit.onNavigationChanged(value),
-          ),
-          body: SafeArea(
-            child: SingleChildScrollView(
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height,
-                child: Column(
-                  children: [
-                    HomeHeader(cubit: _cubit),
-                    Expanded(
-                      child: MovieListWidget(
-                        moviesResponse: state.filteredMovies ?? state.movies,
-                        onMovieTap: () {
-                          // TODO: Navigate to movie detail
-                        },
-                        onFavoriteToggle: (String movieId) {
-                          _cubit.setMovieFavorite(movieId);
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+        return WillPopScope(
+          onWillPop: () async => true,
+          child: Scaffold(
+            backgroundColor: AppColors.background,
+            extendBody: true,
+            bottomNavigationBar: CustomBottomNavigationBar(
+              currentIndex: state.currentNavigationIndex,
+              onTap: (int value) => _cubit.onNavigationChanged(value),
             ),
+            body:
+                state.currentNavigationIndex == 0
+                    ? SafeArea(
+                      child: SingleChildScrollView(
+                        child: SizedBox(
+                          height: MediaQuery.of(context).size.height,
+                          child: Column(
+                            children: [
+                              HomeHeader(cubit: _cubit),
+                              Expanded(
+                                child: MovieListWidget(
+                                  moviesResponse:
+                                      state.filteredMovies ?? state.movies,
+                                  onMovieTap: () {
+                                    // TODO: Navigate to movie detail
+                                  },
+                                  onFavoriteToggle: (String movieId) {
+                                    _cubit.setMovieFavorite(movieId);
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
+                    : ProfilePage(),
           ),
         );
       },

@@ -109,8 +109,6 @@ class _AddPhotoPageState extends State<AddPhotoPage> {
           duration: const Duration(seconds: 2),
           backgroundColor: Colors.green,
         ).show(context);
-
-        context.pushNamed(AppRouter.profileDetail);
       }
     } catch (e) {
       print('Upload error: $e');
@@ -202,24 +200,6 @@ class _AddPhotoPageState extends State<AddPhotoPage> {
                         ),
               ),
             ),
-            if (selectedImage != null) ...[
-              SizedBox(height: 16.h),
-              FutureBuilder<double>(
-                future: ImageCompressionHelper.getFileSizeInMB(selectedImage!),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    final double sizeMB = snapshot.data!;
-                    return Text(
-                      'Dosya boyutu: ${sizeMB.toStringAsFixed(2)} MB',
-                      style: AppTextStyle.whiteS12Regular.copyWith(
-                        color: sizeMB > 1.0 ? Colors.orange : Colors.green,
-                      ),
-                    );
-                  }
-                  return const SizedBox.shrink();
-                },
-              ),
-            ],
           ],
         ),
       ),
