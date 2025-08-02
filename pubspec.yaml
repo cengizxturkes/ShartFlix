@@ -52,6 +52,11 @@ dependencies:
   webview_flutter: ^4.7.0
   #HTML Renderer
   flutter_html: ^3.0.0-beta.2
+  #Icons Launcher
+  icons_launcher: ^3.0.1
+  #Package Rename
+  package_rename: ^1.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

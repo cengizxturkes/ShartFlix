@@ -1,0 +1,11 @@
+package_rename_config:
+  android:
+    app_name: SinFlix
+    package_name: com.sinflix.app
+    override_old_package: true
+    lang: kotlin
+
+  ios:
+    app_name: SinFlix
+    bundle_name: com.sinflix.app
+    package_name: com.sinflix.app
