@@ -2,6 +2,7 @@
 
 import 'dart:ui';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_app/common/app_colors/app_colors.dart';
@@ -89,7 +90,7 @@ class _ProModalWidgetState extends State<ProModalWidget> {
               padding: EdgeInsets.all(20.w),
               child: Column(
                 children: [
-                  Text('Sınırlı Teklif', style: AppTextStyle.whiteS20Bold),
+                  Text('limitedOffer'.tr(), style: AppTextStyle.whiteS20Bold),
                   SizedBox(height: 10.h),
                   Text(
                     'Jeton paketin\'ni seçerek bonus\nkazanın ve yeni bölümlerin kilidini açın!',

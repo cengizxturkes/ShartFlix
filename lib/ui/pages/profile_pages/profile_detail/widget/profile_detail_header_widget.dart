@@ -1,9 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_app/common/app_colors/app_colors.dart';
 import 'package:my_app/common/app_dimens/app_dimens.dart';
 import 'package:my_app/common/app_text/app_text_style.dart';
 import 'package:my_app/widgets/buttons/app_buttons.dart';
+import 'package:my_app/widgets/full_screen_image_preview.dart';
 
 class ProfileDetailHeaderWidget extends StatelessWidget {
   final String userName;
@@ -35,13 +37,25 @@ class ProfileDetailHeaderWidget extends StatelessWidget {
             ),
             child:
                 profileImageUrl != null
-                    ? ClipOval(
-                      child: Image.network(
-                        profileImageUrl!,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) {
-                          return _buildDefaultProfileIcon();
-                        },
+                    ? GestureDetector(
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder:
+                              (context) => AppFullScreenImageViewer(
+                                url: profileImageUrl!,
+                                onClose: () => Navigator.pop(context),
+                              ),
+                        );
+                      },
+                      child: ClipOval(
+                        child: Image.network(
+                          profileImageUrl!,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                            return _buildDefaultProfileIcon();
+                          },
+                        ),
                       ),
                     )
                     : _buildDefaultProfileIcon(),
@@ -64,7 +78,7 @@ class ProfileDetailHeaderWidget extends StatelessWidget {
           SizedBox(width: 16.w),
           // Add Photo Button
           AppButton(
-            title: 'Fotoğraf Ekle',
+            title: 'addPhoto'.tr(),
             width: 121.w,
             height: 36.h,
             backgroundColor: AppColors.buttonColor,

@@ -6,7 +6,10 @@ class HomeState extends Equatable {
   final LoadStatus fetchMovieStatus;
   final LoadStatus loadMoreStatus;
   final LoadStatus refreshStatus;
+  final LoadStatus searchStatus;
   final ListMoviesResponse? movies;
+  final ListMoviesResponse? filteredMovies;
+  final String searchQuery;
   final int currentPage;
   final bool hasMoreData;
   final int currentNavigationIndex;
@@ -15,7 +18,10 @@ class HomeState extends Equatable {
     this.fetchMovieStatus = LoadStatus.initial,
     this.loadMoreStatus = LoadStatus.initial,
     this.refreshStatus = LoadStatus.initial,
+    this.searchStatus = LoadStatus.initial,
     this.movies,
+    this.filteredMovies,
+    this.searchQuery = '',
     this.currentPage = 1,
     this.hasMoreData = true,
     this.currentNavigationIndex = 0,
@@ -26,7 +32,10 @@ class HomeState extends Equatable {
     fetchMovieStatus,
     loadMoreStatus,
     refreshStatus,
+    searchStatus,
     movies,
+    filteredMovies,
+    searchQuery,
     currentPage,
     hasMoreData,
     currentNavigationIndex,
@@ -36,7 +45,10 @@ class HomeState extends Equatable {
     LoadStatus? fetchMovieStatus,
     LoadStatus? loadMoreStatus,
     LoadStatus? refreshStatus,
+    LoadStatus? searchStatus,
     ListMoviesResponse? movies,
+    ListMoviesResponse? filteredMovies,
+    String? searchQuery,
     int? currentPage,
     bool? hasMoreData,
     int? currentNavigationIndex,
@@ -45,7 +57,10 @@ class HomeState extends Equatable {
       fetchMovieStatus: fetchMovieStatus ?? this.fetchMovieStatus,
       loadMoreStatus: loadMoreStatus ?? this.loadMoreStatus,
       refreshStatus: refreshStatus ?? this.refreshStatus,
+      searchStatus: searchStatus ?? this.searchStatus,
       movies: movies ?? this.movies,
+      filteredMovies: filteredMovies ?? this.filteredMovies,
+      searchQuery: searchQuery ?? this.searchQuery,
       currentPage: currentPage ?? this.currentPage,
       hasMoreData: hasMoreData ?? this.hasMoreData,
       currentNavigationIndex:

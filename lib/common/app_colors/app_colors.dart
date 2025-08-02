@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:my_app/database/share_preferences_helper.dart';
 
 class AppColors {
-  static bool isDarkMode = true; // Varsayılan olarak dark mode
+  static bool isDarkMode = true;
 
   static Future<void> initialize() async {
     isDarkMode = await SharedPreferencesHelper.getThemePreference();
@@ -19,7 +19,7 @@ class AppColors {
 
   ///Background
   static Color get background =>
-      isDarkMode ? const Color(0xFF090909) : const Color(0xFFF5F5F5);
+      isDarkMode ? const Color(0xFF090909) : const Color(0xFFF5F7FA);
 
   ///Gray
   static const Color gray1 = Color(0xFFC9C8C8);
@@ -38,10 +38,13 @@ class AppColors {
   static const Color divider = Color(0xFFD8D8D8);
 
   ///Text
-  static const Color textWhite = Color(0xFFFFFFFF);
-  static const Color textBlack = Color(0xFF000000);
+  static Color get textWhite =>
+      isDarkMode ? const Color(0xFFFFFFFF) : const Color(0xFF000000);
+  static Color get textBlack =>
+      isDarkMode ? const Color(0xFFFFFFFF) : const Color(0xFF000000);
   static const Color textBlue = Color(0xFF1E8AE7);
-  static const Color textGray = Color(0xFF808080);
+  static Color get textGray =>
+      isDarkMode ? const Color(0xFFC9C8C8) : const Color(0xFF808080);
 
   ///TextField
   static const Color textFieldEnabledBorder = Color(0xFF919191);

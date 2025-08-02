@@ -12,8 +12,8 @@ class ProfileNavigator extends AppNavigator {
     openSignIn();
   }
 
-  void navigateToProfileDetail() {
-    pushNamed(AppRouter.profileDetail);
+  Future<void> navigateToProfileDetail() async {
+    await pushNamed(AppRouter.profileDetail);
   }
 
   void onNavigationChanged(int index) {

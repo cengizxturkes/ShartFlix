@@ -6,6 +6,7 @@ import 'package:my_app/common/app_text/app_text_style.dart';
 
 import 'package:my_app/ui/pages/profile_pages/profile/profile_cubit.dart';
 import 'package:my_app/ui/pages/profile_pages/profile/profile_state.dart';
+import 'package:my_app/widgets/full_screen_image_preview.dart';
 
 class ProfileHeaderWidget extends StatelessWidget {
   final VoidCallback? onBackPressed;
@@ -31,19 +32,31 @@ class ProfileHeaderWidget extends StatelessWidget {
                   ),
                   child:
                       (user?.photoUrl.isNotEmpty ?? false)
-                          ? ClipOval(
-                            child: Image.network(
-                              user!.photoUrl!,
-                              fit: BoxFit.cover,
-                              errorBuilder:
-                                  (_, __, ___) => const Icon(
-                                    Icons.person,
-                                    size: 40,
-                                    color: AppColors.textGray,
-                                  ),
+                          ? GestureDetector(
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder:
+                                    (context) => AppFullScreenImageViewer(
+                                      url: user.photoUrl,
+                                      onClose: () => Navigator.pop(context),
+                                    ),
+                              );
+                            },
+                            child: ClipOval(
+                              child: Image.network(
+                                user!.photoUrl,
+                                fit: BoxFit.cover,
+                                errorBuilder:
+                                    (_, __, ___) => Icon(
+                                      Icons.person,
+                                      size: 40,
+                                      color: AppColors.textGray,
+                                    ),
+                              ),
                             ),
                           )
-                          : const Icon(
+                          : Icon(
                             Icons.person,
                             size: 40,
                             color: AppColors.textGray,

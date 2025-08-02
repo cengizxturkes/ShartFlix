@@ -1,11 +1,12 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_app/common/app_colors/app_colors.dart';
 import 'package:my_app/common/app_dimens/app_dimens.dart';
 import 'package:my_app/common/app_text/app_text_style.dart';
+
 import 'package:my_app/global_bloc/user/user_cubit.dart';
 import 'package:my_app/models/enums/load_status.dart';
 import 'package:my_app/repositories/auth/auth_repository.dart';
@@ -80,7 +81,7 @@ class _SignInChildPageState extends State<SignInChildPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  AppLocalizations.of(context)!.appStartText,
+                  "hello".tr(),
                   style: AppTextStyle.whiteS18SemiBold,
                   textAlign: TextAlign.center,
                 ),
@@ -107,7 +108,7 @@ class _SignInChildPageState extends State<SignInChildPage> {
                     return null;
                   },
                   controller: emailTextController,
-                  hintText: AppLocalizations.of(context)!.emailLabel,
+                  hintText: "Email",
                   prefixIcon: Icon(Icons.email, color: AppColors.textWhite),
                 ),
                 SizedBox(height: 8.h),
@@ -123,7 +124,7 @@ class _SignInChildPageState extends State<SignInChildPage> {
                     color: AppColors.textWhite,
                   ),
                   controller: passwordTextController,
-                  hintText: AppLocalizations.of(context)!.passwordLabel,
+                  hintText: "Şifre",
                 ),
                 SizedBox(height: 29.h),
                 Row(
@@ -131,7 +132,7 @@ class _SignInChildPageState extends State<SignInChildPage> {
                     TextButton(
                       onPressed: () {},
                       child: Text(
-                        AppLocalizations.of(context)!.forgotPassword,
+                        "Şifremi unuttum",
                         style: AppTextStyle.whiteS12Regular.copyWith(
                           decoration:
                               TextDecoration.underline, // işte burası alt çizgi
@@ -149,7 +150,7 @@ class _SignInChildPageState extends State<SignInChildPage> {
                         if (!_formKey.currentState!.validate()) return;
                         context.read<SignInCubit>().signIn();
                       },
-                      title: AppLocalizations.of(context)!.signInButton,
+                      title: "Giriş Yap",
                     );
                   },
                 ),

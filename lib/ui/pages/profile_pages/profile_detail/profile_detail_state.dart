@@ -5,14 +5,14 @@ import 'package:my_app/models/response/movies/list/list_movies_response.dart';
 import 'package:my_app/models/response/user/profile/profile_response.dart';
 
 class ProfileDetailState extends Equatable {
-  final LoadStatus fetchMovieStatus;
+  final LoadStatus fetchUserStatus;
   final int currentNavigationIndex;
   final String userProfileImage;
   final bool isDarkMode;
   final ProfileResponse? profileResponse;
   final FavoriteMovies? favoriteMovies;
   const ProfileDetailState({
-    this.fetchMovieStatus = LoadStatus.initial,
+    this.fetchUserStatus = LoadStatus.initial,
     this.currentNavigationIndex = 1,
     this.userProfileImage = '',
     this.isDarkMode = false,
@@ -22,7 +22,7 @@ class ProfileDetailState extends Equatable {
 
   @override
   List<Object?> get props => [
-    fetchMovieStatus,
+    fetchUserStatus,
     currentNavigationIndex,
     userProfileImage,
     isDarkMode,
@@ -31,7 +31,7 @@ class ProfileDetailState extends Equatable {
   ];
 
   ProfileDetailState copyWith({
-    LoadStatus? fetchMovieStatus,
+    LoadStatus? fetchUserStatus,
     LoadStatus? loadMoreStatus,
     LoadStatus? refreshStatus,
     ListMoviesResponse? movies,
@@ -46,7 +46,7 @@ class ProfileDetailState extends Equatable {
     FavoriteMovies? favoriteMovies,
   }) {
     return ProfileDetailState(
-      fetchMovieStatus: fetchMovieStatus ?? this.fetchMovieStatus,
+      fetchUserStatus: fetchUserStatus ?? this.fetchUserStatus,
       currentNavigationIndex:
           currentNavigationIndex ?? this.currentNavigationIndex,
       userProfileImage: userProfileImage ?? this.userProfileImage,

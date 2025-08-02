@@ -10,4 +10,6 @@ class AppSvg {
   static const heart = 'assets/images/icon/svg/heart.svg';
   static const aheart = 'assets/images/icon/svg/aheart.svg';
   static const trending = 'assets/images/icon/svg/trending.svg';
+  static const en = 'assets/images/icon/svg/en.svg';
+  static const tr = 'assets/images/icon/svg/tr.svg';
 }

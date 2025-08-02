@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -55,6 +56,100 @@ class _MovieListWidgetState extends State<MovieListWidget> {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
+        // Show search loading
+        if (state.searchStatus == LoadStatus.loading) {
+          return const Center(
+            child: CircularProgressIndicator(color: AppColors.white),
+          );
+        }
+
+        // Show search results
+        if (state.searchQuery.isNotEmpty && state.filteredMovies != null) {
+          final searchMovies = state.filteredMovies!.data.movies;
+
+          if (searchMovies.isEmpty) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(
+                    Icons.search_off,
+                    color: AppColors.white,
+                    size: 48,
+                  ),
+                  SizedBox(height: 16.h),
+                  Text(
+                    '"${state.searchQuery}" için sonuç bulunamadı',
+                    style: AppTextStyle.whiteS16.copyWith(
+                      color: AppColors.white.withValues(alpha: 0.7),
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 8.h),
+                  Text(
+                    'Farklı anahtar kelimeler deneyin',
+                    style: AppTextStyle.whiteS14.copyWith(
+                      color: AppColors.white.withValues(alpha: 0.5),
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            );
+          }
+
+          return CustomScrollView(
+            controller: _scrollController,
+            slivers: [
+              SliverToBoxAdapter(
+                child: Container(
+                  color: AppColors.background,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 16.w,
+                    vertical: 12.h,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        '"${state.searchQuery}" için ${searchMovies.length} sonuç',
+                        style: AppTextStyle.whiteS16.copyWith(
+                          color: AppColors.white.withValues(alpha: 0.8),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SliverPadding(
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                sliver: SliverGrid(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 0.6,
+                    crossAxisSpacing: 12.w,
+                    mainAxisSpacing: 16.h,
+                  ),
+                  delegate: SliverChildBuilderDelegate((context, index) {
+                    final movie = searchMovies[index];
+                    return MovieCard(
+                      movie: movie,
+                      onTap: widget.onMovieTap,
+                      onFavoriteToggle: () {
+                        if (widget.onFavoriteToggle != null) {
+                          widget.onFavoriteToggle!(movie.id);
+                        }
+                      },
+                    );
+                  }, childCount: searchMovies.length),
+                ),
+              ),
+              SliverToBoxAdapter(child: SizedBox(height: 80.h)),
+            ],
+          );
+        }
+
+        // Show normal content when not searching
         if (state.fetchMovieStatus == LoadStatus.loading) {
           return const Center(
             child: CircularProgressIndicator(color: AppColors.white),
@@ -125,7 +220,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Tüm Filmler', style: AppTextStyle.whiteS20Bold),
+                      Text("allMovies".tr(), style: AppTextStyle.whiteS20Bold),
                     ],
                   ),
                 ),
@@ -170,7 +265,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
                     padding: EdgeInsets.symmetric(vertical: 16.h),
                     child: Center(
                       child: Text(
-                        'Tüm filmler yüklendi',
+                        "allMoviesLoaded".tr(),
                         style: AppTextStyle.whiteS14.copyWith(
                           color: AppColors.white.withValues(alpha: 0.7),
                         ),
@@ -200,7 +295,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
           child: Text(
-            'Öne Çıkan Filmler',
+            "featuredMovies".tr(),
             style: AppTextStyle.whiteS20Bold.copyWith(fontSize: 24.sp),
           ),
         ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_app/common/app_colors/app_colors.dart';
 import 'package:my_app/common/app_navbar/app_navigation_bar.dart';
 import 'package:my_app/repositories/auth/auth_repository.dart';
@@ -63,10 +64,10 @@ class _HomeChildPageState extends State<HomeChildPage> {
                 height: MediaQuery.of(context).size.height,
                 child: Column(
                   children: [
-                    const HomeHeader(),
+                    HomeHeader(cubit: _cubit),
                     Expanded(
                       child: MovieListWidget(
-                        moviesResponse: state.movies,
+                        moviesResponse: state.filteredMovies ?? state.movies,
                         onMovieTap: () {
                           // TODO: Navigate to movie detail
                         },

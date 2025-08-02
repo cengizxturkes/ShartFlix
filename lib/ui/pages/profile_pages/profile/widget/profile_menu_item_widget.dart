@@ -44,7 +44,7 @@ class ProfileMenuItemWidget extends StatelessWidget {
             Expanded(child: Text(title, style: AppTextStyle.whiteS16Medium)),
             if (trailing != null) trailing!,
             if (showArrow && trailing == null)
-              const Icon(
+              Icon(
                 Icons.arrow_forward_ios,
                 color: AppColors.textGray,
                 size: 16,

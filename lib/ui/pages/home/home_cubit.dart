@@ -158,4 +158,66 @@ class HomeCubit extends Cubit<HomeState> {
         break;
     }
   }
+
+  void searchMovies(String query) {
+    if (isClosed) return;
+
+    if (query.trim().isEmpty) {
+      // Arama temizlendiğinde orijinal listeyi göster
+      emit(
+        state.copyWith(
+          filteredMovies: null,
+          searchQuery: '',
+          searchStatus: LoadStatus.initial,
+        ),
+      );
+      return;
+    }
+
+    emit(state.copyWith(searchStatus: LoadStatus.loading, searchQuery: query));
+
+    try {
+      if (state.movies == null) {
+        emit(state.copyWith(searchStatus: LoadStatus.failure));
+        return;
+      }
+
+      final allMovies = state.movies!.data.movies;
+      final filteredMoviesList =
+          allMovies.where((movie) {
+            final searchLower = query.toLowerCase();
+            return movie.title.toLowerCase().contains(searchLower) ||
+                movie.genre.toLowerCase().contains(searchLower) ||
+                movie.director.toLowerCase().contains(searchLower) ||
+                movie.actors.toLowerCase().contains(searchLower) ||
+                movie.year.contains(searchLower) ||
+                movie.plot.toLowerCase().contains(searchLower);
+          }).toList();
+
+      final filteredResponse = state.movies!.copyWith(
+        data: state.movies!.data.copyWith(movies: filteredMoviesList),
+      );
+
+      emit(
+        state.copyWith(
+          filteredMovies: filteredResponse,
+          searchStatus: LoadStatus.success,
+        ),
+      );
+    } catch (e) {
+      if (isClosed) return;
+      emit(state.copyWith(searchStatus: LoadStatus.failure));
+    }
+  }
+
+  void clearSearch() {
+    if (isClosed) return;
+    emit(
+      state.copyWith(
+        filteredMovies: null,
+        searchQuery: '',
+        searchStatus: LoadStatus.initial,
+      ),
+    );
+  }
 }

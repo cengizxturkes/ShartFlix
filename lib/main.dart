@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:my_app/ShartFlix.dart';
 
@@ -13,8 +14,16 @@ class MyHttpOverrides extends HttpOverrides {
   }
 }
 
-void main() {
+void main() async {
   HttpOverrides.global = MyHttpOverrides();
-
-  runApp(const Shartflix());
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+  runApp(
+    EasyLocalization(
+      supportedLocales: const [Locale('en'), Locale('tr')],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('tr'),
+      child: const Shartflix(),
+    ),
+  );
 }

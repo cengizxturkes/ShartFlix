@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_app/common/app_colors/app_colors.dart';
@@ -30,11 +31,13 @@ class CustomBottomNavigationBar extends StatelessWidget {
               icon: AppSvgWidget(
                 path: AppSvg.home,
                 color:
-                    currentIndex == 0 ? AppColors.buttonColor : AppColors.white,
+                    currentIndex == 0
+                        ? AppColors.buttonColor
+                        : AppColors.textBlack,
                 height: 28.h,
                 width: 28.w,
               ),
-              label: "Anasayfa",
+              label: "home".tr(),
               selected: currentIndex == 0,
               onTap: () => onTap(0),
             ),
@@ -43,11 +46,13 @@ class CustomBottomNavigationBar extends StatelessWidget {
               icon: AppSvgWidget(
                 path: AppSvg.profile,
                 color:
-                    currentIndex == 1 ? AppColors.buttonColor : AppColors.white,
+                    currentIndex == 1
+                        ? AppColors.buttonColor
+                        : AppColors.textBlack,
                 height: 28.h,
                 width: 28.w,
               ),
-              label: "Profil",
+              label: "profile".tr(),
               selected: currentIndex == 1,
               onTap: () => onTap(1),
             ),

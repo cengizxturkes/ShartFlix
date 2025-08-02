@@ -20,6 +20,11 @@
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+	<string>en</string>
+	<string>tr</string>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -45,5 +50,11 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Bu uygulama profil fotoğrafınızı çekmek için kameraya erişim istiyor.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Bu uygulama profil fotoğrafınızı seçmek için galeriye erişim istiyor.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Bu uygulama fotoğrafları galeriye kaydetmek için izin istiyor.</string>
 </dict>
 </plist>

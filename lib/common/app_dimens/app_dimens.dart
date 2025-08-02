@@ -33,4 +33,6 @@ class AppDimens {
   static const double featuredMovieBottomPositioned = 20;
   static const double featuredMovieLeftPositioned = 20;
   static const double featuredMovieRightPositioned = 20;
+  //add photo Dimensions
+  static const double addPhotoPageTextPadding = 53;
 }

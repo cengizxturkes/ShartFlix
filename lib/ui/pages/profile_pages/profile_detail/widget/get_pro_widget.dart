@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_app/common/app_colors/app_colors.dart';
@@ -25,7 +26,7 @@ class GetProWidget extends StatelessWidget {
         child: Row(
           children: [
             AppSvgWidget(path: AppSvg.pro, width: 18.w, height: 18.h),
-            Text('Sınırlı Teklif', style: AppTextStyle.whiteS12Bold),
+            Text('limitedOffer'.tr(), style: AppTextStyle.whiteS12Bold),
           ],
         ),
       ),

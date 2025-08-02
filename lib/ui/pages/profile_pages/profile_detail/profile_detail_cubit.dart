@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_app/database/secure_storage_helper.dart';
+import 'package:my_app/models/enums/load_status.dart';
 import 'package:my_app/repositories/auth/auth_repository.dart';
 import 'package:my_app/repositories/movie/movie_repository.dart';
 
@@ -23,13 +23,17 @@ class ProfileDetailCubit extends Cubit<ProfileDetailState> {
   }
 
   void getUser() async {
-    final value = await SecureStorageHelper.instance.getUser();
+    emit(state.copyWith(fetchUserStatus: LoadStatus.loading));
+    final value = await authRepo.getUser();
     if (isClosed) return;
 
-    if (value != null) {
+    if (value?.response.code == 200) {
       final newState = state.copyWith(profileResponse: value);
       emit(newState);
-    } else {}
+      emit(state.copyWith(fetchUserStatus: LoadStatus.success));
+    } else {
+      emit(state.copyWith(fetchUserStatus: LoadStatus.failure));
+    }
   }
 
   void getFavoriteMovies() async {

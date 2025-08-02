@@ -28,13 +28,15 @@ dependencies:
     #Router
   go_router:
     #Utilities
-  permission_handler:
+  permission_handler: ^12.0.1
+  image_picker: ^1.0.7
   intl: any
   intl_utils:
   equatable:
   photo_view: ^0.14.0
   #Dialog, etc
-
+  #Localization
+  easy_localization: ^3.0.8
   another_flushbar: ^1.12.30
   loader_overlay:
     ^4.0.0
@@ -45,6 +47,7 @@ dependencies:
   flutter_screenutil: ^5.9.3
   #Image
   cached_network_image: ^3.4.1
+  path: ^1.8.3
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -58,6 +61,7 @@ flutter:
   assets:
     - assets/images/icon/png/
     - assets/images/icon/svg/
+    - assets/translations/
   fonts:
     - family: EuclidCircularA
       fonts:
@@ -86,8 +90,3 @@ flutter:
         - asset: assets/fonts/Euclid Circular A Bold Italic.ttf
           weight: 700
           style: italic
-flutter_intl:
-  enabled: true
-  arb_dir: lib/l10n
-  template_arb_file: app_en.arb
-  output_localization_file: app_localizations.dart

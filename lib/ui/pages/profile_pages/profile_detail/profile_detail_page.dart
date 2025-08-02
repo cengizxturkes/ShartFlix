@@ -1,9 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_app/common/app_images/app_svg.dart';
 import 'package:my_app/common/app_navbar/app_navigation_bar.dart';
 import 'package:my_app/common/app_text/app_text_style.dart';
+import 'package:my_app/models/enums/load_status.dart';
 import 'package:my_app/repositories/auth/auth_repository.dart';
 import 'package:my_app/repositories/movie/movie_repository.dart';
 import 'package:my_app/ui/pages/profile_pages/profile_detail/profile_detail_cubit.dart';
@@ -12,7 +13,6 @@ import 'package:my_app/ui/pages/profile_pages/profile_detail/profile_detail_navi
 import 'package:my_app/ui/pages/profile_pages/profile_detail/profile_detail_state.dart';
 import 'package:my_app/ui/pages/profile_pages/profile_detail/widget/get_pro_widget.dart';
 import 'package:my_app/ui/pages/profile_pages/profile_detail/widget/profile_detail_header_widget.dart';
-import 'package:my_app/widgets/icon/app_svg_widget.dart';
 import 'package:my_app/widgets/movie_card/movie_card.dart';
 import 'package:my_app/models/response/movies/favorites/favorite_movies.dart';
 import 'package:my_app/models/response/movies/list/list_movies_response.dart';
@@ -90,6 +90,9 @@ class _ProfileDetailChildPageState extends State<ProfileDetailChildPage> {
       builder: (context, appSettingState) {
         return BlocBuilder<ProfileDetailCubit, ProfileDetailState>(
           builder: (context, state) {
+            if (state.fetchUserStatus == LoadStatus.loading) {
+              return const Center(child: CircularProgressIndicator());
+            }
             final user = state.profileResponse?.data;
             return Scaffold(
               bottomNavigationBar: CustomBottomNavigationBar(
@@ -99,8 +102,14 @@ class _ProfileDetailChildPageState extends State<ProfileDetailChildPage> {
                 },
               ),
               appBar: AppBar(
+                leading: IconButton(
+                  icon: const Icon(Icons.arrow_back_ios),
+                  onPressed: () {
+                    _cubit.navigator.navigateToProfile();
+                  },
+                ),
                 title: Text(
-                  'Profil Detayı',
+                  "profileDetail".tr(),
                   style: AppTextStyle.whiteS15Regular,
                 ),
                 actions: [
@@ -128,11 +137,17 @@ class _ProfileDetailChildPageState extends State<ProfileDetailChildPage> {
                           6,
                         ),
                         profileImageUrl: user?.photoUrl,
-                        onAddPhotoPressed: () {},
+                        onAddPhotoPressed: () async {
+                          await _cubit.navigator.navigateToAddPhoto().then((
+                            value,
+                          ) {
+                            _cubit.getUser();
+                          });
+                        },
                       ),
                       SizedBox(height: 24.h),
                       Text(
-                        'Beğendiğim Filmler',
+                        'myFavoriteMovies'.tr(),
                         style: AppTextStyle.whiteS12Bold.copyWith(
                           fontSize: 13.sp,
                         ),

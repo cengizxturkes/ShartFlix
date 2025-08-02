@@ -1,18 +1,17 @@
 // ignore_for_file: deprecated_member_use
 
 import 'dart:ui' as ui;
-
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:my_app/common/app_colors/app_colors.dart';
 import 'package:my_app/common/app_theme/app_themes.dart';
 import 'package:my_app/configs/app_configs.dart';
+
 import 'package:my_app/global_bloc/auth/auth_cubit.dart';
 import 'package:my_app/global_bloc/setting/app_setting_cubit.dart';
 import 'package:my_app/global_bloc/user/user_cubit.dart';
@@ -25,7 +24,6 @@ import 'package:my_app/repositories/movie/movie_repository_impl.dart';
 import 'package:my_app/repositories/user/user_repositoru_impl.dart';
 import 'package:my_app/repositories/user/user_repository.dart';
 import 'package:my_app/widgets/loading/app_loading_indicator.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:my_app/models/enums/language.dart';
 
 import 'router/route_config.dart';
@@ -147,14 +145,14 @@ class _ShartflixState extends State<Shartflix> {
           darkTheme: AppThemes(isDarkMode: true).theme, // dark
           themeMode: isDarkMode ? ThemeMode.dark : ThemeMode.light,
           routerConfig: AppRouter.router,
-          localizationsDelegates: const [
+          localizationsDelegates: [
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
-            AppLocalizations.delegate,
+            EasyLocalization.of(context)!.delegate,
           ],
           locale: locale,
-          supportedLocales: AppLocalizations.supportedLocales,
+          supportedLocales: [Locale('en'), Locale('tr')],
         );
       },
     );

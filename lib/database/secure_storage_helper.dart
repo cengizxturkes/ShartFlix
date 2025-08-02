@@ -58,22 +58,6 @@ class SecureStorageHelper {
     }
   }
 
-  Future<ProfileResponse?> getUser() async {
-    final userEncoded = await _storage.read(key: _userKey);
-    if (userEncoded == null) {
-      return null;
-    }
-    return ProfileResponse.fromJson(jsonDecode(userEncoded));
-  }
-
-  Future<void> saveUser(ProfileResponse user) async {
-    await _storage.write(key: _userKey, value: jsonEncode(user.toJson()));
-  }
-
-  Future<void> removeUser() async {
-    await _storage.delete(key: _userKey);
-  }
-
   Future<void> logout() async {
     //todo: logout işlemleri yapılacak
   }

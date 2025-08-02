@@ -3,8 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_app/common/app_colors/app_colors.dart';
 
 class AppTextStyle {
-  AppTextStyle._();
-
   // Base text styles with proper font family
   static const _baseTextStyle = TextStyle(
     fontFamily: 'EuclidCircularA',
@@ -46,11 +44,10 @@ class AppTextStyle {
   }
 
   // Default white text style for buttons (16px, regular weight)
-  static const white = TextStyle(
-    color: Colors.white,
+  static TextStyle get white => _createStyle(
+    color: AppColors.white,
     fontSize: 16.0,
     fontWeight: FontWeight.w400,
-    fontFamily: 'EuclidCircularA',
   );
 
   // ===== BLACK TEXT STYLES =====
@@ -354,131 +351,170 @@ class AppTextStyle {
   // ===== WHITE TEXT STYLES =====
 
   // Regular variants
-  static final whiteS12 = _createStyle(color: Colors.white, fontSize: _s12);
-  static final whiteS14 = _createStyle(color: Colors.white, fontSize: _s14);
-  static final whiteS16 = _createStyle(color: Colors.white, fontSize: _s16);
-  static final whiteS18 = _createStyle(color: Colors.white, fontSize: _s18);
-  static final whiteS20 = _createStyle(color: Colors.white, fontSize: _s20);
-  static final whiteS24 = _createStyle(color: Colors.white, fontSize: _s24);
+  static final whiteS12 = _createStyle(
+    color: AppColors.textWhite,
+    fontSize: _s12,
+  );
+  static final whiteS14 = _createStyle(
+    color: AppColors.textWhite,
+    fontSize: _s14,
+  );
+  static final whiteS16 = _createStyle(
+    color: AppColors.textWhite,
+    fontSize: _s16,
+  );
+  static final whiteS18 = _createStyle(
+    color: AppColors.textWhite,
+    fontSize: _s18,
+  );
+  static final whiteS20 = _createStyle(
+    color: AppColors.textWhite,
+    fontSize: _s20,
+  );
+  static final whiteS24 = _createStyle(
+    color: AppColors.textWhite,
+    fontSize: _s24,
+  );
 
   // Light variants
   static final whiteS12Light = _createStyle(
-    color: Colors.white,
+    color: AppColors.textWhite,
+
     fontSize: _s12,
     fontWeight: _light,
   );
   static final whiteS14Light = _createStyle(
-    color: Colors.white,
+    color: AppColors.textWhite,
+
     fontSize: _s14,
     fontWeight: _light,
   );
   static final whiteS16Light = _createStyle(
-    color: Colors.white,
+    color: AppColors.textWhite,
+
     fontSize: _s16,
     fontWeight: _light,
   );
 
   // Medium variants
   static final whiteS12Medium = _createStyle(
-    color: Colors.white,
+    color: AppColors.textWhite,
+
     fontSize: _s12,
     fontWeight: _medium,
   );
   static final whiteS12Regular = _createStyle(
-    color: Colors.white,
+    color: AppColors.textWhite,
+
     fontSize: _s12,
     fontWeight: _regular,
   );
   static final whiteS14Medium = _createStyle(
-    color: Colors.white,
+    color: AppColors.textWhite,
+
     fontSize: _s14,
     fontWeight: _medium,
   );
   static final whiteS15Regular = _createStyle(
-    color: Colors.white,
+    color: AppColors.textWhite,
+
     fontSize: _s15,
     fontWeight: _regular,
   );
   static final whiteS16Medium = _createStyle(
-    color: Colors.white,
+    color: AppColors.textWhite,
+
     fontSize: _s16,
     fontWeight: _medium,
   );
 
   // SemiBold variants
   static final whiteS12SemiBold = _createStyle(
-    color: Colors.white,
+    color: AppColors.textWhite,
+
     fontSize: _s12,
     fontWeight: _semiBold,
   );
   static final whiteS14SemiBold = _createStyle(
-    color: Colors.white,
+    color: AppColors.textWhite,
+
     fontSize: _s14,
     fontWeight: _semiBold,
   );
   static final whiteS16SemiBold = _createStyle(
-    color: Colors.white,
+    color: AppColors.textWhite,
+
     fontSize: _s16,
     fontWeight: _semiBold,
   );
   static final whiteS18SemiBold = _createStyle(
-    color: Colors.white,
+    color: AppColors.textWhite,
+
     fontSize: _s18,
     fontWeight: _semiBold,
   );
   static final whiteS20SemiBold = _createStyle(
-    color: Colors.white,
+    color: AppColors.textWhite,
+
     fontSize: _s20,
     fontWeight: _semiBold,
   );
 
   // Bold variants
   static final whiteS12Bold = _createStyle(
-    color: Colors.white,
+    color: AppColors.textWhite,
+
     fontSize: _s12,
     fontWeight: _bold,
   );
   static final whiteS14Bold = _createStyle(
-    color: Colors.white,
+    color: AppColors.textWhite,
+
     fontSize: _s14,
     fontWeight: _bold,
   );
   static final whiteS16Bold = _createStyle(
-    color: Colors.white,
+    color: AppColors.textWhite,
+
     fontSize: _s16,
     fontWeight: _bold,
   );
   static final whiteS18Bold = _createStyle(
-    color: Colors.white,
+    color: AppColors.textWhite,
+
     fontSize: _s18,
     fontWeight: _bold,
   );
   static final whiteS20Bold = _createStyle(
-    color: Colors.white,
+    color: AppColors.textWhite,
     fontSize: _s20,
     fontWeight: _bold,
   );
   static final whiteS24Bold = _createStyle(
-    color: Colors.white,
+    color: AppColors.textWhite,
+
     fontSize: _s24,
     fontWeight: _bold,
   );
 
   // Italic variants
   static final whiteS12Italic = _createStyle(
-    color: Colors.white,
+    color: AppColors.textWhite,
+
     fontSize: _s12,
     fontWeight: _regular,
     fontStyle: FontStyle.italic,
   );
   static final whiteS14Italic = _createStyle(
-    color: Colors.white,
+    color: AppColors.textWhite,
+
     fontSize: _s14,
     fontWeight: _regular,
     fontStyle: FontStyle.italic,
   );
   static final whiteS16Italic = _createStyle(
-    color: Colors.white,
+    color: AppColors.textWhite,
+
     fontSize: _s16,
     fontWeight: _regular,
     fontStyle: FontStyle.italic,

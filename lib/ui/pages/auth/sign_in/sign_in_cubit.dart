@@ -62,12 +62,7 @@ class SignInCubit extends Cubit<SignInState> {
             refreshToken: result.data.token,
           ),
         );
-        final userResponse = await authRepo.getUser();
-        if (isClosed) return;
 
-        if (userResponse != null) {
-          SecureStorageHelper.instance.saveUser(userResponse);
-        }
         emit(state.copyWith(signInStatus: LoadStatus.success));
         navigator.openHomePage();
       } else {

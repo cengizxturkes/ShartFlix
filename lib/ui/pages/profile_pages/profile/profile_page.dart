@@ -1,9 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_app/common/app_colors/app_colors.dart';
 import 'package:my_app/common/app_navbar/app_navigation_bar.dart';
 import 'package:my_app/common/app_text/app_text_style.dart';
+import 'package:my_app/models/enums/load_status.dart';
 import 'package:my_app/repositories/auth/auth_repository.dart';
 import 'package:my_app/repositories/movie/movie_repository.dart';
 import 'package:my_app/ui/pages/profile_pages/profile/profile_cubit.dart';
@@ -55,6 +57,9 @@ class _ProfileChildPageState extends State<ProfileChildPage> {
       builder: (context, appSettingState) {
         return BlocBuilder<ProfileCubit, ProfileState>(
           builder: (context, state) {
+            if (state.fetchUserStatus == LoadStatus.loading) {
+              return const Center(child: CircularProgressIndicator());
+            }
             return Scaffold(
               bottomNavigationBar: CustomBottomNavigationBar(
                 currentIndex: state.currentNavigationIndex,
@@ -76,20 +81,28 @@ class _ProfileChildPageState extends State<ProfileChildPage> {
                       const SizedBox(height: 24),
                       // Personal Information Section
                       ProfileSectionWidget(
-                        title: 'Kişisel bilgiler',
+                        title: 'personalInformation'.tr(),
                         children: [
                           ProfileMenuItemWidget(
                             icon: Icons.person_outline,
-                            title: 'Profil',
-                            onTap: () {
-                              _cubit.navigator.navigateToProfileDetail();
+                            title: 'profile'.tr(),
+                            onTap: () async {
+                              await _cubit.navigator
+                                  .navigateToProfileDetail()
+                                  .then((value) {
+                                    _cubit.getUser();
+                                  });
                             },
                           ),
                           ProfileMenuItemWidget(
                             icon: Icons.favorite_border,
-                            title: 'Favori filmler',
-                            onTap: () {
-                              _cubit.navigator.navigateToProfileDetail();
+                            title: 'favoriteMovies'.tr(),
+                            onTap: () async {
+                              await _cubit.navigator
+                                  .navigateToProfileDetail()
+                                  .then((value) {
+                                    _cubit.getUser();
+                                  });
                             },
                           ),
                         ],
@@ -97,38 +110,44 @@ class _ProfileChildPageState extends State<ProfileChildPage> {
 
                       // General Section
                       ProfileSectionWidget(
-                        title: 'Genel',
+                        title: 'general'.tr(),
                         children: [
                           ProfileMenuItemWidget(
                             icon: Icons.language,
-                            title: 'Dil',
+                            title: 'language'.tr(),
                             onTap: () {
-                              // TODO: Navigate to language settings
+                              showModalBottomSheet(
+                                context: context,
+                                isScrollControlled: true,
+                                backgroundColor: Colors.transparent,
+                                builder:
+                                    (context) => const LanguageSelectionModal(),
+                              );
                             },
                           ),
                         ],
                       ),
                       // About Section
                       ProfileSectionWidget(
-                        title: 'Hakkında',
+                        title: 'about'.tr(),
                         children: [
                           ProfileMenuItemWidget(
                             icon: Icons.shield_outlined,
-                            title: 'Yasal ve Politikalar',
+                            title: 'legalAndPolicies'.tr(),
                             onTap: () {
                               // TODO: Navigate to legal and policies
                             },
                           ),
                           ProfileMenuItemWidget(
                             icon: Icons.help_outline,
-                            title: 'Yardım ve Destek',
+                            title: 'helpAndSupport'.tr(),
                             onTap: () {
                               // TODO: Navigate to help and support
                             },
                           ),
                           ProfileMenuItemWidget(
                             icon: Icons.dark_mode_outlined,
-                            title: 'Koyu Mod',
+                            title: 'darkMode'.tr(),
                             showArrow: false,
                             trailing: AppSwitchWidget(
                               value: appSettingState.isDarkMode,
@@ -144,7 +163,7 @@ class _ProfileChildPageState extends State<ProfileChildPage> {
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16.w),
                         child: AppButton(
-                          title: 'Çıkış Yap',
+                          title: 'logout'.tr(),
                           onPressed: () => _cubit.logout(),
                         ),
                       ),
