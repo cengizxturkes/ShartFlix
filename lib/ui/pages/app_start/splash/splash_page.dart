@@ -74,10 +74,7 @@ class _SplashChildPageState extends State<SplashChildPage> {
     return Scaffold(
       body: Stack(
         children: [
-          Positioned.fill(child: Container(color: AppColors.primary)),
-          Positioned.fill(
-            child: Image.asset(AppImages.sinFlixSplash, fit: BoxFit.contain),
-          ),
+          Positioned.fill(child: Image.asset(AppImages.sinFlixSplash)),
         ],
       ),
     );

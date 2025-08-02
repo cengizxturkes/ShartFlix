@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_app/database/secure_storage_helper.dart';
 import 'package:my_app/global_bloc/user/user_cubit.dart';
 import 'package:my_app/logger/logger.dart';
 import 'package:my_app/models/enums/load_status.dart';

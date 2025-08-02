@@ -5,13 +5,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:my_app/common/app_colors/app_colors.dart';
 import 'package:my_app/common/app_dimens/app_dimens.dart';
 import 'package:my_app/common/app_text/app_text_style.dart';
 import 'package:my_app/repositories/user/user_repository.dart';
-import 'package:my_app/router/route_config.dart';
 import 'package:my_app/utils/image_compression_helper.dart';
 
 import 'package:my_app/widgets/buttons/app_buttons.dart';
@@ -323,32 +321,5 @@ class _AddPhotoPageState extends State<AddPhotoPage> {
     print('Photos: ${photosStatus.name}');
 
     print('===============================');
-  }
-
-  void _showPermissionSettingsDialog(String permissionType) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('$permissionType İzni Gerekli'),
-          content: Text(
-            '$permissionType izni kalıcı olarak reddedildi. Bu özelliği kullanmak için uygulama ayarlarından izin vermeniz gerekiyor.',
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text('İptal'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                openAppSettings();
-              },
-              child: const Text('Ayarları Aç'),
-            ),
-          ],
-        );
-      },
-    );
   }
 }

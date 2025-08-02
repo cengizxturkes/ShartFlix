@@ -53,7 +53,7 @@ class ProfileDetailCubit extends Cubit<ProfileDetailState> {
       isScrollControlled: true,
 
       barrierLabel: '',
-      barrierColor: Colors.black.withOpacity(0.5),
+      barrierColor: Colors.black.withValues(alpha: 0.5),
       backgroundColor: Colors.transparent,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(

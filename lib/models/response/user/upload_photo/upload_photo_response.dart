@@ -2,6 +2,7 @@
 //
 //     final uploadPhotoResponse = uploadPhotoResponseFromJson(jsonString);
 
+// ignore: unused_import
 import 'package:meta/meta.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'dart:convert';

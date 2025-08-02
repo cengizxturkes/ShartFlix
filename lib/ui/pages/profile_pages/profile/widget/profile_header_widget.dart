@@ -6,7 +6,7 @@ import 'package:my_app/common/app_text/app_text_style.dart';
 
 import 'package:my_app/ui/pages/profile_pages/profile/profile_cubit.dart';
 import 'package:my_app/ui/pages/profile_pages/profile/profile_state.dart';
-import 'package:my_app/widgets/full_screen_image_preview.dart';
+import 'package:my_app/widgets/image/full_screen_image_preview.dart';
 
 class ProfileHeaderWidget extends StatelessWidget {
   final VoidCallback? onBackPressed;

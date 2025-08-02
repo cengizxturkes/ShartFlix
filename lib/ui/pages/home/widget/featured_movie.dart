@@ -5,7 +5,7 @@ import 'package:my_app/common/app_dimens/app_dimens.dart';
 import 'package:my_app/common/app_shadow/app_shadows.dart';
 import 'package:my_app/common/app_text/app_text_style.dart';
 import 'package:my_app/models/response/movies/list/list_movies_response.dart';
-import 'package:my_app/ui/pages/home/image_url_encoded.dart';
+import 'package:my_app/widgets/image/image_url_secured.dart';
 
 class FeaturedMovie extends StatelessWidget {
   final Movie movie;
@@ -30,7 +30,7 @@ class FeaturedMovie extends StatelessWidget {
           child: Stack(
             children: [
               if (movie.poster.isNotEmpty)
-                ImageUrlEncoded(
+                ImageUrlSecured(
                   imageUrl: movie.poster,
                   height: AppDimens.homePageFeaturedMovieHeight.h,
                   width: double.infinity,

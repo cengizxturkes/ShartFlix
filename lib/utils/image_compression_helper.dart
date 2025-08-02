@@ -1,15 +1,12 @@
 import 'dart:io';
-import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:flutter/services.dart';
 import 'package:flutter/rendering.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as path;
-import 'package:image_picker/image_picker.dart';
 
 class ImageCompressionHelper {
   static const int _maxFileSizeInBytes = 1024 * 1024; // 1MB
-  static const int _maxQuality = 80;
   static const int _minQuality = 10;
 
   /// Görseli sıkıştırır ve 1MB'dan küçük hale getirir

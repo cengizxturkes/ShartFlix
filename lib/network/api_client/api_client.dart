@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'dart:io' show Platform;
 import 'package:my_app/models/request/user/login/login_body.dart';
 import 'package:my_app/models/response/movies/favorites/favorite_movies.dart';
 import 'package:my_app/models/response/movies/list/list_movies_response.dart';

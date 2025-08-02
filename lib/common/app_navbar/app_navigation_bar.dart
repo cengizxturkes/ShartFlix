@@ -5,7 +5,6 @@ import 'package:my_app/common/app_colors/app_colors.dart';
 import 'package:my_app/common/app_images/app_svg.dart';
 import 'package:my_app/common/app_text/app_text_style.dart';
 import 'package:my_app/widgets/icon/app_svg_widget.dart';
-import 'package:retrofit/retrofit.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
   final int currentIndex;

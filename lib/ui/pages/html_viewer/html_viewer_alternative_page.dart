@@ -33,8 +33,6 @@ class _HtmlViewerAlternativePageState extends State<HtmlViewerAlternativePage> {
   Future<void> _loadHtmlContent() async {
     try {
       final htmlContent = await rootBundle.loadString(widget.htmlAssetPath);
-
-      // HTML içeriğini temizle ve sadece body içeriğini al
       final cleanHtml = _extractBodyContent(htmlContent);
 
       setState(() {
@@ -50,15 +48,12 @@ class _HtmlViewerAlternativePageState extends State<HtmlViewerAlternativePage> {
   }
 
   String _extractBodyContent(String html) {
-    // Basit bir body extraction
     final bodyStart = html.indexOf('<body>');
     final bodyEnd = html.indexOf('</body>');
 
     if (bodyStart != -1 && bodyEnd != -1) {
       return html.substring(bodyStart + 6, bodyEnd);
     }
-
-    // Body tag'i yoksa tüm içeriği döndür
     return html;
   }
 

@@ -4,7 +4,7 @@ import 'package:my_app/common/app_colors/app_colors.dart';
 import 'package:my_app/common/app_text/app_text_style.dart';
 import 'package:my_app/common/card/card_decoration.dart';
 import 'package:my_app/models/response/movies/list/list_movies_response.dart';
-import 'package:my_app/ui/pages/home/image_url_encoded.dart';
+import 'package:my_app/widgets/image/image_url_secured.dart';
 
 class MovieCard extends StatelessWidget {
   final Movie movie;
@@ -45,7 +45,7 @@ class MovieCard extends StatelessWidget {
                       topLeft: Radius.circular(8.r),
                       topRight: Radius.circular(8.r),
                     ),
-                    child: ImageUrlEncoded(
+                    child: ImageUrlSecured(
                       imageUrl: movie.poster,
                       fit: BoxFit.cover,
                       width: double.infinity,

@@ -56,17 +56,13 @@ class _MovieListWidgetState extends State<MovieListWidget> {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
-        // Show search loading
         if (state.searchStatus == LoadStatus.loading) {
           return const Center(
             child: CircularProgressIndicator(color: AppColors.white),
           );
         }
-
-        // Show search results
         if (state.searchQuery.isNotEmpty && state.filteredMovies != null) {
           final searchMovies = state.filteredMovies!.data.movies;
-
           if (searchMovies.isEmpty) {
             return Center(
               child: Column(
@@ -97,7 +93,6 @@ class _MovieListWidgetState extends State<MovieListWidget> {
               ),
             );
           }
-
           return CustomScrollView(
             controller: _scrollController,
             slivers: [
@@ -148,14 +143,11 @@ class _MovieListWidgetState extends State<MovieListWidget> {
             ],
           );
         }
-
-        // Show normal content when not searching
         if (state.fetchMovieStatus == LoadStatus.loading) {
           return const Center(
             child: CircularProgressIndicator(color: AppColors.white),
           );
         }
-
         if (state.fetchMovieStatus == LoadStatus.failure) {
           return Center(
             child: Column(
@@ -182,7 +174,6 @@ class _MovieListWidgetState extends State<MovieListWidget> {
             ),
           );
         }
-
         if (state.movies?.data.movies == null ||
             state.movies!.data.movies.isEmpty) {
           return const Center(
@@ -192,9 +183,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
             ),
           );
         }
-
         final movies = state.movies!.data.movies;
-
         return RefreshIndicator(
           onRefresh: () async {
             context.read<HomeCubit>().refreshMovies();
@@ -225,8 +214,6 @@ class _MovieListWidgetState extends State<MovieListWidget> {
                   ),
                 ),
               ),
-
-              // All Movies Grid
               SliverPadding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
                 sliver: SliverGrid(
@@ -273,8 +260,6 @@ class _MovieListWidgetState extends State<MovieListWidget> {
                     ),
                   ),
                 ),
-
-              // Bottom padding for navigation bar
               SliverToBoxAdapter(child: SizedBox(height: 80.h)),
             ],
           ),

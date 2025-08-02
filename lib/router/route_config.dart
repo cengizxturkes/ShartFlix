@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:my_app/ui/pages/app_start/splash/splash_page.dart';
 import 'package:my_app/ui/pages/auth/sign_in/sign_in_page.dart';
 import 'package:my_app/ui/pages/home/home_page.dart';
-import 'package:my_app/ui/pages/photo_view/photo_view_page.dart';
+
 import 'package:my_app/ui/pages/profile_pages/add_photo/add_photo_page.dart';
 import 'package:my_app/ui/pages/profile_pages/profile/profile_page.dart';
 import 'package:my_app/ui/pages/profile_pages/profile_detail/profile_detail_page.dart';
@@ -49,14 +49,7 @@ class AppRouter {
       name: home,
       builder: (context, state) => const HomePage(),
     ),
-    GoRoute(
-      name: photoView,
-      path: photoView,
-      builder:
-          (context, state) => PhotoViewPage(
-            arguments: PhotoViewArguments(images: state.extra as List<String>),
-          ),
-    ),
+
     GoRoute(
       name: profile,
       path: profile,

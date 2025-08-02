@@ -53,7 +53,6 @@ class HomeCubit extends Cubit<HomeState> {
       if (isClosed) return;
 
       if (newMovies.data.movies.isNotEmpty) {
-        // Merge new movies with existing ones
         final updatedMovies = state.movies?.copyWith(
           data: state.movies!.data.copyWith(
             movies: [...state.movies!.data.movies, ...newMovies.data.movies],
@@ -136,7 +135,6 @@ class HomeCubit extends Cubit<HomeState> {
       }
     } catch (e) {
       if (isClosed) return;
-      // API hata verirse geri al
       emit(state.copyWith(movies: state.movies));
     }
   }
@@ -150,7 +148,6 @@ class HomeCubit extends Cubit<HomeState> {
     if (isClosed) return;
 
     if (query.trim().isEmpty) {
-      // Arama temizlendiğinde orijinal listeyi göster
       emit(
         state.copyWith(
           filteredMovies: null,

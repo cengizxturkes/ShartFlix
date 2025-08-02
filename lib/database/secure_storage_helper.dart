@@ -3,7 +3,6 @@
 import 'dart:convert';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:my_app/models/response/user/profile/profile_response.dart';
 import 'package:my_app/models/token/token_entity.dart';
 
 class SecureStorageHelper {
