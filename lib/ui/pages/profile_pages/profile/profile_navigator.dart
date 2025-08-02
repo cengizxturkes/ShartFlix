@@ -16,6 +16,14 @@ class ProfileNavigator extends AppNavigator {
     await pushNamed(AppRouter.profileDetail);
   }
 
+  Future<void> navigateToLegalAndPolicies() async {
+    await pushNamed(AppRouter.legalAndPolicies);
+  }
+
+  Future<void> navigateToHelpAndSupport() async {
+    await pushNamed(AppRouter.helpAndSupport);
+  }
+
   void onNavigationChanged(int index) {
     switch (index) {
       case 0:

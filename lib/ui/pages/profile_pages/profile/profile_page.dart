@@ -135,14 +135,14 @@ class _ProfileChildPageState extends State<ProfileChildPage> {
                             icon: Icons.shield_outlined,
                             title: 'legalAndPolicies'.tr(),
                             onTap: () {
-                              // TODO: Navigate to legal and policies
+                              _cubit.navigator.navigateToLegalAndPolicies();
                             },
                           ),
                           ProfileMenuItemWidget(
                             icon: Icons.help_outline,
                             title: 'helpAndSupport'.tr(),
                             onTap: () {
-                              // TODO: Navigate to help and support
+                              _cubit.navigator.navigateToHelpAndSupport();
                             },
                           ),
                           ProfileMenuItemWidget(

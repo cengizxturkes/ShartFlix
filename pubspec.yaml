@@ -48,6 +48,10 @@ dependencies:
   #Image
   cached_network_image: ^3.4.1
   path: ^1.8.3
+  #WebView
+  webview_flutter: ^4.7.0
+  #HTML Renderer
+  flutter_html: ^3.0.0-beta.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -62,6 +66,7 @@ flutter:
     - assets/images/icon/png/
     - assets/images/icon/svg/
     - assets/translations/
+    - assets/html/
   fonts:
     - family: EuclidCircularA
       fonts:

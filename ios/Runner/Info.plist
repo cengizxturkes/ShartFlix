@@ -56,5 +56,10 @@
 	<string>Bu uygulama profil fotoğrafınızı seçmek için galeriye erişim istiyor.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Bu uygulama fotoğrafları galeriye kaydetmek için izin istiyor.</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>
