@@ -39,7 +39,6 @@ class _ProModalWidgetState extends State<ProModalWidget> {
         decoration: BoxDecoration(color: AppColors.background),
         child: Stack(
           children: [
-            // Top ellipse background
             Positioned(
               left: MediaQuery.of(context).size.width / 2 - 108.695.w,
               top: -83.74.h,
@@ -61,8 +60,6 @@ class _ProModalWidgetState extends State<ProModalWidget> {
                 ),
               ),
             ),
-
-            // Bottom ellipse background
             Positioned(
               left: MediaQuery.of(context).size.width / 2 - 108.695.w,
               top: 503.12.h,
@@ -84,8 +81,6 @@ class _ProModalWidgetState extends State<ProModalWidget> {
                 ),
               ),
             ),
-
-            // Content
             Padding(
               padding: EdgeInsets.all(20.w),
               child: Column(
@@ -154,19 +149,12 @@ class _ProModalWidgetState extends State<ProModalWidget> {
                       ],
                     ),
                   ),
-
-                  // Bonuses section
                   SizedBox(height: 21.h),
-
-                  // Token packages section
                   Text(
                     'selectTokenPackage'.tr(),
                     style: AppTextStyle.whiteS16Bold,
                   ),
-
                   SizedBox(height: 16.h),
-
-                  // Token packages
                   Expanded(
                     child: Row(
                       children: [
@@ -231,7 +219,6 @@ class _ProModalWidgetState extends State<ProModalWidget> {
           alignment: Alignment.center,
           children: [
             AppSvgWidget(path: icon, width: 24.w, height: 24.h),
-
             Container(
               width: 50.w,
               height: 50.h,
@@ -284,20 +271,18 @@ class _ProModalWidgetState extends State<ProModalWidget> {
                 isRecommended
                     ? LinearGradient(
                       colors: [
-                        Color(0xff5949E6),
-                        Color(0xffE50914),
-                        Color(0xff6F060B),
+                        const Color(0xff6A4FF2),
+                        const Color(0xff5949E6),
+                        const Color(0xffE50914),
                       ],
+                      stops: const [0.0, 0.1, 1.0],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                     )
                     : null,
             color: isRecommended ? null : AppColors.red,
             borderRadius: BorderRadius.circular(12.r),
-            border:
-                isRecommended
-                    ? Border.all(color: AppColors.white, width: 2)
-                    : null,
+            border: Border.all(color: AppColors.white, width: 1),
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -310,7 +295,6 @@ class _ProModalWidgetState extends State<ProModalWidget> {
                   decorationColor: AppColors.white.withOpacity(0.3),
                 ),
               ),
-              // New amount
               Text(
                 newAmount,
                 style: AppTextStyle.whiteS24.copyWith(
@@ -335,7 +319,6 @@ class _ProModalWidgetState extends State<ProModalWidget> {
                 style: AppTextStyle.whiteS16Bold.copyWith(fontSize: 15.sp),
               ),
               SizedBox(height: 8.h),
-
               Text(
                 'perWeek'.tr(),
                 style: AppTextStyle.whiteS12Regular.copyWith(fontSize: 11.sp),
