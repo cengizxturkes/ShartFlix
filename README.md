@@ -2,7 +2,18 @@
 
 <img src=https://github.com/user-attachments/assets/30bf78ec-6381-40f5-a4cb-bea9573d92c1 alt="logo" width=400 height=400 />
 
-<h1>ShartFlix-NodeLabs Case(Lütfen Önce Okuyun)</h1>
+
+
+<h1>ShartFlix-NodeLabs Case(Lütfen Önce Okuyun),Media datalarını lütfen görüntüleyin.</h1>
+Clarity:
+
+![EkranKayd2025-08-0317 16 44-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/4a56c0af-ca01-48a3-84ad-cf0409f529d7)
+Firebase:
+<img width="2886" height="1300" alt="image" src="https://github.com/user-attachments/assets/d158eef8-f28d-4f7b-90f3-7000f014df98" />
+
+
+https://github.com/user-attachments/assets/9a35ea0a-3892-4294-8712-d9ea9e83969b
+
 <p>İstenilen teknolojilerin geliştirilmesi</p>
 
 <h4> <span> · </span> <a href="https://github.com/cengizxturkes/ShartFlix/blob/master/README.md"> Documentation </a> <span> · </span> <a href="https://github.com/cengizxturkes/ShartFlix/issues"> Report Bug </a> <span> · </span> <a href="https://github.com/cengizxturkes/ShartFlix/issues"> Request Feature </a> </h4>
@@ -21,25 +32,64 @@
 ## :star2: About the Project
 
 ### :camera: Screenshots
-<div align="center"> <a href=""><img src="https://github.com/user-attachments/assets/20ce8419-3b81-4cbc-a8b5-00c4b8c740e2" alt='image' width='800'/></a> </div>
-<div align="center"> <a href=""><img src="https://github.com/user-attachments/assets/971a71b8-2576-4c4a-a4fa-9092a97572df" alt='image' width='800'/></a> </div>
-
+<table align="center">
+  <tr>
+    <td>
+      <img src="https://github.com/user-attachments/assets/20ce8419-3b81-4cbc-a8b5-00c4b8c740e2" alt="image" width="380"/>
+    </td>
+    <td>
+      <img src="https://github.com/user-attachments/assets/971a71b8-2576-4c4a-a4fa-9092a97572df" alt="image" width="380"/>
+    </td>
+  </tr>
+</table>
+<table align="center">
+  <tr>
+    <td>
+      <img 
+        src="https://github.com/user-attachments/assets/1d0c4833-54a5-4365-9d66-ffb7b57f77fe" 
+        alt="Screen 1" 
+        width="380" />
+    </td>
+    <td>
+      <img 
+        src="https://github.com/user-attachments/assets/6f627370-d634-4cba-8de5-8cec5f122291" 
+        alt="Screen 2" 
+        width="380" />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img 
+        src="https://github.com/user-attachments/assets/dcc3be6e-f6f0-477b-9907-65ba9baceab8" 
+        alt="Screen 3" 
+        width="380" />
+    </td>
+    <td>
+      <img 
+        src="https://github.com/user-attachments/assets/37cd31f2-c715-4b01-aec1-11ca60415142" 
+        alt="Screen 4" 
+        width="380" />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img 
+        src="https://github.com/user-attachments/assets/d6cd6402-a315-43d6-80d1-7dc89d5a5d2c" 
+        alt="Screen 5" 
+        width="380" />
+    </td>
+    <td>
+      <img 
+        src="https://github.com/user-attachments/assets/873109c4-afb5-4d7f-bfee-a67c244b6432" 
+        alt="Screen 6" 
+        width="380" />
+    </td>
+  </tr>
+</table>
 
 
 ### :dart: Features
 - State Yönetimi: flutter_bloc Ağ İşlemleri: dio, retrofit Depolama: shared_preferences, flutter_secure_storage Navigasyon: go_router Çoklu Dil: easy_localization UI & Animasyon: shimmer, lottie, cached_network_image, flutter_svg Resim İşleme: image_picker, photo_view Logger: logger, pretty_dio_logger Firebase: firebase_core, firebase_crashlytics, firebase_analytics Analytics: clarity_flutter HTML Renderer: flutter_html 📄 Yardım & Destek Uygulama içerisinde WebView ile gösterilen özel bir yardım ve destek sayfası bulunmaktadır. HTML yapısı ile hazırlanmış, SSS ve iletişim bilgilerinin yer aldığı sayfa eklenmiştir. (Ayrıca "Legal" sayfası da eklenmiştir.) Burada kullanılmış olan api servisi dio ile yazılıp loglama işlemleri de eklenilmiştir. Uygulamaya Microsoft Clarity entegrasyonu ekledim. Bu sayede: Kullanıcıların uygulama içinde gerçekleştirdiği tüm işlemleri canlı olarak gözlemleyebiliyorum. Isı haritaları aracılığıyla en çok tıklanan ve en az etkileşim alan bölgeleri analiz edebiliyorum. Bu analizler sonucunda hatalı veya kullanıcı dostu olmayan UX noktalarını tespit edip hızlıca iyileştirme fırsatı yakalayabiliyorum. Bu özellik, kullanıcı deneyimini sürekli geliştirmek için önemli bir avantaj sağlıyor.
-
-
-### :art: Color Reference
-| Color | Hex |
-| --------------- | ---------------------------------------------------------------- |
-| Primary Color | ![#15171c](https://via.placeholder.com/10/15171c?text=+) #15171c |
-| Secondary Color | ![#393E46](https://via.placeholder.com/10/393E46?text=+) #393E46 |
-| Accent Color | ![#00ADB5](https://via.placeholder.com/10/00ADB5?text=+) #00ADB5 |
-| Text Color | ![#EEEEEE](https://via.placeholder.com/10/EEEEEE?text=+) #EEEEEE |
-
-## :compass: Roadmap
-
 * [x] Login
 * [x] Sınırlı Teklif BottomSheet
 * [x] Keşfet
