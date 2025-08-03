@@ -32,9 +32,16 @@ https://github.com/user-attachments/assets/9a35ea0a-3892-4294-8712-d9ea9e83969b
 ## :star2: About the Project
 
 ### :camera: Screenshots
-<div align="center"> <a href=""><img src="https://github.com/user-attachments/assets/20ce8419-3b81-4cbc-a8b5-00c4b8c740e2" alt='image' width='800'/></a> </div>
-<div align="center"> <a href=""><img src="https://github.com/user-attachments/assets/971a71b8-2576-4c4a-a4fa-9092a97572df" alt='image' width='800'/></a> </div>
-
+<table align="center">
+  <tr>
+    <td>
+      <img src="https://github.com/user-attachments/assets/20ce8419-3b81-4cbc-a8b5-00c4b8c740e2" alt="image" width="380"/>
+    </td>
+    <td>
+      <img src="https://github.com/user-attachments/assets/971a71b8-2576-4c4a-a4fa-9092a97572df" alt="image" width="380"/>
+    </td>
+  </tr>
+</table>
 
 
 ### :dart: Features
