@@ -1,4 +1,4 @@
-<div align='center'>
+<img width="1290" height="2796" alt="Simulator Screenshot - iPhone 16 Plus - 2025-08-03 at 23 22 09" src="https://github.com/user-attachments/assets/903a38de-e7ff-4c9c-b421-82cab0a74d25" /><div align='center'>
 
 <img src=https://github.com/user-attachments/assets/30bf78ec-6381-40f5-a4cb-bea9573d92c1 alt="logo" width=400 height=400 />
 
@@ -87,6 +87,7 @@ https://github.com/user-attachments/assets/9a35ea0a-3892-4294-8712-d9ea9e83969b
     </td>
   </tr>
 </table>
+<img width="380" height="2796" alt="Simulator Screenshot - iPhone 16 Plus - 2025-08-03 at 23 22 09" src="https://github.com/user-attachments/assets/af3529d7-2c26-405e-a86f-ab804ef8ee5f" />
 
 
 ### :dart: Features
