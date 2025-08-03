@@ -6,6 +6,10 @@
 
 <h1>ShartFlix-NodeLabs Case(Lütfen Önce Okuyun),Media datalarını lütfen görüntüleyin.</h1>
 Clarity:
+
+![EkranKayd2025-08-0317 16 44-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/4a56c0af-ca01-48a3-84ad-cf0409f529d7)
+
+
 https://github.com/user-attachments/assets/9a35ea0a-3892-4294-8712-d9ea9e83969b
 
 <p>İstenilen teknolojilerin geliştirilmesi</p>
