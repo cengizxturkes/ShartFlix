@@ -12,6 +12,10 @@ class SignUpNavigator extends AppNavigator {
     openSignIn();
   }
 
+  Future<void> navigateToLegalAndPolicies() async {
+    await pushNamed(AppRouter.legalAndPolicies);
+  }
+
   void navigateToSignUp() {
     pushNamed(AppRouter.signUp);
   }

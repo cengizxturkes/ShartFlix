@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:go_router/go_router.dart';
+import 'package:loader_overlay/loader_overlay.dart'; // loader_overlay import et
 import 'package:my_app/database/secure_storage_helper.dart';
 import 'package:my_app/logger/logger.dart';
 import 'package:my_app/network/api_util/api_util.dart';
@@ -11,6 +12,11 @@ class ApiInterceptors extends QueuedInterceptorsWrapper {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
+    final context = AppRouter.navigationKey.currentContext;
+
+    // Loader göster
+    context?.loaderOverlay.show();
+
     final token = await SecureStorageHelper.instance.getToken();
     if (token != null) {
       options.headers['Authorization'] = 'Bearer ${token.accessToken}';
@@ -19,20 +25,27 @@ class ApiInterceptors extends QueuedInterceptorsWrapper {
     } else {
       logger.w('⚠️ No token found for ${options.method} ${options.path}');
     }
+
     super.onRequest(options, handler);
   }
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    //Handle section expired without refresh token
-    // if (response.statusCode == 401) {
-    //   _forceSignIn();
-    // }
+    final context = AppRouter.navigationKey.currentContext;
+
+    // İstek başarılı bitince loader gizle
+    context?.loaderOverlay.hide();
+
     super.onResponse(response, handler);
   }
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) async {
+    final context = AppRouter.navigationKey.currentContext;
+
+    // Hata alındığında da loader gizle
+    context?.loaderOverlay.hide();
+
     final statusCode = err.response?.statusCode;
     final path = err.requestOptions.path;
     final uri = err.requestOptions.uri;
@@ -46,9 +59,7 @@ class ApiInterceptors extends QueuedInterceptorsWrapper {
         String requestingTokens = err.requestOptions.headers['Authorization']
             .toString()
             .replaceFirst("Bearer ", "");
-        //Handle following request with old token
         if (savedToken != null && savedToken.accessToken != requestingTokens) {
-          //Clone request with new token
           final cloneReq = await _cloneRequest(
             accessToken: savedToken.accessToken,
             request: request,
@@ -56,15 +67,12 @@ class ApiInterceptors extends QueuedInterceptorsWrapper {
           );
           return handler.resolve(cloneReq);
         }
-        //Don't have savedToken => return error
         if (savedToken == null) {
           return handler.next(err);
         }
-        //Refresh token in first request
         try {
           final result = await ApiUtil.onRefreshToken(savedToken.accessToken);
           if (result != null) {
-            //Refresh success => clone current request
             SecureStorageHelper.instance.saveToken(result);
             final cloneReq = await _cloneRequest(
               accessToken: result.accessToken,
@@ -73,13 +81,11 @@ class ApiInterceptors extends QueuedInterceptorsWrapper {
             );
             return handler.resolve(cloneReq);
           } else {
-            //Refresh failure => force login
             logger.e("Response refresh token is null");
             _forceSignIn();
             return handler.next(err);
           }
         } catch (e) {
-          //Refresh failure => force login
           logger.e(
             "Api refresh token error $e, msg: ${(e as DioException).response}",
           );
@@ -109,14 +115,14 @@ class ApiInterceptors extends QueuedInterceptorsWrapper {
   }
 
   void _forceSignIn() {
-    //Clear session
     SecureStorageHelper.instance.removeToken();
-    //Open sign-in page
-    while (GoRouter.of(AppRouter.navigationKey.currentContext!).canPop()) {
-      GoRouter.of(AppRouter.navigationKey.currentContext!).pop();
+
+    final context = AppRouter.navigationKey.currentContext;
+    if (context == null) return;
+
+    while (GoRouter.of(context).canPop()) {
+      GoRouter.of(context).pop();
     }
-    GoRouter.of(
-      AppRouter.navigationKey.currentContext!,
-    ).pushReplacementNamed(AppRouter.home);
+    GoRouter.of(context).pushReplacementNamed(AppRouter.home);
   }
 }

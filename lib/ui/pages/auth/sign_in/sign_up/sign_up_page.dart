@@ -108,45 +108,50 @@ class _SignUpChildPageState extends State<SignUpChildPage> {
                 formKey: _formKey,
               ),
               SizedBox(height: 24.h),
-              RichText(
-                textAlign: TextAlign.left,
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: "Kullanıcı sözleşmesini ",
-                      style: TextStyle(
-                        fontFamily: 'Euclid Circular A',
+              GestureDetector(
+                onTap: () {
+                  _cubit.navigator.navigateToLegalAndPolicies();
+                },
+                child: RichText(
+                  textAlign: TextAlign.left,
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: "Kullanıcı sözleşmesini ",
+                        style: TextStyle(
+                          fontFamily: 'Euclid Circular A',
 
-                        fontWeight: FontWeight.w400,
-                        fontSize: 12,
-                        height: 1.5,
-                        color: Colors.white.withOpacity(0.5),
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12,
+                          height: 1.5,
+                          color: Colors.white.withOpacity(0.5),
+                        ),
                       ),
-                    ),
-                    TextSpan(
-                      text: "okudum ve kabul ediyorum.",
-                      style: TextStyle(
-                        fontFamily: 'Euclid Circular A',
-                        decoration: TextDecoration.underline,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 12,
-                        height: 1.5,
-                        color: Colors.white,
+                      TextSpan(
+                        text: "okudum ve kabul ediyorum.",
+                        style: TextStyle(
+                          fontFamily: 'Euclid Circular A',
+                          decoration: TextDecoration.underline,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12,
+                          height: 1.5,
+                          color: Colors.white,
+                        ),
                       ),
-                    ),
 
-                    TextSpan(
-                      text: " Bu sözleşmeyi okuyarak devam ediniz lütfen.",
-                      style: AppTextStyle.whiteS12Regular.copyWith(
-                        color: AppColors.white.withValues(alpha: 0.5),
+                      TextSpan(
+                        text: " Bu sözleşmeyi okuyarak devam ediniz lütfen.",
+                        style: AppTextStyle.whiteS12Regular.copyWith(
+                          color: AppColors.white.withValues(alpha: 0.5),
+                        ),
+                        recognizer:
+                            TapGestureRecognizer()
+                              ..onTap = () {
+                                // kullanıcı sözleşmesi sayfasına yönlendirme
+                              },
                       ),
-                      recognizer:
-                          TapGestureRecognizer()
-                            ..onTap = () {
-                              // kullanıcı sözleşmesi sayfasına yönlendirme
-                            },
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               SizedBox(height: 38.h),
