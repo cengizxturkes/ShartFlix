@@ -206,12 +206,13 @@ libs
 └───main_staging.dart //Config môi trường production
 ```
 
-## :handshake: Logger 
-
+#### Logger
+```dart
 logger.d("message"); //"💙 DEBUG: message"
 logger.i("message"); //"💚 INFO: message"
 logger.e("message"); //"❤️ ERROR: message"
 logger.log("very very very long message");
+```
 ## :handshake: Contact
 
 Cengizhan Mehmet Türkeş - - turkes468@gmail.com
