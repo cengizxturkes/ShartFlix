@@ -124,7 +124,7 @@ class _ProModalWidgetState extends State<ProModalWidget> {
                     child: Column(
                       children: [
                         Text(
-                          'Alacağınız Bonuslar',
+                          'youWillGet'.tr(),
                           style: AppTextStyle.whiteS16Bold.copyWith(
                             fontSize: 15.sp,
                           ),
@@ -135,19 +135,19 @@ class _ProModalWidgetState extends State<ProModalWidget> {
                           children: [
                             _buildBonusItem(
                               icon: AppSvg.premium,
-                              label: "Premium Hesap",
+                              label: "premiumAccount".tr(),
                             ),
                             _buildBonusItem(
                               icon: AppSvg.heart,
-                              label: "Daha Fazla\nEşleşme",
+                              label: "moreMatches".tr(),
                             ),
                             _buildBonusItem(
                               icon: AppSvg.trending,
-                              label: "Öne\nÇıkarma",
+                              label: "moreViews".tr(),
                             ),
                             _buildBonusItem(
                               icon: AppSvg.aheart,
-                              label: "Daha Fazla\nBeğeni",
+                              label: "moreLikes".tr(),
                             ),
                           ],
                         ),
@@ -160,7 +160,7 @@ class _ProModalWidgetState extends State<ProModalWidget> {
 
                   // Token packages section
                   Text(
-                    'Kilidi açmak için bir jeton paketi seçin',
+                    'selectTokenPackage'.tr(),
                     style: AppTextStyle.whiteS16Bold,
                   ),
 
@@ -207,7 +207,7 @@ class _ProModalWidgetState extends State<ProModalWidget> {
 
                   // See all tokens button
                   AppButton(
-                    title: 'Tüm Jetonları Gör',
+                    title: 'seeAllTokens'.tr(),
                     cornerRadius: 18.r,
                     onPressed: widget.onSeeAllTokens,
                     textStyle: AppTextStyle.whiteS14Medium.copyWith(
@@ -318,7 +318,7 @@ class _ProModalWidgetState extends State<ProModalWidget> {
                   fontWeight: FontWeight.w900,
                 ),
               ),
-              Text('Jeton', style: AppTextStyle.whiteS15Regular),
+              Text('jeton'.tr(), style: AppTextStyle.whiteS15Regular),
               SizedBox(height: 35.h),
               Container(
                 width: 87.w,
@@ -337,7 +337,7 @@ class _ProModalWidgetState extends State<ProModalWidget> {
               SizedBox(height: 8.h),
 
               Text(
-                'Başına haftalık',
+                'perWeek'.tr(),
                 style: AppTextStyle.whiteS12Regular.copyWith(fontSize: 11.sp),
                 maxLines: 1,
               ),

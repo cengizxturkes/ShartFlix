@@ -1,16 +1,15 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:my_app/common/app_colors/app_colors.dart';
-import 'package:my_app/common/app_images/app_svg.dart';
 import 'package:my_app/common/app_text/app_text_style.dart';
 import 'package:my_app/global_bloc/auth/auth_cubit.dart';
 import 'package:my_app/models/response/movies/list/list_movies_response.dart';
 import 'package:my_app/repositories/movie/movie_repository.dart';
 import 'package:my_app/ui/pages/movie_detail/movie_detail_cubit.dart';
 import 'package:my_app/widgets/app_app_bar/app_app_bar.dart';
-import 'package:my_app/widgets/icon/app_svg_widget.dart';
+import 'package:my_app/widgets/buttons/app_buttons.dart';
 import 'package:my_app/widgets/image/image_url_secured.dart';
 import 'package:my_app/widgets/widgets.dart';
 
@@ -171,46 +170,11 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Action Buttons
-                    Row(
-                      children: [
-                        Expanded(
-                          child: ElevatedButton.icon(
-                            onPressed: () {
-                              // Play functionality
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: AppColors.buttonColor,
-                              foregroundColor: Colors.white,
-                              padding: EdgeInsets.symmetric(vertical: 12.h),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.r),
-                              ),
-                            ),
-                            icon: const Icon(Icons.play_arrow),
-                            label: Text(
-                              'Oynat',
-                              style: AppTextStyle.whiteS16.copyWith(
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 12.w),
-                        Container(
-                          padding: EdgeInsets.all(12.w),
-                          decoration: BoxDecoration(
-                            color: Colors.grey.withValues(alpha: 0.2),
-                            borderRadius: BorderRadius.circular(8.r),
-                          ),
-                          child: const Icon(Icons.add, color: Colors.white),
-                        ),
-                      ],
-                    ),
+                    AppButton(onPressed: () {}, title: 'play'.tr()),
                     SizedBox(height: 24.h),
                     if (widget.movie.plot.isNotEmpty) ...[
                       Text(
-                        'Özet',
+                        'summary'.tr(),
                         style: AppTextStyle.whiteS18Bold.copyWith(
                           color: Colors.white,
                         ),
@@ -228,7 +192,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                     ],
                     if (widget.movie.genre.isNotEmpty) ...[
                       Text(
-                        'Tür',
+                        'genre'.tr(),
                         style: AppTextStyle.whiteS18Bold.copyWith(
                           color: Colors.white,
                         ),
@@ -264,7 +228,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                     ],
                     if (widget.movie.director.isNotEmpty) ...[
                       Text(
-                        'Yönetmen',
+                        'director'.tr(),
                         style: AppTextStyle.whiteS18Bold.copyWith(
                           color: Colors.white,
                         ),
@@ -280,7 +244,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                     ],
                     if (widget.movie.actors.isNotEmpty) ...[
                       Text(
-                        'Oyuncular',
+                        'cast'.tr(),
                         style: AppTextStyle.whiteS18Bold.copyWith(
                           color: Colors.white,
                         ),
@@ -296,7 +260,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                     ],
                     if (widget.movie.awards.isNotEmpty) ...[
                       Text(
-                        'Ödüller',
+                        'awards'.tr(),
                         style: AppTextStyle.whiteS18Bold.copyWith(
                           color: Colors.white,
                         ),
@@ -313,22 +277,25 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                     if (widget.movie.language.isNotEmpty ||
                         widget.movie.country.isNotEmpty) ...[
                       Text(
-                        'Detaylar',
+                        'details'.tr(),
                         style: AppTextStyle.whiteS18Bold.copyWith(
                           color: Colors.white,
                         ),
                       ),
                       SizedBox(height: 8.h),
                       if (widget.movie.language.isNotEmpty) ...[
-                        _buildDetailRow('Dil', widget.movie.language),
+                        _buildDetailRow('language'.tr(), widget.movie.language),
                         SizedBox(height: 4.h),
                       ],
                       if (widget.movie.country.isNotEmpty) ...[
-                        _buildDetailRow('Ülke', widget.movie.country),
+                        _buildDetailRow('country'.tr(), widget.movie.country),
                         SizedBox(height: 4.h),
                       ],
                       if (widget.movie.released.isNotEmpty) ...[
-                        _buildDetailRow('Yayın Tarihi', widget.movie.released),
+                        _buildDetailRow(
+                          'releaseDate'.tr(),
+                          widget.movie.released,
+                        ),
                       ],
                     ],
                     SizedBox(height: 40.h),

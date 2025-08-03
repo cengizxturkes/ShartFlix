@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -126,7 +127,7 @@ class FeaturedMovie extends StatelessWidget {
                     onPressed: () {
                       context.pushNamed(AppRouter.discover);
                     },
-                    title: "Filmleri Keşfet",
+                    title: "discoverMovies".tr(),
                   ),
                 ),
               ),

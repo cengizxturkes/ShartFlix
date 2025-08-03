@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -49,7 +50,7 @@ class _ExpandableTextState extends State<ExpandableText> {
           ),
           if (!_isExpanded)
             TextSpan(
-              text: '... Daha Fazlası',
+              text: '... ${'more'.tr()}',
               style:
                   widget.buttonStyle ??
                   AppTextStyle.whiteS12.copyWith(
@@ -62,7 +63,7 @@ class _ExpandableTextState extends State<ExpandableText> {
             ),
           if (_isExpanded)
             TextSpan(
-              text: '  Daha Azını Gör',
+              text: '  ${'less'.tr()}',
               style:
                   widget.buttonStyle ??
                   AppTextStyle.whiteS12.copyWith(

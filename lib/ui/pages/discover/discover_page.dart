@@ -11,7 +11,6 @@ import 'package:my_app/global_bloc/auth/auth_cubit.dart';
 import 'package:my_app/models/enums/load_status.dart';
 import 'package:my_app/models/response/movies/list/list_movies_response.dart';
 import 'package:my_app/repositories/movie/movie_repository.dart';
-import 'package:my_app/router/route_config.dart';
 import 'package:my_app/ui/pages/discover/discover_cubit.dart';
 import 'package:my_app/widgets/icon/app_svg_widget.dart';
 import 'package:my_app/widgets/loading/app_loading_indicator.dart';
