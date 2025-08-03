@@ -63,6 +63,7 @@ class _SplashChildPageState extends State<SplashChildPage> {
 
   Future<void> _runOnboardingIfNeed() async {
     final isOnboarded = await SharedPreferencesHelper.isOnboarded();
+
     if (!isOnboarded) {
       await SharedPreferencesHelper.setOnboarded(isOnboarded: true);
       await _cubit.navigator.openOnboardingPage();

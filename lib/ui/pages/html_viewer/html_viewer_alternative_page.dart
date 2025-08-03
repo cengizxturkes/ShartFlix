@@ -4,6 +4,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_app/common/app_colors/app_colors.dart';
 import 'package:my_app/common/app_text/app_text_style.dart';
+import 'package:my_app/widgets/app_app_bar/app_app_bar.dart';
 
 class HtmlViewerAlternativePage extends StatefulWidget {
   final String title;
@@ -64,6 +65,8 @@ class _HtmlViewerAlternativePageState extends State<HtmlViewerAlternativePage> {
         title: Text(widget.title, style: AppTextStyle.whiteS15Regular),
         centerTitle: true,
         elevation: 0,
+        leadingWidth: 56.w + 4.w,
+        leading: AppBackButton(width: 40.w, height: 40.h),
       ),
       body:
           _isLoading

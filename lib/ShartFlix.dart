@@ -151,6 +151,7 @@ class _ShartflixState extends State<Shartflix> {
             GlobalCupertinoLocalizations.delegate,
             EasyLocalization.of(context)!.delegate,
           ],
+
           locale: locale,
           supportedLocales: [Locale('en'), Locale('tr')],
         );

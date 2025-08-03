@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:my_app/models/response/movies/list/list_movies_response.dart';
+import 'package:my_app/ui/pages/app_start/on_boarding/on_boarding_screen.dart';
 import 'package:my_app/ui/pages/app_start/splash/splash_page.dart';
 import 'package:my_app/ui/pages/auth/sign_in/sign_in_page.dart';
 import 'package:my_app/ui/pages/auth/sign_in/sign_up/sign_up_page.dart';
@@ -38,7 +39,7 @@ class AppRouter {
   static const String movieDetail = '/movie_detail';
   static const String legalAndPolicies = '/legal_and_policies';
   static const String helpAndSupport = '/help_and_support';
-
+  static const String onBoarding = '/on_boarding';
   // GoRouter configuration
   static final _routes = <RouteBase>[
     GoRoute(
@@ -107,6 +108,11 @@ class AppRouter {
             title: 'Yardım ve Destek',
             htmlAssetPath: 'assets/html/help.html',
           ),
+    ),
+    GoRoute(
+      name: onBoarding,
+      path: onBoarding,
+      builder: (context, state) => const OnBoardingScreen(),
     ),
   ];
 }

@@ -14,6 +14,7 @@ import 'package:my_app/ui/pages/profile_pages/profile_detail/profile_detail_navi
 import 'package:my_app/ui/pages/profile_pages/profile_detail/profile_detail_state.dart';
 import 'package:my_app/ui/pages/profile_pages/profile_detail/widget/get_pro_widget.dart';
 import 'package:my_app/ui/pages/profile_pages/profile_detail/widget/profile_detail_header_widget.dart';
+import 'package:my_app/widgets/app_app_bar/app_app_bar.dart';
 import 'package:my_app/widgets/movie_card/movie_card.dart';
 import 'package:my_app/models/response/movies/favorites/favorite_movies.dart';
 import 'package:my_app/models/response/movies/list/list_movies_response.dart';
@@ -101,6 +102,8 @@ class _ProfileDetailChildPageState extends State<ProfileDetailChildPage> {
                   "profileDetail".tr(),
                   style: AppTextStyle.whiteS15Regular,
                 ),
+                leadingWidth: 56.w + 4.w,
+                leading: AppBackButton(width: 40.w, height: 40.h),
                 actions: [
                   Padding(
                     padding: EdgeInsets.only(right: 26.w),

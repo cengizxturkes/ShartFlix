@@ -3,11 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_app/common/app_colors/app_colors.dart';
+import 'package:my_app/common/app_images/app_svg.dart';
 import 'package:my_app/common/app_text/app_text_style.dart';
 import 'package:my_app/global_bloc/auth/auth_cubit.dart';
 import 'package:my_app/models/response/movies/list/list_movies_response.dart';
 import 'package:my_app/repositories/movie/movie_repository.dart';
 import 'package:my_app/ui/pages/movie_detail/movie_detail_cubit.dart';
+import 'package:my_app/widgets/app_app_bar/app_app_bar.dart';
+import 'package:my_app/widgets/icon/app_svg_widget.dart';
 import 'package:my_app/widgets/image/image_url_secured.dart';
 import 'package:my_app/widgets/widgets.dart';
 
@@ -43,29 +46,15 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
     return BlocProvider.value(
       value: _movieDetailCubit,
       child: Scaffold(
-        backgroundColor: Colors.black,
         body: CustomScrollView(
           slivers: [
-            // Hero App Bar with Poster
             SliverAppBar(
               expandedHeight: 500.h,
               pinned: true,
               backgroundColor: Colors.transparent,
-              leading: IconButton(
-                onPressed: () => context.pop(),
-                icon: Container(
-                  padding: EdgeInsets.all(8.w),
-                  decoration: BoxDecoration(
-                    color: Colors.black.withValues(alpha: 0.5),
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Icons.arrow_back_ios,
-                    color: Colors.white,
-                    size: 20,
-                  ),
-                ),
-              ),
+              leadingWidth: 56.w + 4.w,
+
+              leading: AppBackButton(width: 40.w, height: 40.h),
               actions: [
                 IconButton(
                   onPressed: () {
@@ -98,7 +87,6 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                 background: Stack(
                   fit: StackFit.expand,
                   children: [
-                    // Hero Poster
                     Hero(
                       tag: 'movie_detail_poster_${widget.movie.id}',
                       child: ImageUrlSecured(
@@ -106,7 +94,6 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    // Gradient Overlay
                     Container(
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
@@ -120,7 +107,6 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                         ),
                       ),
                     ),
-                    // Movie Info Overlay
                     Positioned(
                       bottom: 20.h,
                       left: 20.w,
@@ -179,7 +165,6 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                 ),
               ),
             ),
-            // Movie Details Content
             SliverToBoxAdapter(
               child: Padding(
                 padding: EdgeInsets.all(20.w),
@@ -223,8 +208,6 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                       ],
                     ),
                     SizedBox(height: 24.h),
-
-                    // Plot
                     if (widget.movie.plot.isNotEmpty) ...[
                       Text(
                         'Özet',
@@ -243,8 +226,6 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                       ),
                       SizedBox(height: 24.h),
                     ],
-
-                    // Genre
                     if (widget.movie.genre.isNotEmpty) ...[
                       Text(
                         'Tür',
@@ -281,8 +262,6 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                       ),
                       SizedBox(height: 24.h),
                     ],
-
-                    // Director
                     if (widget.movie.director.isNotEmpty) ...[
                       Text(
                         'Yönetmen',
@@ -299,8 +278,6 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                       ),
                       SizedBox(height: 24.h),
                     ],
-
-                    // Actors
                     if (widget.movie.actors.isNotEmpty) ...[
                       Text(
                         'Oyuncular',
@@ -317,8 +294,6 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                       ),
                       SizedBox(height: 24.h),
                     ],
-
-                    // Awards
                     if (widget.movie.awards.isNotEmpty) ...[
                       Text(
                         'Ödüller',
@@ -335,8 +310,6 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                       ),
                       SizedBox(height: 24.h),
                     ],
-
-                    // Language & Country
                     if (widget.movie.language.isNotEmpty ||
                         widget.movie.country.isNotEmpty) ...[
                       Text(
@@ -358,7 +331,6 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                         _buildDetailRow('Yayın Tarihi', widget.movie.released),
                       ],
                     ],
-
                     SizedBox(height: 40.h),
                   ],
                 ),

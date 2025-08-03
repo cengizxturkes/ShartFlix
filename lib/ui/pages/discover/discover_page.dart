@@ -54,7 +54,9 @@ class _DiscoverPageState extends State<DiscoverPage> {
       child: Scaffold(
         bottomNavigationBar: CustomBottomNavigationBar(
           currentIndex: 3,
-          onTap: (int value) {},
+          onTap: (int value) {
+            context.pop();
+          },
         ),
         body: BlocBuilder<DiscoverCubit, DiscoverState>(
           builder: (context, state) {
