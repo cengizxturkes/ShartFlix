@@ -22,7 +22,6 @@ class CustomBottomNavigationBar extends StatelessWidget {
       child: Container(
         height: 70.h,
         width: double.infinity,
-
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

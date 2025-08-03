@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:my_app/ui/pages/app_start/splash/splash_page.dart';
 import 'package:my_app/ui/pages/auth/sign_in/sign_in_page.dart';
 import 'package:my_app/ui/pages/home/home_page.dart';
+import 'package:my_app/ui/pages/discover/discover_page.dart';
 
 import 'package:my_app/ui/pages/profile_pages/add_photo/add_photo_page.dart';
 import 'package:my_app/ui/pages/profile_pages/profile/profile_page.dart';
@@ -29,6 +30,7 @@ class AppRouter {
   static const String profile = '/profile';
   static const String profileDetail = '/profile_detail';
   static const String addPhoto = '/add_photo';
+  static const String discover = '/discover';
   static const String legalAndPolicies = '/legal_and_policies';
   static const String helpAndSupport = '/help_and_support';
 
@@ -48,6 +50,11 @@ class AppRouter {
       path: home,
       name: home,
       builder: (context, state) => const HomePage(),
+    ),
+    GoRoute(
+      path: discover,
+      name: discover,
+      builder: (context, state) => const DiscoverPage(),
     ),
 
     GoRoute(

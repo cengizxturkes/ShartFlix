@@ -39,7 +39,9 @@ android {
     }
 }
 dependencies {
+    implementation(platform("com.google.firebase:firebase-bom:34.0.0"))
     implementation("com.microsoft.clarity:clarity-compose:3.4.3")
+    implementation("com.google.firebase:firebase-analytics")
 }
 
 flutter {

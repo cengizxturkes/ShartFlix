@@ -32,7 +32,6 @@ class MovieCard extends StatelessWidget {
       child: Container(
         height: height,
         width: width,
-        decoration: context.cardDecorationWithoutBorder,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

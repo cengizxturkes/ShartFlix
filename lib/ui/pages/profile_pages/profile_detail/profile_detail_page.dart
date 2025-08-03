@@ -139,6 +139,7 @@ class _ProfileDetailChildPageState extends State<ProfileDetailChildPage> {
                           fontSize: 13.sp,
                         ),
                       ),
+
                       SizedBox(height: 24.h),
                       GridView.builder(
                         shrinkWrap: true,

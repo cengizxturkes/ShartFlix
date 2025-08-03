@@ -9,6 +9,7 @@ import 'package:my_app/models/response/movies/list/list_movies_response.dart';
 import 'package:my_app/ui/pages/home/home_cubit.dart';
 import 'package:my_app/ui/pages/home/home_state.dart';
 import 'package:my_app/ui/pages/home/widget/featured_movie.dart';
+import 'package:my_app/widgets/buttons/app_buttons.dart';
 import 'package:my_app/widgets/movie_card/movie_card.dart';
 import 'dart:math';
 
@@ -198,6 +199,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
                 ),
               ),
               SliverToBoxAdapter(child: _buildTopMoviesSection(movies)),
+
               ..._buildGenreCategories(movies),
               SliverToBoxAdapter(
                 child: Container(
@@ -279,11 +281,17 @@ class _MovieListWidgetState extends State<MovieListWidget> {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-          child: Text(
-            "featuredMovies".tr(),
-            style: AppTextStyle.whiteS20Bold.copyWith(fontSize: 24.sp),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "featuredMovies".tr(),
+                style: AppTextStyle.whiteS20Bold.copyWith(fontSize: 24.sp),
+              ),
+            ],
           ),
         ),
+
         SizedBox(
           height: 250.h,
           child: ListView.builder(

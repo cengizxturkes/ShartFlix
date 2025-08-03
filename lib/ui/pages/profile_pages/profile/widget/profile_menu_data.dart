@@ -61,11 +61,11 @@ class ProfileMenuHelper {
           translationKey: 'helpAndSupport',
           icon: Icons.help_outline,
         ),
-        ProfileMenuData(
-          translationKey: 'darkMode',
-          icon: Icons.dark_mode_outlined,
-          showArrow: false,
-        ),
+        // ProfileMenuData(
+        //   translationKey: 'darkMode',
+        //   icon: Icons.dark_mode_outlined,
+        //   showArrow: false,
+        // ),
       ],
     ),
   ];

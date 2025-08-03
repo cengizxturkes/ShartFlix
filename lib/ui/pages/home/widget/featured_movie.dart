@@ -1,10 +1,13 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:my_app/common/app_colors/app_colors.dart';
 import 'package:my_app/common/app_dimens/app_dimens.dart';
 import 'package:my_app/common/app_shadow/app_shadows.dart';
 import 'package:my_app/common/app_text/app_text_style.dart';
 import 'package:my_app/models/response/movies/list/list_movies_response.dart';
+import 'package:my_app/widgets/buttons/app_buttons.dart';
 import 'package:my_app/widgets/image/image_url_secured.dart';
 
 class FeaturedMovie extends StatelessWidget {
@@ -54,6 +57,22 @@ class FeaturedMovie extends StatelessWidget {
                   alignment: Alignment.center,
                   child: Icon(Icons.movie, size: 40.sp, color: AppColors.white),
                 ),
+              Positioned(
+                bottom: 16.h,
+                right: 0.w,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 16.h),
+                  child: SizedBox(
+                    width: 150.w,
+                    child: AppButton(
+                      onPressed: () {
+                        context.go('/discover');
+                      },
+                      title: "Filmleri Keşfet",
+                    ),
+                  ),
+                ),
+              ),
               Positioned(
                 bottom: AppDimens.featuredMovieBottomPositioned.h,
                 left: AppDimens.featuredMovieLeftPositioned.w,

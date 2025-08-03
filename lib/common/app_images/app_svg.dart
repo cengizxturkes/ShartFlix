@@ -19,4 +19,6 @@ class AppSvg {
   static const message = 'assets/images/icon/svg/message.svg';
   static const eye_hide = 'assets/images/icon/svg/eye_hide.svg';
   static const eye_show = 'assets/images/icon/svg/eye_show.svg';
+  static const like = 'assets/images/icon/svg/like.svg';
+  static const discover = 'assets/images/icon/svg/discover.svg';
 }
