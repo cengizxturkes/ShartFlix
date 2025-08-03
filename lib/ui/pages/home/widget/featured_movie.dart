@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -7,18 +6,19 @@ import 'package:my_app/common/app_dimens/app_dimens.dart';
 import 'package:my_app/common/app_shadow/app_shadows.dart';
 import 'package:my_app/common/app_text/app_text_style.dart';
 import 'package:my_app/models/response/movies/list/list_movies_response.dart';
+import 'package:my_app/router/route_config.dart';
 import 'package:my_app/widgets/buttons/app_buttons.dart';
 import 'package:my_app/widgets/image/image_url_secured.dart';
 
 class FeaturedMovie extends StatelessWidget {
   final Movie movie;
-  final VoidCallback? onTap;
+  final Function(Movie)? onTap;
 
   const FeaturedMovie({super.key, required this.movie, this.onTap});
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () => onTap?.call(movie),
       child: Padding(
         padding: EdgeInsets.only(
           bottom: AppDimens.featuredMovieBottomPadding.h,
@@ -66,7 +66,7 @@ class FeaturedMovie extends StatelessWidget {
                     width: 150.w,
                     child: AppButton(
                       onPressed: () {
-                        context.go('/discover');
+                        context.pushNamed(AppRouter.discover);
                       },
                       title: "Filmleri Keşfet",
                     ),

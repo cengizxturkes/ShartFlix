@@ -9,13 +9,12 @@ import 'package:my_app/models/response/movies/list/list_movies_response.dart';
 import 'package:my_app/ui/pages/home/home_cubit.dart';
 import 'package:my_app/ui/pages/home/home_state.dart';
 import 'package:my_app/ui/pages/home/widget/featured_movie.dart';
-import 'package:my_app/widgets/buttons/app_buttons.dart';
 import 'package:my_app/widgets/movie_card/movie_card.dart';
 import 'dart:math';
 
 class MovieListWidget extends StatefulWidget {
   final ListMoviesResponse? moviesResponse;
-  final VoidCallback? onMovieTap;
+  final Function(Movie)? onMovieTap;
   final Function(String)? onFavoriteToggle;
 
   const MovieListWidget({
@@ -130,6 +129,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
                     final movie = searchMovies[index];
                     return MovieCard(
                       movie: movie,
+                      heroTag: 'home_search_movie_poster_${movie.id}',
                       onTap: widget.onMovieTap,
                       onFavoriteToggle: () {
                         if (widget.onFavoriteToggle != null) {
@@ -229,6 +229,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
                     final movie = movies[index];
                     return MovieCard(
                       movie: movie,
+                      heroTag: 'home_grid_movie_poster_${movie.id}',
                       onTap: widget.onMovieTap,
                       onFavoriteToggle: () {
                         if (widget.onFavoriteToggle != null) {
@@ -306,6 +307,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
                   movie: movie,
                   width: 150.w,
                   height: 250.h,
+                  heroTag: 'home_featured_movie_poster_${movie.id}',
                   onTap: widget.onMovieTap,
                   onFavoriteToggle: () {
                     if (widget.onFavoriteToggle != null) {
@@ -367,6 +369,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
                       movie: movie,
                       width: 150.w,
                       height: 250.h,
+                      heroTag: 'home_genre_${genre}_movie_poster_${movie.id}',
                       onTap: widget.onMovieTap,
                       onFavoriteToggle: () {
                         if (widget.onFavoriteToggle != null) {

@@ -12,6 +12,8 @@ import 'package:my_app/ui/pages/home/home_navigator.dart';
 import 'package:my_app/ui/pages/home/home_state.dart';
 import 'package:my_app/ui/pages/home/widget/widgets.dart';
 import 'package:my_app/ui/pages/profile_pages/profile/profile_page.dart';
+import 'package:my_app/router/route_config.dart';
+import 'package:go_router/go_router.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -75,8 +77,11 @@ class _HomeChildPageState extends State<HomeChildPage> {
                                 child: MovieListWidget(
                                   moviesResponse:
                                       state.filteredMovies ?? state.movies,
-                                  onMovieTap: () {
-                                    // TODO: Navigate to movie detail
+                                  onMovieTap: (movie) {
+                                    context.pushNamed(
+                                      AppRouter.movieDetail,
+                                      extra: movie,
+                                    );
                                   },
                                   onFavoriteToggle: (String movieId) {
                                     _cubit.setMovieFavorite(movieId);

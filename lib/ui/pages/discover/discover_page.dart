@@ -4,11 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:my_app/common/app_colors/app_colors.dart';
 import 'package:my_app/common/app_images/app_svg.dart';
 import 'package:my_app/common/app_text/app_text_style.dart';
 import 'package:my_app/global_bloc/auth/auth_cubit.dart';
-import 'package:my_app/global_bloc/user/user_cubit.dart';
 import 'package:my_app/models/enums/load_status.dart';
 import 'package:my_app/models/response/movies/list/list_movies_response.dart';
 import 'package:my_app/repositories/movie/movie_repository.dart';
@@ -176,7 +174,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
         borderRadius: BorderRadius.circular(20.r),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.3),
+            color: Colors.black.withValues(alpha: 0.3),
             blurRadius: 10,
             offset: const Offset(0, 5),
           ),
@@ -248,7 +246,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
                 decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.7),
+                  color: Colors.black.withValues(alpha: 0.7),
                   borderRadius: BorderRadius.circular(20.r),
                 ),
                 child: Text(
@@ -292,9 +290,9 @@ class _DiscoverPageState extends State<DiscoverPage> {
             width: 49.18.w,
             height: 71.7.h,
             decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.2),
+              color: Colors.black.withValues(alpha: 0.2),
               border: Border.all(
-                color: Colors.white.withOpacity(0.2),
+                color: Colors.white.withValues(alpha: 0.2),
                 width: 1,
               ),
               borderRadius: BorderRadius.circular(82.r),

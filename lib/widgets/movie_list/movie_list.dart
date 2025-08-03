@@ -7,7 +7,7 @@ import 'package:my_app/widgets/movie_card/movie_card.dart';
 class MovieList extends StatelessWidget {
   final String title;
   final List<Movie> movies;
-  final VoidCallback? onMovieTap;
+  final Function(Movie)? onMovieTap;
   final VoidCallback? onFavoriteToggle;
 
   const MovieList({
@@ -41,7 +41,8 @@ class MovieList extends StatelessWidget {
               final movie = movies[index];
               return MovieCard(
                 movie: movie,
-                onTap: () => onMovieTap?.call(),
+                heroTag: 'movie_list_${title}_movie_poster_${movie.id}',
+                onTap: onMovieTap,
                 onFavoriteToggle: () => onFavoriteToggle?.call(),
               );
             },

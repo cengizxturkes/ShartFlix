@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:my_app/models/response/movies/list/list_movies_response.dart';
 import 'package:my_app/ui/pages/app_start/splash/splash_page.dart';
 import 'package:my_app/ui/pages/auth/sign_in/sign_in_page.dart';
 import 'package:my_app/ui/pages/home/home_page.dart';
 import 'package:my_app/ui/pages/discover/discover_page.dart';
+import 'package:my_app/ui/pages/movie_detail/movie_detail_page.dart';
 
 import 'package:my_app/ui/pages/profile_pages/add_photo/add_photo_page.dart';
 import 'package:my_app/ui/pages/profile_pages/profile/profile_page.dart';
@@ -31,6 +33,7 @@ class AppRouter {
   static const String profileDetail = '/profile_detail';
   static const String addPhoto = '/add_photo';
   static const String discover = '/discover';
+  static const String movieDetail = '/movie_detail';
   static const String legalAndPolicies = '/legal_and_policies';
   static const String helpAndSupport = '/help_and_support';
 
@@ -55,6 +58,14 @@ class AppRouter {
       path: discover,
       name: discover,
       builder: (context, state) => const DiscoverPage(),
+    ),
+    GoRoute(
+      path: movieDetail,
+      name: movieDetail,
+      builder: (context, state) {
+        final movie = state.extra as Movie;
+        return MovieDetailPage(movie: movie);
+      },
     ),
 
     GoRoute(

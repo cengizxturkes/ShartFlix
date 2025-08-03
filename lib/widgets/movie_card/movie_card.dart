@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_app/common/app_colors/app_colors.dart';
 import 'package:my_app/common/app_text/app_text_style.dart';
-import 'package:my_app/common/card/card_decoration.dart';
+
 import 'package:my_app/models/response/movies/list/list_movies_response.dart';
 import 'package:my_app/widgets/image/image_url_secured.dart';
 
 class MovieCard extends StatelessWidget {
   final Movie movie;
-  final VoidCallback? onTap;
+  final Function(Movie)? onTap;
   final VoidCallback? onFavoriteToggle;
   final double? height;
   final double? width;
   final bool showRating;
   final bool showFavoriteIcon;
+  final String? heroTag;
   const MovieCard({
     super.key,
     required this.movie,
@@ -23,12 +24,13 @@ class MovieCard extends StatelessWidget {
     this.width,
     this.showRating = false,
     this.showFavoriteIcon = true,
+    this.heroTag,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () => onTap?.call(movie),
       child: Container(
         height: height,
         width: width,
@@ -44,11 +46,14 @@ class MovieCard extends StatelessWidget {
                       topLeft: Radius.circular(8.r),
                       topRight: Radius.circular(8.r),
                     ),
-                    child: ImageUrlSecured(
-                      imageUrl: movie.poster,
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-                      height: double.infinity,
+                    child: Hero(
+                      tag: heroTag ?? 'movie_poster_${movie.id}',
+                      child: ImageUrlSecured(
+                        imageUrl: movie.poster,
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        height: double.infinity,
+                      ),
                     ),
                   ),
                   if (showFavoriteIcon)
