@@ -23,4 +23,5 @@ class AppSvg {
   static const discover = 'assets/images/icon/svg/discover.svg';
   static const add_user = 'assets/images/icon/svg/add_user.svg';
   static const back = 'assets/images/icon/svg/back.svg';
+  static const pro_diamond = 'assets/images/icon/svg/pro_diamond.svg';
 }

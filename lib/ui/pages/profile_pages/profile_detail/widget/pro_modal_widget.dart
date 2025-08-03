@@ -6,6 +6,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_app/common/app_colors/app_colors.dart';
+import 'package:my_app/common/app_images/app_images.dart';
 import 'package:my_app/common/app_images/app_svg.dart';
 import 'package:my_app/common/app_text/app_text_style.dart';
 import 'package:my_app/widgets/buttons/app_buttons.dart';
@@ -129,19 +130,19 @@ class _ProModalWidgetState extends State<ProModalWidget> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             _buildBonusItem(
-                              icon: AppSvg.premium,
+                              icon: AppImages.pro_diamond,
                               label: "premiumAccount".tr(),
                             ),
                             _buildBonusItem(
-                              icon: AppSvg.heart,
+                              icon: AppImages.heart,
                               label: "moreMatches".tr(),
                             ),
                             _buildBonusItem(
-                              icon: AppSvg.trending,
+                              icon: AppImages.trending,
                               label: "moreViews".tr(),
                             ),
                             _buildBonusItem(
-                              icon: AppSvg.aheart,
+                              icon: AppImages.aheart,
                               label: "moreLikes".tr(),
                             ),
                           ],
@@ -154,7 +155,7 @@ class _ProModalWidgetState extends State<ProModalWidget> {
                     'selectTokenPackage'.tr(),
                     style: AppTextStyle.whiteS16Bold,
                   ),
-                  SizedBox(height: 16.h),
+                  SizedBox(height: 30.h),
                   Expanded(
                     child: Row(
                       children: [
@@ -218,23 +219,12 @@ class _ProModalWidgetState extends State<ProModalWidget> {
         Stack(
           alignment: Alignment.center,
           children: [
-            AppSvgWidget(path: icon, width: 24.w, height: 24.h),
-            Container(
-              width: 50.w,
-              height: 50.h,
-              decoration: BoxDecoration(
-                color: AppColors.red.withOpacity(0.2),
-                shape: BoxShape.circle,
-                border: Border.all(color: AppColors.white, width: 2.w),
-              ),
-            ),
-            Container(
-              width: 46.w,
-              height: 46.h,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.white.withOpacity(0.2),
-              ),
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                InnerShadowCircle(size: 55.w),
+                Image.asset(icon, width: 33.w, height: 33.h),
+              ],
             ),
           ],
         ),
@@ -353,4 +343,41 @@ class _ProModalWidgetState extends State<ProModalWidget> {
       ],
     );
   }
+}
+
+class InnerShadowCircle extends StatelessWidget {
+  final double size;
+
+  const InnerShadowCircle({super.key, this.size = 55});
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomPaint(size: Size(size, size), painter: _InnerShadowPainter());
+  }
+}
+
+class _InnerShadowPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final rect = Offset.zero & size;
+
+    // Ana dolgu rengi
+    final paint = Paint()..color = Colors.white;
+    canvas.drawOval(rect, paint);
+
+    // İç gölge efekti
+    final shadowPaint =
+        Paint()
+          ..color = Color(0xff6F060B)
+          ..maskFilter = const MaskFilter.blur(BlurStyle.inner, 10);
+
+    // İçe gölge için ters çizim yapıyoruz
+    final path = Path()..addOval(rect);
+    canvas.saveLayer(rect, Paint());
+    canvas.drawPath(path, shadowPaint);
+    canvas.restore();
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
