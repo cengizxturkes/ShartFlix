@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_app/common/app_images/app_svg.dart';
+import 'package:my_app/common/app_navbar/app_navigation_bar.dart';
 import 'package:my_app/common/app_text/app_text_style.dart';
 import 'package:my_app/global_bloc/auth/auth_cubit.dart';
 import 'package:my_app/models/enums/load_status.dart';
@@ -51,20 +52,9 @@ class _DiscoverPageState extends State<DiscoverPage> {
     return BlocProvider.value(
       value: _discoverCubit,
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          title: Text(
-            'Filmleri Keşfet',
-            style: AppTextStyle.whiteS18SemiBold.copyWith(color: Colors.white),
-          ),
-          leading: IconButton(
-            onPressed: () {
-              context.pushNamed(AppRouter.home);
-            },
-            icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
-          ),
-          elevation: 0,
-          centerTitle: true,
+        bottomNavigationBar: CustomBottomNavigationBar(
+          currentIndex: 3,
+          onTap: (int value) {},
         ),
         body: BlocBuilder<DiscoverCubit, DiscoverState>(
           builder: (context, state) {
@@ -185,10 +175,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
         child: Stack(
           children: [
             Positioned.fill(
-              child: ImageUrlSecured(
-                imageUrl: movie.poster,
-                fit: BoxFit.contain,
-              ),
+              child: ImageUrlSecured(imageUrl: movie.poster, fit: BoxFit.cover),
             ),
             Positioned.fill(
               child: Container(
@@ -206,7 +193,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
               ),
             ),
             Positioned(
-              bottom: 20,
+              bottom: 0,
               left: 20.w,
               right: 0,
               child: Row(
@@ -218,9 +205,8 @@ class _DiscoverPageState extends State<DiscoverPage> {
                     fit: BoxFit.contain,
                   ),
                   Expanded(
-                    // <-- önemli
                     child: Container(
-                      padding: EdgeInsets.all(20.w),
+                      padding: EdgeInsets.symmetric(horizontal: 16.w),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [

@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_app/common/app_text/app_text_style.dart';
@@ -35,39 +36,45 @@ class _ExpandableTextState extends State<ExpandableText> {
       );
     }
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          _isExpanded
-              ? widget.text
-              : '${widget.text.substring(0, widget.maxCharacters)}...',
-          style:
-              widget.textStyle ??
-              AppTextStyle.whiteS12.copyWith(fontSize: 13.sp),
-          maxLines: _isExpanded ? null : 3,
-          overflow: _isExpanded ? null : TextOverflow.ellipsis,
-        ),
-        GestureDetector(
-          onTap: () {
-            setState(() {
-              _isExpanded = !_isExpanded;
-            });
-          },
-          child: Padding(
-            padding: EdgeInsets.only(top: 4.h),
-            child: Text(
-              _isExpanded ? 'daha azını gör' : 'Daha Fazlası',
+    return RichText(
+      text: TextSpan(
+        style:
+            widget.textStyle ?? AppTextStyle.whiteS12.copyWith(fontSize: 13.sp),
+        children: [
+          TextSpan(
+            text:
+                _isExpanded
+                    ? widget.text
+                    : widget.text.substring(0, widget.maxCharacters),
+          ),
+          if (!_isExpanded)
+            TextSpan(
+              text: '... Daha Fazlası',
               style:
                   widget.buttonStyle ??
                   AppTextStyle.whiteS12.copyWith(
                     color: Colors.white,
                     decoration: TextDecoration.underline,
                   ),
+              recognizer:
+                  TapGestureRecognizer()
+                    ..onTap = () => setState(() => _isExpanded = true),
             ),
-          ),
-        ),
-      ],
+          if (_isExpanded)
+            TextSpan(
+              text: '  Daha Azını Gör',
+              style:
+                  widget.buttonStyle ??
+                  AppTextStyle.whiteS12.copyWith(
+                    color: Colors.white,
+                    decoration: TextDecoration.underline,
+                  ),
+              recognizer:
+                  TapGestureRecognizer()
+                    ..onTap = () => setState(() => _isExpanded = false),
+            ),
+        ],
+      ),
     );
   }
 }
