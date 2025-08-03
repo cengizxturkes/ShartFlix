@@ -152,12 +152,10 @@ class _ProfileDetailChildPageState extends State<ProfileDetailChildPage> {
                         scrollDirection: Axis.vertical,
                         padding: EdgeInsets.symmetric(horizontal: 16.w),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2, // 2 sütun
-                          mainAxisSpacing: 12.h, // satırlar arası boşluk
-                          crossAxisSpacing: 12.w, // sütunlar arası boşluk
-                          childAspectRatio:
-                              150.w /
-                              250.h, // kartların en-boy oranı (kart genişliği / yüksekliği)
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 12.h,
+                          crossAxisSpacing: 12.w,
+                          childAspectRatio: 150.w / 250.h,
                         ),
                         itemCount: state.favoriteMovies?.data.length ?? 0,
                         itemBuilder: (context, index) {

@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:my_app/models/request/user/login/login_body.dart';
 import 'package:my_app/models/request/user/register/register_body.dart';
 import 'package:my_app/models/response/movies/favorites/favorite_movies.dart';
+import 'package:my_app/models/response/movies/favorites/set_favorite_response.dart';
 import 'package:my_app/models/response/movies/list/list_movies_response.dart';
 import 'package:my_app/models/response/user/login/login_response.dart';
 import 'package:my_app/models/response/user/profile/profile_response.dart';
@@ -20,7 +21,7 @@ abstract class ApiClient {
   @GET("movie/list")
   Future<ListMoviesResponse> getMovies(@Query("page") int page);
   @POST("movie/favorite/{favoriteId}")
-  Future<FavoriteMovies> setMovieFavorite(
+  Future<SetFavoriteResponse> setMovieFavorite(
     @Path("favoriteId") String favoriteId,
   );
   @GET("user/profile")

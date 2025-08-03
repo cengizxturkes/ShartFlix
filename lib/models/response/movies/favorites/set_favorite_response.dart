@@ -1,95 +1,113 @@
 // To parse this JSON data, do
 //
-//     final favoriteMovies = favoriteMoviesFromJson(jsonString);
+//     final setFavoriteResponse = setFavoriteResponseFromJson(jsonString);
 
-// ignore: unused_import
 import 'package:meta/meta.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'dart:convert';
 
-part 'favorite_movies.g.dart';
+part 'set_favorite_response.g.dart';
 
-FavoriteMovies favoriteMoviesFromJson(String str) =>
-    FavoriteMovies.fromJson(json.decode(str));
+SetFavoriteResponse setFavoriteResponseFromJson(String str) =>
+    SetFavoriteResponse.fromJson(json.decode(str));
 
-String favoriteMoviesToJson(FavoriteMovies data) => json.encode(data.toJson());
+String setFavoriteResponseToJson(SetFavoriteResponse data) =>
+    json.encode(data.toJson());
 
 @JsonSerializable()
-class FavoriteMovies {
+class SetFavoriteResponse {
   @JsonKey(name: "response")
   Response response;
-  @JsonKey(name: "data", defaultValue: [])
-  List<FavoriteMoviesData> data;
+  @JsonKey(name: "data")
+  Data data;
 
-  FavoriteMovies({required this.response, required this.data});
+  SetFavoriteResponse({required this.response, required this.data});
 
-  FavoriteMovies copyWith({
-    Response? response,
-    List<FavoriteMoviesData>? data,
-  }) => FavoriteMovies(
-    response: response ?? this.response,
-    data: data ?? this.data,
-  );
+  SetFavoriteResponse copyWith({Response? response, Data? data}) =>
+      SetFavoriteResponse(
+        response: response ?? this.response,
+        data: data ?? this.data,
+      );
 
-  factory FavoriteMovies.fromJson(Map<String, dynamic> json) =>
-      _$FavoriteMoviesFromJson(json);
+  factory SetFavoriteResponse.fromJson(Map<String, dynamic> json) =>
+      _$SetFavoriteResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$FavoriteMoviesToJson(this);
+  Map<String, dynamic> toJson() => _$SetFavoriteResponseToJson(this);
 }
 
 @JsonSerializable()
-class FavoriteMoviesData {
-  @JsonKey(name: "_id", defaultValue: "")
+class Data {
+  @JsonKey(name: "movie")
+  Movie movie;
+  @JsonKey(name: "action")
+  String action;
+
+  Data({required this.movie, required this.action});
+
+  Data copyWith({Movie? movie, String? action}) =>
+      Data(movie: movie ?? this.movie, action: action ?? this.action);
+
+  factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DataToJson(this);
+}
+
+@JsonSerializable()
+class Movie {
+  @JsonKey(name: "_id")
   String id;
-  @JsonKey(name: "Title", defaultValue: "")
+  @JsonKey(name: "id")
+  String movieId;
+  @JsonKey(name: "Title")
   String title;
-  @JsonKey(name: "Year", defaultValue: "")
+  @JsonKey(name: "Year")
   String year;
-  @JsonKey(name: "Rated", defaultValue: "")
+  @JsonKey(name: "Rated")
   String rated;
-  @JsonKey(name: "Released", defaultValue: "")
+  @JsonKey(name: "Released")
   String released;
-  @JsonKey(name: "Runtime", defaultValue: "")
+  @JsonKey(name: "Runtime")
   String runtime;
-  @JsonKey(name: "Genre", defaultValue: "")
+  @JsonKey(name: "Genre")
   String genre;
-  @JsonKey(name: "Director", defaultValue: "")
+  @JsonKey(name: "Director")
   String director;
-  @JsonKey(name: "Writer", defaultValue: "")
+  @JsonKey(name: "Writer")
   String writer;
-  @JsonKey(name: "Actors", defaultValue: "")
+  @JsonKey(name: "Actors")
   String actors;
-  @JsonKey(name: "Plot", defaultValue: "")
+  @JsonKey(name: "Plot")
   String plot;
-  @JsonKey(name: "Language", defaultValue: "")
+  @JsonKey(name: "Language")
   String language;
-  @JsonKey(name: "Country", defaultValue: "")
+  @JsonKey(name: "Country")
   String country;
-  @JsonKey(name: "Awards", defaultValue: "")
+  @JsonKey(name: "Awards")
   String awards;
-  @JsonKey(name: "Poster", defaultValue: "")
+  @JsonKey(name: "Poster")
   String poster;
-  @JsonKey(name: "Metascore", defaultValue: "")
+  @JsonKey(name: "Metascore")
   String metascore;
-  @JsonKey(name: "imdbRating", defaultValue: "")
+  @JsonKey(name: "imdbRating")
   String imdbRating;
-  @JsonKey(name: "imdbVotes", defaultValue: "")
+  @JsonKey(name: "imdbVotes")
   String imdbVotes;
-  @JsonKey(name: "imdbID", defaultValue: "")
+  @JsonKey(name: "imdbID")
   String imdbId;
-  @JsonKey(name: "Type", defaultValue: "")
+  @JsonKey(name: "Type")
   String type;
-  @JsonKey(name: "Response", defaultValue: "")
+  @JsonKey(name: "Response")
   String response;
-  @JsonKey(name: "Images", defaultValue: [])
+  @JsonKey(name: "Images")
   List<String> images;
-  @JsonKey(name: "ComingSoon", defaultValue: false)
+  @JsonKey(name: "ComingSoon")
   bool comingSoon;
-  @JsonKey(name: "isFavorite", defaultValue: false)
+  @JsonKey(name: "isFavorite")
   bool isFavorite;
 
-  FavoriteMoviesData({
+  Movie({
     required this.id,
+    required this.movieId,
     required this.title,
     required this.year,
     required this.rated,
@@ -115,9 +133,9 @@ class FavoriteMoviesData {
     required this.isFavorite,
   });
 
-  FavoriteMoviesData copyWith({
+  Movie copyWith({
     String? id,
-    String? FavoriteMoviesDataId,
+    String? movieId,
     String? title,
     String? year,
     String? rated,
@@ -141,9 +159,9 @@ class FavoriteMoviesData {
     List<String>? images,
     bool? comingSoon,
     bool? isFavorite,
-  }) => FavoriteMoviesData(
+  }) => Movie(
     id: id ?? this.id,
-
+    movieId: movieId ?? this.movieId,
     title: title ?? this.title,
     year: year ?? this.year,
     rated: rated ?? this.rated,
@@ -169,10 +187,9 @@ class FavoriteMoviesData {
     isFavorite: isFavorite ?? this.isFavorite,
   );
 
-  factory FavoriteMoviesData.fromJson(Map<String, dynamic> json) =>
-      _$FavoriteMoviesDataFromJson(json);
+  factory Movie.fromJson(Map<String, dynamic> json) => _$MovieFromJson(json);
 
-  Map<String, dynamic> toJson() => _$FavoriteMoviesDataToJson(this);
+  Map<String, dynamic> toJson() => _$MovieToJson(this);
 }
 
 @JsonSerializable()

@@ -74,13 +74,13 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<FavoriteMovies> setMovieFavorite(String favoriteId) async {
+  Future<SetFavoriteResponse> setMovieFavorite(String favoriteId) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<FavoriteMovies>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<SetFavoriteResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -96,7 +96,7 @@ class _ApiClient implements ApiClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = FavoriteMovies.fromJson(_result.data!);
+    final value = SetFavoriteResponse.fromJson(_result.data!);
     return value;
   }
 

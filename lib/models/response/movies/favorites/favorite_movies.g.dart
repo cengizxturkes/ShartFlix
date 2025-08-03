@@ -9,9 +9,11 @@ part of 'favorite_movies.dart';
 FavoriteMovies _$FavoriteMoviesFromJson(Map<String, dynamic> json) =>
     FavoriteMovies(
       response: Response.fromJson(json['response'] as Map<String, dynamic>),
-      data: (json['data'] as List<dynamic>)
-          .map((e) => FavoriteMoviesData.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      data: (json['data'] as List<dynamic>?)
+              ?.map(
+                  (e) => FavoriteMoviesData.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
     );
 
 Map<String, dynamic> _$FavoriteMoviesToJson(FavoriteMovies instance) =>
@@ -22,31 +24,33 @@ Map<String, dynamic> _$FavoriteMoviesToJson(FavoriteMovies instance) =>
 
 FavoriteMoviesData _$FavoriteMoviesDataFromJson(Map<String, dynamic> json) =>
     FavoriteMoviesData(
-      id: json['_id'] as String,
-      title: json['Title'] as String,
-      year: json['Year'] as String,
-      rated: json['Rated'] as String,
-      released: json['Released'] as String,
-      runtime: json['Runtime'] as String,
-      genre: json['Genre'] as String,
-      director: json['Director'] as String,
-      writer: json['Writer'] as String,
-      actors: json['Actors'] as String,
-      plot: json['Plot'] as String,
-      language: json['Language'] as String,
-      country: json['Country'] as String,
-      awards: json['Awards'] as String,
-      poster: json['Poster'] as String,
-      metascore: json['Metascore'] as String,
-      imdbRating: json['imdbRating'] as String,
-      imdbVotes: json['imdbVotes'] as String,
-      imdbId: json['imdbID'] as String,
-      type: json['Type'] as String,
-      response: json['Response'] as String,
-      images:
-          (json['Images'] as List<dynamic>).map((e) => e as String).toList(),
-      comingSoon: json['ComingSoon'] as bool,
-      isFavorite: json['isFavorite'] as bool,
+      id: json['_id'] as String? ?? '',
+      title: json['Title'] as String? ?? '',
+      year: json['Year'] as String? ?? '',
+      rated: json['Rated'] as String? ?? '',
+      released: json['Released'] as String? ?? '',
+      runtime: json['Runtime'] as String? ?? '',
+      genre: json['Genre'] as String? ?? '',
+      director: json['Director'] as String? ?? '',
+      writer: json['Writer'] as String? ?? '',
+      actors: json['Actors'] as String? ?? '',
+      plot: json['Plot'] as String? ?? '',
+      language: json['Language'] as String? ?? '',
+      country: json['Country'] as String? ?? '',
+      awards: json['Awards'] as String? ?? '',
+      poster: json['Poster'] as String? ?? '',
+      metascore: json['Metascore'] as String? ?? '',
+      imdbRating: json['imdbRating'] as String? ?? '',
+      imdbVotes: json['imdbVotes'] as String? ?? '',
+      imdbId: json['imdbID'] as String? ?? '',
+      type: json['Type'] as String? ?? '',
+      response: json['Response'] as String? ?? '',
+      images: (json['Images'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+      comingSoon: json['ComingSoon'] as bool? ?? false,
+      isFavorite: json['isFavorite'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$FavoriteMoviesDataToJson(FavoriteMoviesData instance) =>

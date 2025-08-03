@@ -10,18 +10,19 @@ class MovieDetailCubit extends Cubit<MovieDetailState> {
   final AuthCubit authCubit;
 
   MovieDetailCubit({required this.movieRepo, required this.authCubit})
-      : super(MovieDetailState.initial());
+    : super(MovieDetailState.initial());
 
   void toggleFavorite(String movieId) async {
     try {
-      await movieRepo.setMovieFavorite(movieId);
       emit(state.copyWith(isFavorite: !state.isFavorite));
+      await movieRepo.setMovieFavorite(movieId);
     } catch (e) {
       logger.e('Error toggling favorite: $e');
+      emit(state.copyWith(isFavorite: !state.isFavorite));
     }
   }
 
   void setFavoriteStatus(bool isFavorite) {
     emit(state.copyWith(isFavorite: isFavorite));
   }
-} 
+}

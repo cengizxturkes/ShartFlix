@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_app/models/enums/load_status.dart';
+import 'package:my_app/models/response/movies/list/list_movies_response.dart';
 import 'package:my_app/repositories/auth/auth_repository.dart';
 import 'package:my_app/repositories/movie/movie_repository.dart';
 import 'package:my_app/ui/pages/home/home_navigator.dart';
@@ -26,9 +27,18 @@ class HomeCubit extends Cubit<HomeState> {
       final hasMoreData =
           movies.data.pagination.currentPage < movies.data.pagination.maxPage;
 
+      // Create featured movies (random 10 movies)
+      final randomMovies = List<Movie>.from(movies.data.movies);
+      randomMovies.shuffle();
+      final featuredMoviesList = randomMovies.take(10).toList();
+      final featuredMovies = movies.copyWith(
+        data: movies.data.copyWith(movies: featuredMoviesList),
+      );
+
       emit(
         state.copyWith(
           movies: movies,
+          featuredMovies: featuredMovies,
           fetchMovieStatus: LoadStatus.success,
           currentPage: 1,
           hasMoreData: hasMoreData,
@@ -96,6 +106,7 @@ class HomeCubit extends Cubit<HomeState> {
       final hasMoreData =
           movies.data.pagination.currentPage < movies.data.pagination.maxPage;
 
+      // Keep existing featured movies, don't recreate them
       emit(
         state.copyWith(
           movies: movies,
@@ -123,19 +134,42 @@ class HomeCubit extends Cubit<HomeState> {
             }).toList(),
       ),
     );
-    emit(state.copyWith(movies: tempMovies));
+    final tempFeaturedMovies = state.featuredMovies?.copyWith(
+      data: state.featuredMovies!.data.copyWith(
+        movies:
+            state.featuredMovies!.data.movies.map((movie) {
+              if (movie.id == favoriteId) {
+                return movie.copyWith(isFavorite: !movie.isFavorite);
+              }
+              return movie;
+            }).toList(),
+      ),
+    );
+
+    emit(
+      state.copyWith(movies: tempMovies, featuredMovies: tempFeaturedMovies),
+    );
 
     try {
       final response = await movieRepo.setMovieFavorite(favoriteId);
       if (isClosed) return;
 
       if (response.response.code != 200) {
-        // API hata verirse geri al
-        emit(state.copyWith(movies: state.movies));
+        emit(
+          state.copyWith(
+            movies: state.movies,
+            featuredMovies: state.featuredMovies,
+          ),
+        );
       }
     } catch (e) {
       if (isClosed) return;
-      emit(state.copyWith(movies: state.movies));
+      emit(
+        state.copyWith(
+          movies: state.movies,
+          featuredMovies: state.featuredMovies,
+        ),
+      );
     }
   }
 

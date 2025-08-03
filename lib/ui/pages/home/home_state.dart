@@ -9,6 +9,7 @@ class HomeState extends Equatable {
   final LoadStatus searchStatus;
   final ListMoviesResponse? movies;
   final ListMoviesResponse? filteredMovies;
+  final ListMoviesResponse? featuredMovies;
   final String searchQuery;
   final int currentPage;
   final bool hasMoreData;
@@ -21,6 +22,7 @@ class HomeState extends Equatable {
     this.searchStatus = LoadStatus.initial,
     this.movies,
     this.filteredMovies,
+    this.featuredMovies,
     this.searchQuery = '',
     this.currentPage = 1,
     this.hasMoreData = true,
@@ -35,6 +37,7 @@ class HomeState extends Equatable {
     searchStatus,
     movies,
     filteredMovies,
+    featuredMovies,
     searchQuery,
     currentPage,
     hasMoreData,
@@ -48,6 +51,7 @@ class HomeState extends Equatable {
     LoadStatus? searchStatus,
     ListMoviesResponse? movies,
     ListMoviesResponse? filteredMovies,
+    ListMoviesResponse? featuredMovies,
     String? searchQuery,
     int? currentPage,
     bool? hasMoreData,
@@ -60,6 +64,7 @@ class HomeState extends Equatable {
       searchStatus: searchStatus ?? this.searchStatus,
       movies: movies ?? this.movies,
       filteredMovies: filteredMovies ?? this.filteredMovies,
+      featuredMovies: featuredMovies ?? this.featuredMovies,
       searchQuery: searchQuery ?? this.searchQuery,
       currentPage: currentPage ?? this.currentPage,
       hasMoreData: hasMoreData ?? this.hasMoreData,

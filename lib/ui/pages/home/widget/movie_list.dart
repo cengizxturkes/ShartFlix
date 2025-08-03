@@ -198,7 +198,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
                   onTap: widget.onMovieTap,
                 ),
               ),
-              SliverToBoxAdapter(child: _buildTopMoviesSection(movies)),
+              SliverToBoxAdapter(child: _buildTopMoviesSection(movies, state)),
 
               ..._buildGenreCategories(movies),
               SliverToBoxAdapter(
@@ -271,12 +271,9 @@ class _MovieListWidgetState extends State<MovieListWidget> {
     );
   }
 
-  Widget _buildTopMoviesSection(List<Movie> movies) {
-    // Get random 10 movies from API data
-    final randomMovies = List<Movie>.from(movies);
-    randomMovies.shuffle(_random);
-    final topMovies = randomMovies.take(10).toList();
-
+  Widget _buildTopMoviesSection(List<Movie> movies, HomeState state) {
+    final topMovies =
+        state.featuredMovies?.data.movies ?? movies.take(10).toList();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
