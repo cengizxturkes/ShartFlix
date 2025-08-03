@@ -33,20 +33,24 @@ class _MovieImageSectionState extends State<MovieImageSection> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        _buildImageContent(),
-        IgnorePointer(child: Container(decoration: context.movieImageGradient)),
-        if (widget.movie.images.isNotEmpty) ...[
-          Positioned(
-            top: 100.h,
-            left: 0,
-            right: 0,
-            child: _buildImageIndicators(),
+    return SizedBox(
+      height: 400.h, // Fixed height to prevent infinite constraints
+      child: Stack(
+        children: [
+          _buildImageContent(),
+          IgnorePointer(
+            child: Container(decoration: context.movieImageGradient),
           ),
+          if (widget.movie.images.isNotEmpty) ...[
+            Positioned(
+              top: 100.h,
+              left: 0,
+              right: 0,
+              child: _buildImageIndicators(),
+            ),
+          ],
         ],
-      ],
+      ),
     );
   }
 

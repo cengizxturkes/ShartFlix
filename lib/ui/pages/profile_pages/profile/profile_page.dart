@@ -33,8 +33,6 @@ class _ProfileChildPageState extends State<ProfileChildPage> {
   void initState() {
     super.initState();
     _cubit = BlocProvider.of<ProfileCubit>(context);
-    // ProfileCubit zaten HomePage'te getUser() çağrılıyor
-    // Burada tekrar çağırmaya gerek yok
   }
 
   @override

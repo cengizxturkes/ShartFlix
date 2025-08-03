@@ -19,7 +19,7 @@ class MovieDetailAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      expandedHeight: 500.h,
+      expandedHeight: 0.h,
       pinned: true,
       backgroundColor: Colors.transparent,
       leadingWidth: 56.w + 4.w,
