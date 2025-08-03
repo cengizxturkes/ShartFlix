@@ -2,7 +2,12 @@
 
 <img src=https://github.com/user-attachments/assets/30bf78ec-6381-40f5-a4cb-bea9573d92c1 alt="logo" width=400 height=400 />
 
-<h1>ShartFlix-NodeLabs Case(Lütfen Önce Okuyun)</h1>
+
+
+<h1>ShartFlix-NodeLabs Case(Lütfen Önce Okuyun),Media datalarını lütfen görüntüleyin.</h1>
+Clarity:
+https://github.com/user-attachments/assets/9a35ea0a-3892-4294-8712-d9ea9e83969b
+
 <p>İstenilen teknolojilerin geliştirilmesi</p>
 
 <h4> <span> · </span> <a href="https://github.com/cengizxturkes/ShartFlix/blob/master/README.md"> Documentation </a> <span> · </span> <a href="https://github.com/cengizxturkes/ShartFlix/issues"> Report Bug </a> <span> · </span> <a href="https://github.com/cengizxturkes/ShartFlix/issues"> Request Feature </a> </h4>
