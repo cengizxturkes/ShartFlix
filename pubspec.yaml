@@ -45,6 +45,7 @@ dependencies:
   flutter_svg: ^2.0.7
   url_launcher: ^6.3.2
   flutter_screenutil: ^5.9.3
+  lottie: ^3.3.1
   #Image
   cached_network_image: ^3.4.1
   path: ^1.8.3
@@ -74,6 +75,7 @@ flutter:
   uses-material-design: true
   generate: true
   assets:
+    - assets/animations/lottie/
     - assets/images/icon/png/
     - assets/images/icon/svg/
     - assets/translations/

@@ -120,7 +120,6 @@ class _SignUpChildPageState extends State<SignUpChildPage> {
                         text: "Kullanıcı sözleşmesini ",
                         style: TextStyle(
                           fontFamily: 'Euclid Circular A',
-
                           fontWeight: FontWeight.w400,
                           fontSize: 12,
                           height: 1.5,

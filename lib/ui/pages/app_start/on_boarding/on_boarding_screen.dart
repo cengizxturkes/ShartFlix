@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lottie/lottie.dart';
+import 'package:another_flushbar/flushbar.dart';
+import 'package:my_app/common/app_animation/app_animation.dart';
 import 'package:my_app/common/app_colors/app_colors.dart';
 import 'package:my_app/common/app_text/app_text_style.dart';
 import 'package:my_app/router/route_config.dart';
@@ -36,12 +39,18 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       description: 'Kişisel önerilerle film keyfini zirveye taşı!',
     ),
     _OnBoardingPageData(
-      image: '', // Son sayfa farklı olacağı için gerek yok
+      image: '', // 4. sayfa kategori seçimi için boş
       title: '',
+      description: '',
+    ),
+    _OnBoardingPageData(
+      image: '', // 5. sayfa "her şey hazır" için boş
+      title: 'Her şey hazır, başlayalım!',
       description: '',
     ),
   ];
   List<String> selectedCategories = [];
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -53,6 +62,28 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   }
 
   void _nextPage() {
+    // Kategori seçim sayfasında (sayfa 3) en az bir kategori seçilmiş mi kontrol et
+    if (_currentPage == 3) {
+      if (selectedCategories.isEmpty) {
+        Flushbar(
+          message: 'Lütfen en az bir kategori seçiniz',
+          flushbarStyle: FlushbarStyle.FLOATING,
+          margin: EdgeInsets.only(top: 100.h, left: 16.w, right: 16.w),
+          borderRadius: BorderRadius.circular(10.r),
+          flushbarPosition: FlushbarPosition.TOP,
+          icon: const Icon(
+            Icons.error_outline,
+            size: 28.0,
+            color: Colors.white,
+          ),
+          titleColor: Colors.white,
+          duration: const Duration(seconds: 2),
+          backgroundColor: Colors.redAccent,
+        ).show(context);
+        return;
+      }
+    }
+
     if (_currentPage < _pages.length - 1) {
       _pageController.nextPage(
         duration: const Duration(milliseconds: 300),
@@ -77,12 +108,53 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               });
             },
             itemBuilder: (context, index) {
-              if (index == _pages.length - 1) {
+              if (index == 3) {
                 return _buildCategorySelectionPage();
+              } else if (index == 4) {
+                return _buildReadyPage();
               }
               return _buildPage(_pages[index]);
             },
           ),
+          Positioned(
+            top: 0.1.sh,
+            right: 0.05.sw,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
+              decoration: BoxDecoration(
+                color: Colors.white.withValues(alpha: 0.2),
+                borderRadius: BorderRadius.circular(100.r),
+              ),
+              child: TextButton(
+                onPressed: () {
+                  _pageController.jumpToPage(3);
+                },
+                style: TextButton.styleFrom(
+                  padding: EdgeInsets.zero,
+                  minimumSize: Size(50.w, 30.h),
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'Atla',
+                      style: AppTextStyle.whiteS14.copyWith(
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(width: 6.w),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 16.sp,
+                      color: Colors.white,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+
           Positioned(
             bottom: 0.05.sh,
             left: 30.w,
@@ -222,6 +294,34 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   }).toList(),
             ),
             Spacer(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildReadyPage() {
+    return Container(
+      color: Colors.black,
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Lottie.asset(
+              AppAnimation.movie,
+              width: 200.w,
+              height: 200.h,
+              fit: BoxFit.contain,
+            ),
+            SizedBox(height: 30.h),
+            Text(
+              _pages[4].title,
+              style: AppTextStyle.blackS18SemiBold.copyWith(
+                fontSize: 28.sp,
+                color: Colors.white,
+              ),
+              textAlign: TextAlign.center,
+            ),
           ],
         ),
       ),

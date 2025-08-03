@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:my_app/common/app_colors/app_colors.dart';
 import 'package:my_app/common/app_images/app_images.dart';
 import 'package:my_app/database/share_preferences_helper.dart';
@@ -46,19 +47,12 @@ class _SplashChildPageState extends State<SplashChildPage> {
   }
 
   void _setup() async {
-    // Önce tema ayarlarını yükle
     await _appSettingCubit.getInitialSetting();
     await AppColors.initialize();
-
     await Future.delayed(const Duration(seconds: 1));
-    await _requestPermissions();
     await _runOnboardingIfNeed();
     await _cubit.fetchInitialData();
     await _cubit.checkLogin();
-  }
-
-  Future<void> _requestPermissions() async {
-    //Request push notification permission if need
   }
 
   Future<void> _runOnboardingIfNeed() async {

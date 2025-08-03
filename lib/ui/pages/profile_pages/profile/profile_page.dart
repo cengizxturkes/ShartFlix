@@ -15,18 +15,7 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (con) {
-        final authRepo = RepositoryProvider.of<AuthRepository>(context);
-        final movieRepo = RepositoryProvider.of<MovieRepository>(context);
-        return ProfileCubit(
-          navigator: ProfileNavigator(context: context),
-          authRepo: authRepo,
-          movieRepo: movieRepo,
-        );
-      },
-      child: const ProfileChildPage(),
-    );
+    return const ProfileChildPage();
   }
 }
 
@@ -44,6 +33,8 @@ class _ProfileChildPageState extends State<ProfileChildPage> {
   void initState() {
     super.initState();
     _cubit = BlocProvider.of<ProfileCubit>(context);
+    // ProfileCubit zaten HomePage'te getUser() çağrılıyor
+    // Burada tekrar çağırmaya gerek yok
   }
 
   @override
@@ -55,7 +46,6 @@ class _ProfileChildPageState extends State<ProfileChildPage> {
             if (state.fetchUserStatus == LoadStatus.loading) {
               return const Center(child: CircularProgressIndicator());
             }
-
             return Scaffold(
               appBar: AppBar(
                 title: Text('Profil', style: AppTextStyle.whiteS15Regular),

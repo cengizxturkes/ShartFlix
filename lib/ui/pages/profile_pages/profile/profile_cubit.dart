@@ -17,9 +17,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     required this.navigator,
     required this.authRepo,
     required this.movieRepo,
-  }) : super(const ProfileState()) {
-    getUser();
-  }
+  }) : super(const ProfileState());
 
   void toggleDarkMode() {
     if (isClosed) return;

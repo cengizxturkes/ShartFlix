@@ -11,7 +11,10 @@ import 'package:my_app/ui/pages/home/home_cubit.dart';
 import 'package:my_app/ui/pages/home/home_navigator.dart';
 import 'package:my_app/ui/pages/home/home_state.dart';
 import 'package:my_app/ui/pages/home/widget/widgets.dart';
+import 'package:my_app/ui/pages/profile_pages/profile/profile_cubit.dart';
+import 'package:my_app/ui/pages/profile_pages/profile/profile_navigator.dart';
 import 'package:my_app/ui/pages/profile_pages/profile/profile_page.dart';
+import 'package:my_app/ui/pages/profile_pages/profile/profile_state.dart';
 import 'package:my_app/router/route_config.dart';
 import 'package:go_router/go_router.dart';
 
@@ -20,16 +23,31 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (con) {
-        final authRepo = RepositoryProvider.of<AuthRepository>(context);
-        final movieRepo = RepositoryProvider.of<MovieRepository>(context);
-        return HomeCubit(
-          navigator: HomeNavigator(context: context),
-          authRepo: authRepo,
-          movieRepo: movieRepo,
-        );
-      },
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<HomeCubit>(
+          create: (con) {
+            final authRepo = RepositoryProvider.of<AuthRepository>(context);
+            final movieRepo = RepositoryProvider.of<MovieRepository>(context);
+            return HomeCubit(
+              navigator: HomeNavigator(context: context),
+              authRepo: authRepo,
+              movieRepo: movieRepo,
+            );
+          },
+        ),
+        BlocProvider<ProfileCubit>(
+          create: (con) {
+            final authRepo = RepositoryProvider.of<AuthRepository>(context);
+            final movieRepo = RepositoryProvider.of<MovieRepository>(context);
+            return ProfileCubit(
+              navigator: ProfileNavigator(context: context),
+              authRepo: authRepo,
+              movieRepo: movieRepo,
+            );
+          },
+        ),
+      ],
       child: const HomeChildPage(),
     );
   }
@@ -44,57 +62,67 @@ class HomeChildPage extends StatefulWidget {
 
 class _HomeChildPageState extends State<HomeChildPage> {
   late HomeCubit _cubit;
+  late ProfileCubit _profileCubit;
   @override
   void initState() {
     super.initState();
     _cubit = BlocProvider.of<HomeCubit>(context);
-    _cubit.fetchMovies();
+    _profileCubit = BlocProvider.of<ProfileCubit>(context);
+    Future.delayed(Duration.zero, () {
+      _profileCubit.getUser();
+      _cubit.fetchMovies();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(
-      builder: (context, state) {
-        return WillPopScope(
-          onWillPop: () async => true,
-          child: Scaffold(
-            backgroundColor: AppColors.background,
-            extendBody: true,
-            bottomNavigationBar: CustomBottomNavigationBar(
-              currentIndex: state.currentNavigationIndex,
-              onTap: (int value) => _cubit.onNavigationChanged(value),
-            ),
-            body:
-                state.currentNavigationIndex == 0
-                    ? SafeArea(
-                      child: SingleChildScrollView(
-                        child: SizedBox(
-                          height: MediaQuery.of(context).size.height,
-                          child: Column(
-                            children: [
-                              HomeHeader(cubit: _cubit),
-                              Expanded(
-                                child: MovieListWidget(
-                                  moviesResponse:
-                                      state.filteredMovies ?? state.movies,
-                                  onMovieTap: (movie) {
-                                    context.pushNamed(
-                                      AppRouter.movieDetail,
-                                      extra: movie,
-                                    );
-                                  },
-                                  onFavoriteToggle: (String movieId) {
-                                    _cubit.setMovieFavorite(movieId);
-                                  },
-                                ),
+      builder: (context, homeState) {
+        return BlocBuilder<ProfileCubit, ProfileState>(
+          builder: (context, profileState) {
+            return WillPopScope(
+              onWillPop: () async => true,
+              child: Scaffold(
+                backgroundColor: AppColors.background,
+                extendBody: true,
+                bottomNavigationBar: CustomBottomNavigationBar(
+                  currentIndex: homeState.currentNavigationIndex,
+                  onTap: (int value) => _cubit.onNavigationChanged(value),
+                ),
+                body:
+                    homeState.currentNavigationIndex == 0
+                        ? SafeArea(
+                          child: SingleChildScrollView(
+                            child: SizedBox(
+                              height: MediaQuery.of(context).size.height,
+                              child: Column(
+                                children: [
+                                  HomeHeader(cubit: _cubit),
+                                  Expanded(
+                                    child: MovieListWidget(
+                                      moviesResponse:
+                                          homeState.filteredMovies ??
+                                          homeState.movies,
+                                      onMovieTap: (movie) {
+                                        context.pushNamed(
+                                          AppRouter.movieDetail,
+                                          extra: movie,
+                                        );
+                                      },
+                                      onFavoriteToggle: (String movieId) {
+                                        _cubit.setMovieFavorite(movieId);
+                                      },
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ],
+                            ),
                           ),
-                        ),
-                      ),
-                    )
-                    : ProfilePage(),
-          ),
+                        )
+                        : ProfilePage(),
+              ),
+            );
+          },
         );
       },
     );

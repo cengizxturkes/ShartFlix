@@ -23,6 +23,8 @@ import 'package:my_app/repositories/movie/movie_repository.dart';
 import 'package:my_app/repositories/movie/movie_repository_impl.dart';
 import 'package:my_app/repositories/user/user_repositoru_impl.dart';
 import 'package:my_app/repositories/user/user_repository.dart';
+import 'package:my_app/ui/pages/profile_pages/profile/profile_cubit.dart';
+import 'package:my_app/ui/pages/profile_pages/profile/profile_navigator.dart';
 import 'package:my_app/widgets/loading/app_loading_indicator.dart';
 import 'package:my_app/models/enums/language.dart';
 
@@ -87,6 +89,17 @@ class _ShartflixState extends State<Shartflix> {
                 context,
               );
               return UserCubit(userRepository: userRepository);
+            },
+          ),
+          BlocProvider<ProfileCubit>(
+            create: (context) {
+              final authRepo = RepositoryProvider.of<AuthRepository>(context);
+              final movieRepo = RepositoryProvider.of<MovieRepository>(context);
+              return ProfileCubit(
+                authRepo: authRepo,
+                movieRepo: movieRepo,
+                navigator: ProfileNavigator(context: context),
+              );
             },
           ),
           BlocProvider<AppSettingCubit>(
