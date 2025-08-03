@@ -7,10 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_app/common/app_colors/app_colors.dart';
 import 'package:my_app/common/app_images/app_images.dart';
-import 'package:my_app/common/app_images/app_svg.dart';
 import 'package:my_app/common/app_text/app_text_style.dart';
 import 'package:my_app/widgets/buttons/app_buttons.dart';
-import 'package:my_app/widgets/icon/app_svg_widget.dart';
 import 'package:my_app/widgets/inner_shadow_container.dart';
 
 class ProModalWidget extends StatefulWidget {

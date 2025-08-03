@@ -10,7 +10,6 @@ import 'package:my_app/ui/pages/home/home_cubit.dart';
 import 'package:my_app/ui/pages/home/home_state.dart';
 import 'package:my_app/ui/pages/home/widget/featured_movie.dart';
 import 'package:my_app/widgets/movie_card/movie_card.dart';
-import 'dart:math';
 
 class MovieListWidget extends StatefulWidget {
   final ListMoviesResponse? moviesResponse;
@@ -30,7 +29,6 @@ class MovieListWidget extends StatefulWidget {
 
 class _MovieListWidgetState extends State<MovieListWidget> {
   final ScrollController _scrollController = ScrollController();
-  final Random _random = Random();
 
   @override
   void initState() {

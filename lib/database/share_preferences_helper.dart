@@ -7,6 +7,7 @@ class SharedPreferencesHelper {
   static const _currentLanguageKey = 'current_language';
   static const _isDarkModeKey = 'is_dark_mode';
   static const _isThemeManuallySetKey = 'is_theme_manually_set';
+  static const _quickActionFlagKey = 'quick_action_flag';
 
   static Future<void> setThemeManually(bool isManual) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -69,5 +70,21 @@ class SharedPreferencesHelper {
   static Future<void> setThemePreference(bool isDarkMode) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool(_isDarkModeKey, isDarkMode);
+  }
+
+  // Quick Action Flag Methods
+  static Future<void> setQuickActionFlag(String flag) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_quickActionFlagKey, flag);
+  }
+
+  static Future<String?> getQuickActionFlag() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString(_quickActionFlagKey);
+  }
+
+  static Future<void> clearQuickActionFlag() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_quickActionFlagKey);
   }
 }

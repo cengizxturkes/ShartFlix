@@ -7,4 +7,8 @@ class SplashNavigator extends AppNavigator {
   Future<void> openOnboardingPage() {
     return pushReplacementNamed(AppRouter.onBoarding);
   }
+
+  Future<void> openDiscoverPage() {
+    return pushReplacementNamed(AppRouter.discover);
+  }
 }

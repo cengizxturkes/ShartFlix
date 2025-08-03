@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_app/repositories/auth/auth_repository.dart';
+import 'package:my_app/utils/quick_actions_service.dart';
 
 import 'splash_navigator.dart';
 import 'splash_state.dart';
@@ -23,6 +24,17 @@ class SplashCubit extends Cubit<SplashState> {
 
   Future<void> checkLogin() async {
     if (isClosed) return;
+
+    // Check if quick action was triggered
+    final wasQuickAction = await QuickActionsService.wasQuickActionTriggered();
+    if (wasQuickAction) {
+      // Clear the flag
+      await QuickActionsService.clearQuickActionFlag();
+      // Navigate directly to discover page
+      await navigator.openDiscoverPage();
+      return;
+    }
+
     final isLoggedIn = await _isLoggedIn();
     if (isClosed) return;
 

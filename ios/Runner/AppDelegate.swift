@@ -18,4 +18,13 @@ import Clarity
     GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
+  
+  override func application(
+    _ application: UIApplication,
+    performActionFor shortcutItem: UIApplicationShortcutItem,
+    completionHandler: @escaping (Bool) -> Void
+  ) {
+    // Handle quick action - the quick_actions plugin will handle this automatically
+    completionHandler(true)
+  }
 }

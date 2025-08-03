@@ -27,6 +27,7 @@ import 'package:my_app/ui/pages/profile_pages/profile/profile_cubit.dart';
 import 'package:my_app/ui/pages/profile_pages/profile/profile_navigator.dart';
 import 'package:my_app/widgets/loading/app_loading_indicator.dart';
 import 'package:my_app/models/enums/language.dart';
+import 'package:my_app/utils/quick_actions_service.dart';
 
 import 'router/route_config.dart';
 
@@ -46,6 +47,18 @@ class _ShartflixState extends State<Shartflix> {
   void initState() {
     _apiClient = ApiUtil.apiClient;
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Initialize quick actions after the widget is built
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // Delay initialization to ensure app is fully loaded
+      Future.delayed(const Duration(milliseconds: 500), () {
+        QuickActionsService.initializeQuickActions(context);
+      });
+    });
   }
 
   @override

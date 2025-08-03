@@ -11,7 +11,6 @@ import 'package:my_app/ui/pages/movie_detail/movie_detail_cubit.dart';
 import 'package:my_app/widgets/app_app_bar/app_app_bar.dart';
 import 'package:my_app/widgets/buttons/app_buttons.dart';
 import 'package:my_app/widgets/image/image_url_secured.dart';
-import 'package:my_app/widgets/image/full_screen_image_preview.dart';
 import 'package:my_app/widgets/widgets.dart';
 
 class MovieDetailPage extends StatefulWidget {
