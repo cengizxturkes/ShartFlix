@@ -1,9 +1,12 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_app/common/app_colors/app_colors.dart';
 import 'package:my_app/common/app_dimens/app_dimens.dart';
+import 'package:my_app/common/app_text/app_text_style.dart';
 import 'package:my_app/global_bloc/user/user_cubit.dart';
 import 'package:my_app/models/enums/load_status.dart';
 import 'package:my_app/repositories/auth/auth_repository.dart';
@@ -71,38 +74,86 @@ class _SignUpChildPageState extends State<SignUpChildPage> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => true,
-      child: SafeArea(
-        child: Scaffold(
-          body: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppDimens.loginPagePadding,
-            ),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const SignUpHeader(),
-                  SignUpForm(
-                    cubit: _cubit,
-                    nameController: _nameController,
-                    emailController: _emailController,
-                    passwordController: _passwordController,
-                    confirmPasswordController: _confirmPasswordController,
-                    formKey: _formKey,
-                  ),
-                  SizedBox(height: 24.h),
-                  _buildSignUpButton(),
-                  SizedBox(height: 24.h),
-                  const SocialLoginButtons(),
-                  SizedBox(height: 32.h),
+    return SafeArea(
+      child: Scaffold(
+        bottomNavigationBar: Padding(
+          padding: EdgeInsets.only(
+            left: AppDimens.loginPagePadding,
+            right: AppDimens.loginPagePadding,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SocialLoginButtons(),
 
-                  const SignUpFooter(),
-                ],
+              SizedBox(height: 24.h),
+              const SignUpFooter(),
+            ],
+          ),
+        ),
+        body: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: AppDimens.loginPagePadding),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SignUpHeader(),
+              SignUpForm(
+                cubit: _cubit,
+                nameController: _nameController,
+                emailController: _emailController,
+                passwordController: _passwordController,
+                confirmPasswordController: _confirmPasswordController,
+                formKey: _formKey,
               ),
-            ),
+              SizedBox(height: 24.h),
+              RichText(
+                textAlign: TextAlign.left,
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: "Kullanıcı sözleşmesini ",
+                      style: TextStyle(
+                        fontFamily: 'Euclid Circular A',
+
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12,
+                        height: 1.5,
+                        color: Colors.white.withOpacity(0.5),
+                      ),
+                    ),
+                    TextSpan(
+                      text: "okudum ve kabul ediyorum.",
+                      style: TextStyle(
+                        fontFamily: 'Euclid Circular A',
+                        decoration: TextDecoration.underline,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12,
+                        height: 1.5,
+                        color: Colors.white,
+                      ),
+                    ),
+
+                    TextSpan(
+                      text: " Bu sözleşmeyi okuyarak devam ediniz lütfen.",
+                      style: AppTextStyle.whiteS12Regular.copyWith(
+                        color: AppColors.white.withValues(alpha: 0.5),
+                      ),
+                      recognizer:
+                          TapGestureRecognizer()
+                            ..onTap = () {
+                              // kullanıcı sözleşmesi sayfasına yönlendirme
+                            },
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 38.h),
+              _buildSignUpButton(),
+
+              SizedBox(height: 100.h), // Buton için boşluk
+            ],
           ),
         ),
       ),
@@ -123,7 +174,7 @@ class _SignUpChildPageState extends State<SignUpChildPage> {
               confirmPassword: _confirmPasswordController.text,
             );
           },
-          title: "Kayıt Ol",
+          title: "Şimdi Kaydol",
         );
       },
     );

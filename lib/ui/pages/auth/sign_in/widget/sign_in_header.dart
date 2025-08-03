@@ -19,7 +19,7 @@ class SignInHeader extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 50.w),
           child: Text(
-            "Tempus varius a vitae interdum id tortor elementum tristique eleifend at.",
+            "Sizi yeniden görmek çok güzel!",
             style: AppTextStyle.whiteS12.copyWith(
               fontWeight: FontWeight.w400,
               fontSize: 13,

@@ -14,7 +14,7 @@ class SignInFooter extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          "Hesabın yok mu?",
+          "Bir hesabın yok mu?",
           style: AppTextStyle.whiteS12Regular.copyWith(
             color: AppColors.white.withValues(alpha: 0.5),
           ),
@@ -24,7 +24,7 @@ class SignInFooter extends StatelessWidget {
             context.go(AppRouter.signUp);
           },
           child: Text(
-            "Kayıt ol",
+            "Kayıt ol!",
             style: AppTextStyle.whiteS12Regular.copyWith(
               color: AppColors.white,
             ),

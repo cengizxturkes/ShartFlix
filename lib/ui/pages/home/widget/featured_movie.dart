@@ -57,22 +57,7 @@ class FeaturedMovie extends StatelessWidget {
                   alignment: Alignment.center,
                   child: Icon(Icons.movie, size: 40.sp, color: AppColors.white),
                 ),
-              Positioned(
-                bottom: 16.h,
-                right: 0.w,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 16.h),
-                  child: SizedBox(
-                    width: 150.w,
-                    child: AppButton(
-                      onPressed: () {
-                        context.pushNamed(AppRouter.discover);
-                      },
-                      title: "Filmleri Keşfet",
-                    ),
-                  ),
-                ),
-              ),
+
               Positioned(
                 bottom: AppDimens.featuredMovieBottomPositioned.h,
                 left: AppDimens.featuredMovieLeftPositioned.w,
@@ -130,6 +115,19 @@ class FeaturedMovie extends StatelessWidget {
                     ),
                     SizedBox(height: 12.h),
                   ],
+                ),
+              ),
+              Positioned(
+                bottom: 16.h,
+                right: 0.w,
+                child: SizedBox(
+                  width: 150.w,
+                  child: AppButton(
+                    onPressed: () {
+                      context.pushNamed(AppRouter.discover);
+                    },
+                    title: "Filmleri Keşfet",
+                  ),
                 ),
               ),
             ],

@@ -16,7 +16,7 @@ class SignUpHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: 138.h),
+        SizedBox(height: 66.h),
         Text("Hoşgeldiniz", style: AppTextStyle.whiteS24Bold),
         SizedBox(height: 8.h),
         Padding(
