@@ -2,7 +2,6 @@
 //
 //     final registerResponse = registerResponseFromJson(jsonString);
 
-// ignore: unused_import
 import 'package:meta/meta.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'dart:convert';
@@ -17,15 +16,18 @@ String registerResponseToJson(RegisterResponse data) =>
 
 @JsonSerializable()
 class RegisterResponse {
-  @JsonKey(name: "token")
-  String token;
-  @JsonKey(name: "user")
-  User user;
+  @JsonKey(name: "response")
+  Response response;
+  @JsonKey(name: "data")
+  Data data;
 
-  RegisterResponse({required this.token, required this.user});
+  RegisterResponse({required this.response, required this.data});
 
-  RegisterResponse copyWith({String? token, User? user}) =>
-      RegisterResponse(token: token ?? this.token, user: user ?? this.user);
+  RegisterResponse copyWith({Response? response, Data? data}) =>
+      RegisterResponse(
+        response: response ?? this.response,
+        data: data ?? this.data,
+      );
 
   factory RegisterResponse.fromJson(Map<String, dynamic> json) =>
       _$RegisterResponseFromJson(json);
@@ -34,23 +36,64 @@ class RegisterResponse {
 }
 
 @JsonSerializable()
-class User {
-  @JsonKey(name: "id")
+class Data {
+  @JsonKey(name: "_id")
   String id;
+  @JsonKey(name: "id")
+  String dataId;
   @JsonKey(name: "name")
   String name;
   @JsonKey(name: "email")
   String email;
+  @JsonKey(name: "photoUrl")
+  String photoUrl;
+  @JsonKey(name: "token")
+  String token;
 
-  User({required this.id, required this.name, required this.email});
+  Data({
+    required this.id,
+    required this.dataId,
+    required this.name,
+    required this.email,
+    required this.photoUrl,
+    required this.token,
+  });
 
-  User copyWith({String? id, String? name, String? email}) => User(
+  Data copyWith({
+    String? id,
+    String? dataId,
+    String? name,
+    String? email,
+    String? photoUrl,
+    String? token,
+  }) => Data(
     id: id ?? this.id,
+    dataId: dataId ?? this.dataId,
     name: name ?? this.name,
     email: email ?? this.email,
+    photoUrl: photoUrl ?? this.photoUrl,
+    token: token ?? this.token,
   );
 
-  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);
 
-  Map<String, dynamic> toJson() => _$UserToJson(this);
+  Map<String, dynamic> toJson() => _$DataToJson(this);
+}
+
+@JsonSerializable()
+class Response {
+  @JsonKey(name: "code")
+  int code;
+  @JsonKey(name: "message")
+  String message;
+
+  Response({required this.code, required this.message});
+
+  Response copyWith({int? code, String? message}) =>
+      Response(code: code ?? this.code, message: message ?? this.message);
+
+  factory Response.fromJson(Map<String, dynamic> json) =>
+      _$ResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ResponseToJson(this);
 }

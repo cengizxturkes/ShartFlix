@@ -21,4 +21,5 @@ class AppSvg {
   static const eye_show = 'assets/images/icon/svg/eye_show.svg';
   static const like = 'assets/images/icon/svg/like.svg';
   static const discover = 'assets/images/icon/svg/discover.svg';
+  static const add_user = 'assets/images/icon/svg/add_user.svg';
 }

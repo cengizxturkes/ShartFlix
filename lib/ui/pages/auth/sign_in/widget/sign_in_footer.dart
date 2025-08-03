@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:my_app/common/app_colors/app_colors.dart';
 import 'package:my_app/common/app_text/app_text_style.dart';
+import 'package:my_app/router/route_config.dart';
 
 class SignInFooter extends StatelessWidget {
   const SignInFooter({super.key});
@@ -19,7 +21,7 @@ class SignInFooter extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
-            // Navigate to register page
+            context.go(AppRouter.signUp);
           },
           child: Text(
             "Kayıt ol",
