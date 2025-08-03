@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:my_app/common/app_colors/app_colors.dart';
 import 'package:my_app/common/app_images/app_svg.dart';
 import 'package:my_app/common/app_text/app_text_style.dart';
+import 'package:my_app/router/route_config.dart';
 import 'package:my_app/ui/pages/auth/sign_in/sign_up/sign_up_cubit.dart';
 import 'package:my_app/widgets/app_text_field/app_text_field.dart';
 import 'package:my_app/widgets/icon/app_svg_widget.dart';
@@ -195,73 +197,6 @@ class _SignUpFormState extends State<SignUpForm> {
   }
 }
 
-class SocialSignUpButtons extends StatelessWidget {
-  const SocialSignUpButtons({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          "veya",
-          style: AppTextStyle.whiteS12Regular.copyWith(
-            color: AppColors.white.withValues(alpha: 0.5),
-          ),
-        ),
-        SizedBox(height: 16.h),
-        Row(
-          children: [
-            Expanded(
-              child: _buildSocialButton(
-                icon: AppSvg.google,
-                text: "Google",
-                onTap: () {
-                  // Google sign up logic
-                },
-              ),
-            ),
-            SizedBox(width: 12.w),
-            Expanded(
-              child: _buildSocialButton(
-                icon: AppSvg.apple,
-                text: "Apple",
-                onTap: () {
-                  // Apple sign up logic
-                },
-              ),
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-
-  Widget _buildSocialButton({
-    required String icon,
-    required String text,
-    required VoidCallback onTap,
-  }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        height: 48.h,
-        decoration: BoxDecoration(
-          border: Border.all(color: AppColors.inputBorder),
-          borderRadius: BorderRadius.circular(18.r),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            AppSvgWidget(path: icon, width: 20.w, height: 20.h),
-            SizedBox(width: 8.w),
-            Text(text, style: AppTextStyle.whiteS14),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
 class SignUpFooter extends StatelessWidget {
   const SignUpFooter({super.key});
 
@@ -278,7 +213,7 @@ class SignUpFooter extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
-            Navigator.pop(context);
+            context.go(AppRouter.signIn);
           },
           child: Text(
             "Giriş yap",

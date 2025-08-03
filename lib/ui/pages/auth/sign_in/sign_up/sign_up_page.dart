@@ -10,6 +10,7 @@ import 'package:my_app/repositories/auth/auth_repository.dart';
 import 'package:my_app/repositories/user/user_repository.dart';
 import 'package:my_app/ui/pages/auth/sign_in/sign_up/sign_up_navigator.dart';
 import 'package:my_app/ui/pages/auth/sign_in/sign_up/sign_up_state.dart';
+import 'package:my_app/ui/pages/auth/sign_in/widget/social_login_buttons.dart';
 import 'package:my_app/widgets/buttons/app_buttons.dart';
 import 'package:my_app/ui/pages/auth/sign_in/sign_up/widget/sign_up_widgets.dart';
 
@@ -95,8 +96,9 @@ class _SignUpChildPageState extends State<SignUpChildPage> {
                   SizedBox(height: 24.h),
                   _buildSignUpButton(),
                   SizedBox(height: 24.h),
-                  const SocialSignUpButtons(),
+                  const SocialLoginButtons(),
                   SizedBox(height: 32.h),
+
                   const SignUpFooter(),
                 ],
               ),

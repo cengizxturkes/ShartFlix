@@ -72,23 +72,35 @@ class _SignInChildPageState extends State<SignInChildPage> {
             padding: const EdgeInsets.symmetric(
               horizontal: AppDimens.loginPagePadding,
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
+            child: Stack(
               children: [
-                const SignInHeader(),
-                SignInForm(
-                  cubit: _cubit,
-                  emailController: _emailController,
-                  passwordController: _passwordController,
-                  formKey: _formKey,
+                /// Scroll içeriği
+                SingleChildScrollView(
+                  padding: EdgeInsets.only(bottom: 80.h),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(height: 250.h), // üst boşluk
+                      const SignInHeader(),
+                      SignInForm(
+                        cubit: _cubit,
+                        emailController: _emailController,
+                        passwordController: _passwordController,
+                        formKey: _formKey,
+                      ),
+                      SizedBox(height: 24.h),
+                      _buildSignInButton(),
+                      SizedBox(height: 36.h),
+                      const SocialLoginButtons(),
+                    ],
+                  ),
                 ),
-                SizedBox(height: 24.h),
-                _buildSignInButton(),
-                SizedBox(height: 24.h),
-                const SocialLoginButtons(),
-                SizedBox(height: 32.h),
-                const SignInFooter(),
+
+                /// Sabit footer
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: const SignInFooter(),
+                ),
               ],
             ),
           ),

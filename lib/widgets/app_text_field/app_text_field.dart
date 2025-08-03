@@ -74,7 +74,7 @@ class AppTextField extends StatelessWidget {
           maxWidth: 35.w,
         ),
         filled: true,
-        fillColor: enable ? Colors.transparent : AppColors.inputDisabled,
+        fillColor: enable ? const Color(0x33FFFFFF) : AppColors.inputDisabled,
         contentPadding: EdgeInsets.symmetric(vertical: 18.h, horizontal: 12.w),
         hintText: hintText,
         hintStyle: hintStyle ?? AppTextStyle.grayS12.copyWith(height: 1.5),
