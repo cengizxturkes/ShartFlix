@@ -5,7 +5,6 @@
 
 
 <h1>ShartFlix-NodeLabs Case(Lütfen Önce Okuyun),Media datalarını lütfen görüntüleyin.</h1>
-<h1>Önerilen filmler favori filmlere göre değişmektedir.</h1>
 
 Clarity:
 
