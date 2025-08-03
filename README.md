@@ -116,8 +116,16 @@ https://github.com/user-attachments/assets/9a35ea0a-3892-4294-8712-d9ea9e83969b
 - Microsoft Clarity, web siteleri ve uygulamalarda kullanıcı deneyimini analiz etmeye yardımcı olan, tamamen ücretsiz ve güçlü bir kullanıcı davranış analiz aracıdır. Clarity, kullanıcıların uygulama içerisindeki etkileşimlerini kayıt altına alarak (örneğin tıklamalar, kaydırmalar, sayfa gezinmeleri) kullanıcıların deneyimini daha iyi anlamanı sağlar.
 - Kullanıcı Davranışlarını İzleme?
 - Uygulamanı veya web siteni kullanan kişilerin nerelere tıkladığını, hangi sayfalarda daha fazla zaman harcadığını ve hangi noktada çıktığını net bir şekilde görebilirsin.
-
+#### Logger
+```dart
+logger.d("message"); //"💙 DEBUG: message"
+logger.i("message"); //"💚 INFO: message"
+logger.e("message"); //"❤️ ERROR: message"
+logger.log("very very very long message");
+```
 ## :handshake: File Structure 
+
+```
 assets
 └───font
 └───image
@@ -194,8 +202,9 @@ libs
 │   └───logger.dart
 │   └───utils.dart
 │───main.dart
-│───main_dev.dart
-└───main_staging.dart
+│───main_dev.dart //Config môi trường dev
+└───main_staging.dart //Config môi trường production
+```
 
 ## :handshake: Logger 
 
