@@ -60,6 +60,8 @@ dependencies:
   firebase_core:
   firebase_crashlytics:
   firebase_analytics:
+  #Clarity
+  clarity_flutter: ^1.2.0
 
 dev_dependencies:
   flutter_test:

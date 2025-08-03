@@ -38,7 +38,9 @@ android {
         }
     }
 }
-
+dependencies {
+    implementation("com.microsoft.clarity:clarity-compose:3.4.3")
+}
 
 flutter {
     source = "../.."

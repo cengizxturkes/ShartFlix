@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:clarity_flutter/clarity_flutter.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -22,12 +23,21 @@ void main() async {
   await EasyLocalization.ensureInitialized();
   await Firebase.initializeApp();
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+  final config = ClarityConfig(
+    projectId: "sorjsvxn1f",
+    logLevel:
+        LogLevel
+            .None, // Note: Use "LogLevel.Verbose" value while testing to debug initialization issues.
+  );
   runApp(
-    EasyLocalization(
-      supportedLocales: const [Locale('en'), Locale('tr')],
-      path: 'assets/translations',
-      fallbackLocale: const Locale('tr'),
-      child: const Shartflix(),
+    ClarityWidget(
+      clarityConfig: config,
+      app: EasyLocalization(
+        supportedLocales: const [Locale('en'), Locale('tr')],
+        path: 'assets/translations',
+        fallbackLocale: const Locale('tr'),
+        child: const Shartflix(),
+      ),
     ),
   );
 }
