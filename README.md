@@ -42,19 +42,50 @@ https://github.com/user-attachments/assets/9a35ea0a-3892-4294-8712-d9ea9e83969b
     </td>
   </tr>
 </table>
-
-
-<img width="1290" height="2796" alt="Simulator Screenshot - iPhone 16 Plus - 2025-08-03 at 17 29 57" src="https://github.com/user-attachments/assets/1d0c4833-54a5-4365-9d66-ffb7b57f77fe" />
-<img width="1290" height="2796" alt="Simulator Screenshot - iPhone 16 Plus - 2025-08-03 at 17 30 55" src="https://g<img width="1290" height="2796" alt="Simulator Screenshot - iPhone 16 Plus - 2025-08-03 at 17 31 27" src="https://github.com/user-attachments/assets/dcc3be6e-f6f0-477b-9907-65ba9baceab8" />
-ithub.com/user-attachments/assets/6f627370-d634-4cba-8de5-8cec5f122<img widt<img width="1290" height="2796" alt="Simulator Screenshot - iPhone 16 Plus - 2025-08-03 at 17 32 35" src="https://github.com/user-attachments/assets/873109c4-afb5-4d7f-bfee-a67c244b6432" />
-h="1290" height="2796" alt="Simulator Screenshot - iPhone 16 Plus - 2025-08-03 at 17 32 01" src="https://github.com/user-attachments/assets/37cd31f2-c715-4b01-aec1-11ca60415142" />
-291" />
-<img width="1290" height="2796" alt="Simulator Screenshot - iPhone 16 Plus - 2025-08-03 at 17 31 47" src="https://github.com/user-attachments/assets/d6cd6402-a315-43d6-80d1-7dc89d5a5d2c" />
-
-
-![Uploading Simulator Screenshot - iPhone 16 Plus - 2025-08-03 at 17.32.35.png…]()
-
-
+<table align="center">
+  <tr>
+    <td>
+      <img 
+        src="https://github.com/user-attachments/assets/1d0c4833-54a5-4365-9d66-ffb7b57f77fe" 
+        alt="Screen 1" 
+        width="380" />
+    </td>
+    <td>
+      <img 
+        src="https://github.com/user-attachments/assets/6f627370-d634-4cba-8de5-8cec5f122291" 
+        alt="Screen 2" 
+        width="380" />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img 
+        src="https://github.com/user-attachments/assets/dcc3be6e-f6f0-477b-9907-65ba9baceab8" 
+        alt="Screen 3" 
+        width="380" />
+    </td>
+    <td>
+      <img 
+        src="https://github.com/user-attachments/assets/37cd31f2-c715-4b01-aec1-11ca60415142" 
+        alt="Screen 4" 
+        width="380" />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img 
+        src="https://github.com/user-attachments/assets/d6cd6402-a315-43d6-80d1-7dc89d5a5d2c" 
+        alt="Screen 5" 
+        width="380" />
+    </td>
+    <td>
+      <img 
+        src="https://github.com/user-attachments/assets/873109c4-afb5-4d7f-bfee-a67c244b6432" 
+        alt="Screen 6" 
+        width="380" />
+    </td>
+  </tr>
+</table>
 
 
 ### :dart: Features
