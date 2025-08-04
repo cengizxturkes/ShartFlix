@@ -4,7 +4,7 @@
 
 
 <h1>ShartFlix-NodeLabs Case(Lütfen Önce Okuyun),Media datalarını lütfen görüntüleyin.</h1>
-
+<h2>Keşfet sayfası figmadaki tasarıma uygun olması için bottomnavigation eklenilmiştir.</h2>
 Clarity:
 
 ![EkranKayd2025-08-0317 16 44-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/4a56c0af-ca01-48a3-84ad-cf0409f529d7)
