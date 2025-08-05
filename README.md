@@ -85,6 +85,20 @@ https://github.com/user-attachments/assets/9a35ea0a-3892-4294-8712-d9ea9e83969b
         width="380" />
     </td>
   </tr>
+    <tr>
+    <td>
+      <img 
+        src="https://github.com/user-attachments/assets/7121e8a7-3cb6-4c64-8e17-0564accc0900" 
+        alt="Screen 5" 
+        width="380" />
+    </td>
+    <td>
+      <img 
+        src="https://github.com/user-attachments/assets/320bc5c4-c243-4cb3-b507-6fafa75f3831" 
+        alt="Screen 6" 
+        width="380" />
+    </td>
+  </tr>
 </table>
 <img width="380" height="2796" alt="Simulator Screenshot - iPhone 16 Plus - 2025-08-03 at 23 22 09" src="https://github.com/user-attachments/assets/af3529d7-2c26-405e-a86f-ab804ef8ee5f" />
 
