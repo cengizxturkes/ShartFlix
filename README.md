@@ -1,7 +1,4 @@
 
-<img src=https://github.com/user-attachments/assets/30bf78ec-6381-40f5-a4cb-bea9573d92c1 alt="logo" width=400 height=400 />
-
-
 <a href="https://drive.google.com/uc?export=download&id=1XL5BZG7AWSu2cAwEN10RqE5ic-Sbu4VH" 
    download="ShartFlix.apk" 
    style="
@@ -20,6 +17,9 @@
    onmouseout="this.style.background='#4CAF50';">
    APK'yı İndir
 </a>
+
+<img src=https://github.com/user-attachments/assets/30bf78ec-6381-40f5-a4cb-bea9573d92c1 alt="logo" width=400 height=400 />
+
 
 <h1>ShartFlix-NodeLabs Case(Lütfen Önce Okuyun),Media datalarını lütfen görüntüleyin.</h1>
 <h2>Keşfet sayfası figmadaki tasarıma uygun olması için bottomnavigation eklenilmiştir.</h2>
