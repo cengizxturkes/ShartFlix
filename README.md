@@ -4,9 +4,23 @@
 
 <a href="https://drive.google.com/uc?export=download&id=1XL5BZG7AWSu2cAwEN10RqE5ic-Sbu4VH" 
    download="ShartFlix.apk" 
-   style="padding:10px 20px; background:#4CAF50; color:white; text-decoration:none; border-radius:5px;">
+   style="
+      display:inline-block; 
+      padding:20px 40px; 
+      font-size:20px; 
+      font-weight:bold;
+      background:#4CAF50; 
+      color:white; 
+      text-decoration:none; 
+      border-radius:10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition:all 0.3s ease;
+   "
+   onmouseover="this.style.background='#45a049';" 
+   onmouseout="this.style.background='#4CAF50';">
    APK'yı İndir
 </a>
+
 <h1>ShartFlix-NodeLabs Case(Lütfen Önce Okuyun),Media datalarını lütfen görüntüleyin.</h1>
 <h2>Keşfet sayfası figmadaki tasarıma uygun olması için bottomnavigation eklenilmiştir.</h2>
 Clarity:
