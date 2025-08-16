@@ -72,6 +72,45 @@ class SignUpCubit extends Cubit<SignUpState> {
     }
   }
 
+  void signInWithGoogle() async {
+    emit(state.copyWith(signUpStatus: LoadStatus.loading));
+
+    try {
+      final response = await authRepo.signInWithGoogle();
+      
+      if (response != null && response.data.accessToken.isNotEmpty) {
+        // Token'ları kaydet
+        await authRepo.saveToken(
+          TokenEntity(
+            accessToken: response.data.accessToken,
+            refreshToken: response.data.refreshToken,
+          ),
+        );
+
+        // User data'yı güncelle (LoginResponse formatına convert et)
+        // Google response'ı normal login response'a çevirmek için mock data oluştur
+        final mockLoginResponse = await authRepo.getUser();
+        if (mockLoginResponse != null) {
+          userCubit.updateUser(mockLoginResponse);
+        }
+
+        emit(state.copyWith(signUpStatus: LoadStatus.success));
+        navigator.showSuccessFlushbar(message: 'Google ile giriş başarılı!');
+        navigator.navigateToHome();
+      } else {
+        throw Exception('Google login başarısız');
+      }
+    } catch (e) {
+      emit(
+        state.copyWith(
+          signUpStatus: LoadStatus.failure,
+          errorMessage: e.toString(),
+        ),
+      );
+      navigator.showErrorFlushbar(message: e.toString());
+    }
+  }
+
   void resetState() {
     emit(const SignUpState());
   }

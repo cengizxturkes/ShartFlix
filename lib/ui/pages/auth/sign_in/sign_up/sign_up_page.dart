@@ -84,7 +84,15 @@ class _SignUpChildPageState extends State<SignUpChildPage> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const SocialLoginButtons(),
+              BlocBuilder<SignUpCubit, SignUpState>(
+                builder: (context, state) {
+                  return SocialLoginButtons(
+                    onGooglePressed: state.signUpStatus == LoadStatus.loading 
+                        ? null 
+                        : () => _cubit.signInWithGoogle(),
+                  );
+                },
+              ),
 
               SizedBox(height: 24.h),
               const SignUpFooter(),
