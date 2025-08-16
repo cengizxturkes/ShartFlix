@@ -61,6 +61,8 @@ dependencies:
   firebase_core:
   firebase_crashlytics:
   firebase_analytics:
+  firebase_auth:
+  google_sign_in:
   #Clarity
   clarity_flutter: ^1.2.0
   #Quick Actions

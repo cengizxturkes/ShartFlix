@@ -7,6 +7,7 @@ import 'package:my_app/repositories/auth/auth_repository.dart';
 import 'package:my_app/repositories/user/user_repository.dart';
 import 'package:my_app/ui/pages/auth/sign_in/sign_up/sign_up_navigator.dart';
 import 'package:my_app/ui/pages/auth/sign_in/sign_up/sign_up_state.dart';
+import 'package:my_app/utils/google_sign_in_service.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
   final SignUpNavigator navigator;
@@ -69,6 +70,52 @@ class SignUpCubit extends Cubit<SignUpState> {
         ),
       );
       navigator.showErrorFlushbar(message: e.toString());
+    }
+  }
+
+  void signInWithGoogle() async {
+    emit(state.copyWith(signUpStatus: LoadStatus.loading));
+
+    try {
+      // Get ID token from Firebase
+      final String? idToken = await GoogleSignInService().signInWithGoogle();
+      
+      if (idToken == null) {
+        emit(state.copyWith(signUpStatus: LoadStatus.failure));
+        navigator.showErrorFlushbar(message: 'Google ile giriş iptal edildi');
+        return;
+      }
+
+      // Send ID token to backend
+      final response = await authRepo.googleSignIn(idToken);
+      
+      if (response != null && response.data.token.isNotEmpty) {
+        // Save token and update user
+        await authRepo.saveToken(
+          TokenEntity(
+            accessToken: response.data.token,
+            refreshToken: response.data.token,
+          ),
+        );
+        
+        // Update user cubit with login response format
+        userCubit.updateUserFromGoogleSignIn(response);
+        
+        emit(state.copyWith(signUpStatus: LoadStatus.success));
+        navigator.showSuccessFlushbar(message: 'Google ile giriş başarılı!');
+        navigator.navigateToHome();
+      } else {
+        emit(state.copyWith(signUpStatus: LoadStatus.failure));
+        navigator.showErrorFlushbar(message: 'Google ile giriş başarısız');
+      }
+    } catch (e) {
+      emit(
+        state.copyWith(
+          signUpStatus: LoadStatus.failure,
+          errorMessage: e.toString(),
+        ),
+      );
+      navigator.showErrorFlushbar(message: 'Google ile giriş hatası: ${e.toString()}');
     }
   }
 
