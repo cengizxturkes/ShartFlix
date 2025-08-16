@@ -1,7 +1,9 @@
 import 'package:my_app/database/secure_storage_helper.dart';
 import 'package:my_app/models/request/user/login/login_body.dart';
+import 'package:my_app/models/request/user/login/google_sign_in.dart';
 import 'package:my_app/models/request/user/register/register_body.dart';
 import 'package:my_app/models/response/user/login/login_response.dart';
+import 'package:my_app/models/response/user/login/google_sign_in_response.dart';
 import 'package:my_app/models/response/user/profile/profile_response.dart';
 import 'package:my_app/models/response/user/register/register_response.dart';
 import 'package:my_app/models/token/token_entity.dart';
@@ -32,6 +34,14 @@ class AuthRepositoryImpl extends AuthRepository {
   Future<LoginResponse?> signIn(String email, String password) async {
     final response = await apiClient.authLogin(
       LoginBody(email: email, password: password),
+    );
+    return response;
+  }
+
+  @override
+  Future<GoogleSignInResponse?> googleSignIn(String idToken) async {
+    final response = await apiClient.googleSignIn(
+      GoogleSignIn(idToken: idToken),
     );
     return response;
   }
