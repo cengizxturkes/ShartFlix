@@ -5,7 +5,16 @@ import 'package:my_app/common/card/card_decoration.dart';
 import 'package:my_app/widgets/icon/app_svg_widget.dart';
 
 class SocialLoginButtons extends StatelessWidget {
-  const SocialLoginButtons({super.key});
+  final VoidCallback? onGooglePressed;
+  final VoidCallback? onApplePressed;
+  final VoidCallback? onFacebookPressed;
+
+  const SocialLoginButtons({
+    super.key,
+    this.onGooglePressed,
+    this.onApplePressed,
+    this.onFacebookPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,8 +22,8 @@ class SocialLoginButtons extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ...List.generate(
-          _socialButtons.length,
-          (index) => _buildSocialButton(context, _socialButtons[index], index),
+          _getSocialButtons().length,
+          (index) => _buildSocialButton(context, _getSocialButtons()[index], index),
         ),
       ],
     );
@@ -27,7 +36,7 @@ class SocialLoginButtons extends StatelessWidget {
   ) {
     return Padding(
       padding: EdgeInsets.only(
-        right: index == _socialButtons.length - 1 ? 0 : 8.w,
+        right: index == _getSocialButtons().length - 1 ? 0 : 8.w,
       ),
       child: GestureDetector(
         onTap: buttonData.onPressed,
@@ -47,22 +56,22 @@ class SocialLoginButtons extends StatelessWidget {
     );
   }
 
-  static const List<SocialButtonData> _socialButtons = [
-    SocialButtonData(svgPath: AppSvg.google, onPressed: _handleGoogleLogin),
-    SocialButtonData(svgPath: AppSvg.apple, onPressed: _handleAppleLogin),
-    SocialButtonData(svgPath: AppSvg.facebook, onPressed: _handleFacebookLogin),
+  List<SocialButtonData> _getSocialButtons() => [
+    SocialButtonData(svgPath: AppSvg.google, onPressed: onGooglePressed ?? _handleGoogleLogin),
+    SocialButtonData(svgPath: AppSvg.apple, onPressed: onApplePressed ?? _handleAppleLogin),
+    SocialButtonData(svgPath: AppSvg.facebook, onPressed: onFacebookPressed ?? _handleFacebookLogin),
   ];
 
   static void _handleGoogleLogin() {
-    // Google login logic
+    // Default Google login logic (empty)
   }
 
   static void _handleAppleLogin() {
-    // Apple login logic
+    // Default Apple login logic (empty)
   }
 
   static void _handleFacebookLogin() {
-    // Facebook login logic
+    // Default Facebook login logic (empty)
   }
 }
 

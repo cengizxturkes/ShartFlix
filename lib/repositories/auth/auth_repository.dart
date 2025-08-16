@@ -1,5 +1,6 @@
 import 'package:my_app/models/request/user/register/register_body.dart';
 import 'package:my_app/models/response/user/login/login_response.dart';
+import 'package:my_app/models/response/user/login/google_sign_in_response.dart';
 import 'package:my_app/models/response/user/profile/profile_response.dart';
 import 'package:my_app/models/response/user/register/register_response.dart';
 import 'package:my_app/models/token/token_entity.dart';
@@ -12,6 +13,8 @@ abstract class AuthRepository {
   Future<void> removeToken();
 
   Future<LoginResponse?> signIn(String username, String password);
+
+  Future<GoogleSignInResponse?> signInWithGoogle();
 
   Future<RegisterResponse> signUp(RegisterBody registerBody);
 
